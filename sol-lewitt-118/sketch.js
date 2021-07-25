@@ -1,4 +1,4 @@
-/* After Sol LeWitt #118
+/* After Sol LeWitt Wall Drawing #118
  * "On a wall surface, any
  * continuous stretch of wall,
  * using a hard pencil, place
