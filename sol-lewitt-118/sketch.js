@@ -57,7 +57,7 @@ function setup() {
 function draw() {
   /* Draw one line between every point and every other point. */
   background('#fbffe8');
-  stroke('#999');
+  stroke('#333');
   strokeWeight(0.25);
   let mx = margin(width), my = margin(height);
   for (let i = 0; i < points.length - 1; i++) {
