@@ -39,6 +39,7 @@ function margin(dim, per=percent) {
 function setup() {
   /* Setup canvas, slider, and update(). */
   // https://github.com/processing/p5.js/wiki/Positioning-your-canvas
+  select("html").style(`background-color: #fafafa;`);
   canvas = createCanvas(width, height);
   canvas.parent('sketch-canvas')
   canvas.style(`display: block;`)
