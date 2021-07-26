@@ -71,6 +71,7 @@ function update(permutations=perms) {
 
 function setup() {
   /* Setup canvas, slider, and update(). */
+  select("html").style(`background-color: #fafafa;`);
   canvas = createCanvas(width, height);
   canvas.parent("sketch-canvas");
   canvas.style(`display: block;`);
