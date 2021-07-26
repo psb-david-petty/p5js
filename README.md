@@ -5,4 +5,5 @@ Included are some projects developed to learn more about [p5js](https://p5js.org
 
 | Sketch | Description |
 | --- | --- |
-| [./sol-lewitt-118](./sol-lewitt-118) | After [Sol LeWitt #118](https://observer.com/2012/10/here-are-the-instructions-for-sol-lewitts-1971-wall-drawing-for-the-school-of-the-mfa-boston/) @ [Mass MoCA](https://massmoca.org/sol-lewitt/) |
+| [./sol-lewitt-118](./sol-lewitt-118) | After [Sol LeWitt *Wall Drawing #118*](https://observer.com/2012/10/here-are-the-instructions-for-sol-lewitts-1971-wall-drawing-for-the-school-of-the-mfa-boston/) @ [Mass MoCA](https://massmoca.org/sol-lewitt/) |
+| [./sol-lewitt-414](./sol-lewitt-414) | After [Sol LeWitt *Wall Drawing #414*](https://massmoca.org/event/walldrawing414/) @ [Mass MoCA](https://massmoca.org/sol-lewitt/) |
