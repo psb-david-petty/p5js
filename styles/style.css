@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&display=swap');
+body {
+  font-family: 'Open Sans Condensed', sans-serif;
+  margin: 1em; padding: 1em;
+  background-color: #fafafa; border: thin solid #639; 
+}
+iframe { border: none; }
+footer {
+  text-align: center; font-size: small; 
+  padding-top: 1em; margin-top: 1em; border-top: thin solid #639;
+}
+#content {
+  display: flex; flex-direction: column;
+  justify-content: center; align-items: center;
+}
