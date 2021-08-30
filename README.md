@@ -9,6 +9,12 @@ Included are some projects developed to learn more about [p5js](https://p5js.org
 | [./sol-lewitt-413/](https://psb-david-petty.github.io/p5js/sol-lewitt-413/) | After [Sol LeWitt *Wall Drawing #413*](https://massmoca.org/event/walldrawing413/) @ [Mass MoCA](https://massmoca.org/sol-lewitt/) |
 | [./sol-lewitt-414/](https://psb-david-petty.github.io/p5js/sol-lewitt-414/) | After [Sol LeWitt *Wall Drawing #414*](https://massmoca.org/event/walldrawing414/) @ [Mass MoCA](https://massmoca.org/sol-lewitt/) |
 
+Also included are projects inspired by *The Coding Train* ([http://codingtra.in/](http://codingtra.in/)).
+
+| Sketch | Description |
+| --- | --- |
+| [./coding-train-cc-59/](https://psb-david-petty.github.io/p5js/coding-train-cc-59/) | This is based on [coding challenge 59](https://thecodingtrain.com/CodingChallenges/059-steering-text-paths.html). |
+
 <hr>
 
 [&#128279; permalink](https://psb-david-petty.github.io/p5js/) and [&#128297; repository](https://github.com/psb-david-petty/p5js/) for this page.
