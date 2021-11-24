@@ -75,7 +75,8 @@ function setup() {
   // https://stackoverflow.com/a/70070854/17467335
   // NOTE: p5.js now makes it impossible for sketches to parse URI parameters.
   // https://preview.p5js.org/psb_david_petty/present URIs are redirected to
-  // https://editor.p5js.org/psb_david_petty/full URIs. So... use #content id tags.
+  // https://editor.p5js.org/psb_david_petty/full URIs. 
+  // Use #content id tag w/ data-color and data-message attributes.
   let content = select('#content');
   let dataset = content && content.elt.dataset ? content.elt.dataset : null;
   bgc = dataset && dataset.color ? dataset.color : bgc;
