@@ -72,6 +72,7 @@ window.addEventListener("message", (event) => {
   console.log(event);
   const data = event.data;
   const message = JSON.parse(data);
+  // NOTE: for when sketch is hosted somewhere other than https://p5js.org/.
   console.log(message);
 });
 
@@ -89,12 +90,7 @@ function setup() {
   // NOTE: p5.js now makes it impossible for sketches to parse URI parameters.
   // https://preview.p5js.org/psb_david_petty/present URIs are redirected to
   // https://editor.p5js.org/psb_david_petty/full URIs.
-  // Use #content id tag w/ data-color and data-message attributes.
-  let content = select("#content");
-  let dataset = content && content.elt.dataset ? content.elt.dataset : null;
-  bgc = dataset && dataset.color ? dataset.color : bgc;
-  msg = dataset && dataset.message ? dataset.message : msg;
-  // Use #sketch title as alternative message.
+  // Hence, this sketch must be hosted somewhere other than https://p5js.org/.
   let sketch = select("#sketch");
   // Set bgColor and message.
   bgColor = bgc ? `#${bgc}` : bgColor;
