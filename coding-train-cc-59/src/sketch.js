@@ -116,6 +116,7 @@ function setup() {
 }
 
 function draw() {
+  console.log(bgColor);
   background(bgColor);
   for (const v of vehicles) {
     v.behaviors();
