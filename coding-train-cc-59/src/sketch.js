@@ -124,13 +124,20 @@ function setup() {
   canvas.parent("sketch-canvas");
   canvas.style(`display: block;`);
   style();
+
+  // Set frameRate to slow.
+  frameRate(4);
 }
 
 function draw() {
-  background(bgColor);
-  for (const v of vehicles) {
-    v.behaviors();
-    v.update();
-    v.show();
+  console.log(frameCount);
+  if (frameCount > 0) {
+    frameRate(60);
+    background(bgColor);
+    for (const v of vehicles) {
+      v.behaviors();
+      v.update();
+      v.show();
+    }
   }
 }
