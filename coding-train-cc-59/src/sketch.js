@@ -73,8 +73,8 @@ window.addEventListener("message", (event) => {
   console.log(`sketch: ${event.data}`);
   const data = JSON.parse(event.data);
   // NOTE: for when sketch is hosted somewhere other than https://p5js.org/.
-  bgColor = `#${data.color}`;
-  if (message != data.message) {
+  if (data.color) bgColor = `#${data.color}`;
+  if (data.message && data.message != message) {
     vehicles = [];
     message = data.message;
     setup();
