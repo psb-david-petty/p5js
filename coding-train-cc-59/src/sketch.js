@@ -74,6 +74,7 @@ window.addEventListener("message", (event) => {
   console.log(`sketch: ${data}`);
   const message = JSON.parse(data);
   // NOTE: for when sketch is hosted somewhere other than https://p5js.org/.
+  console.log(`data: #${message.color} "${data.message}"`);
   background(`#${message.color}`);
 });
 
