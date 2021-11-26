@@ -26,6 +26,7 @@
 <script>
 const iframe = document.querySelector("#script");
 if (iframe) iframe.onLoad = scriptMessage;
+console.log(`iframe: ${iframe}`);
 // document.addEventListener("DOMContentLoaded", scriptMessage);
 function scriptMessage() {
   // https://htmldom.dev/communication-between-an-iframe-and-its-parent-window/
