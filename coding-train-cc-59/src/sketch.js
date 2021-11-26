@@ -18,7 +18,7 @@ var font;
 var vehicles = [];
 var bgColor = "#666";
 var message = "NO MESSAGE";
-                        
+
 /* Return fontData consisting of font size @ (x, y) for message
  * filling a rectangle of width x height (including half factor
  * margins) in font.
@@ -74,15 +74,16 @@ window.addEventListener("message", (event) => {
   const data = JSON.parse(event.data);
   // NOTE: for when sketch is hosted somewhere other than https://p5js.org/.
   bgColor = `#${data.color}`;
-  // TODO: handle change to data.message
+  if (message != data.message) {
+    vehicles = [];
+    message = data.message;
+    setup();
+  }
 });
 
 function preload() {
   // https://www.fontspace.com/edge-of-the-galaxy-font-f45748
   font = loadFont("EdgeOfTheGalaxyRegular-OVEa6.otf");
-}
-
-function setup() {
   // Get color and message from URI.
   let uri = new URL(window.location.href);
   let bgc = uri.searchParams.get("c");
@@ -97,7 +98,9 @@ function setup() {
   bgColor = bgc ? `#${bgc}` : bgColor;
   message = msg ? msg.replace(/\+/g, " ") : sketch ? sketch.elt.title : message;
   console.log(`${bgc} ${msg} ${bgColor} '${message}' `);
+}
 
+function setup() {
   // Calculate message in font to fill canvas and declare 'vehicles.'
   let data = fontData(message);
   var points = font.textToPoints(message, data.x, data.y, data.size, {
