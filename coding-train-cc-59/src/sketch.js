@@ -65,16 +65,16 @@ function style() {
 }
 
 /* Add event listener for messages from other frames.
- * This will not work. p5.js does not allow cross-origin postMessage:
+ * This will not work if sketch is hosted on p5.js. p5.js does not allow cross-origin postMessage:
  * "dispatcher.js:35 Failed to execute 'postMessage' on 'DOMWindow': The target origin provided ('https://preview.p5js.org') does not match the recipient window's origin ('https://editor.p5js.org')."
  */
 window.addEventListener("message", (event) => {
   console.log(event);
-  const data = event.data;
-  console.log(`sketch: ${data}`);
-  const message = JSON.parse(data);
+  console.log(`sketch: ${event.data}`);
+  const data = JSON.parse(event.data);
   // NOTE: for when sketch is hosted somewhere other than https://p5js.org/.
-  bgColor = `#${message.color}`;
+  bgColor = `#${data.color}`;
+  // TODO: handle change to data.message
 });
 
 function preload() {
