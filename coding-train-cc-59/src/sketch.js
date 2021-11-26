@@ -46,6 +46,21 @@ function fontData(message, w = width, h = height, factor = 0.8125, pt = 100) {
   return fontData;
 }
 
+/* Create message vehicles.
+ */
+function createMessage() {
+  // Calculate message in font to fill canvas and initialize 'vehicles.'
+  let data = fontData(message);
+  let points = font.textToPoints(message, data.x, data.y, data.size, {
+    sampleFactor: 0.25,
+  });
+  vehicles = []
+  for (const point of points) {
+    var vehicle = new Vehicle(point.x, point.y);
+    vehicles.push(vehicle);
+  }
+}
+
 /* Set styles for #sketch* ids. Log iframe style for parent
  * webpage.
  */
@@ -73,11 +88,11 @@ window.addEventListener("message", (event) => {
   console.log(`sketch: ${event.data}`);
   const data = JSON.parse(event.data);
   // NOTE: for when sketch is hosted somewhere other than https://p5js.org/.
+  // Update bgColor, used in draw(), and message, if different than current message.
   if (data.color) bgColor = `#${data.color}`;
   if (data.message && data.message != message) {
-    vehicles = [];
     message = data.message;
-    setup();
+    createMesssage();
   }
 });
 
@@ -101,15 +116,8 @@ function preload() {
 }
 
 function setup() {
-  // Calculate message in font to fill canvas and declare 'vehicles.'
-  let data = fontData(message);
-  var points = font.textToPoints(message, data.x, data.y, data.size, {
-    sampleFactor: 0.25,
-  });
-  for (const point of points) {
-    var vehicle = new Vehicle(point.x, point.y);
-    vehicles.push(vehicle);
-  }
+  /* Create message vehicles. */
+  createMessage();
 
   /* Setup canvas and style(). */
   canvas = createCanvas(width, height);
