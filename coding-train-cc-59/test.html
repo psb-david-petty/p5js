@@ -24,10 +24,13 @@
   iframe { width: 620px; height: 420px; } 
 </style>
 <script>
-document.addEventListener("DOMContentLoaded", () => {
-  const iframe = document.querySelector("#script");
+const iframe = document.querySelector("#script");
+if (iframe) iframe.onLoad = scriptMessage;
+// document.addEventListener("DOMContentLoaded", scriptMessage);
+function scriptMessage() {
   // https://htmldom.dev/communication-between-an-iframe-and-its-parent-window/
-  if (iframe) {
+  const iframe = document.querySelector("#script");
+  if (iframe && iframe.dataset) {
     const message = JSON.stringify({
       color: iframe.dataset.color,
       message: iframe.dataset.message,
@@ -38,9 +41,9 @@ document.addEventListener("DOMContentLoaded", () => {
     ` This will not work. p5.js does not allow cross-origin postMessage:
     "dispatcher.js:35 Failed to execute 'postMessage' on 'DOMWindow': The target origin provided ('https://preview.p5js.org') does not match the recipient window's origin ('https://editor.p5js.org')."
     `
+    return false;
   }
-  return false;
-});
+}
 var intervalID = setInterval( () => {
   const iframe = document.querySelector("#script");
   // https://htmldom.dev/communication-between-an-iframe-and-its-parent-window/
@@ -54,8 +57,7 @@ var intervalID = setInterval( () => {
     console.log(`test: ${message}`);
     iframe.contentWindow.postMessage(message, null);
   }
-}, 1000);
-</script>
+}, 1000);</script>
   </head>
   <body>
     <h1>p5.js Test</h1>
