@@ -1,0 +1,69 @@
+
+<!DOCTYPE html><html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>p5.js Test</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:ital,wght@0,300;0,700;1,300&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap')
+  body {
+    font-family: 'Open Sans Condensed', sans-serif;
+    margin: 1em; padding: 1em;
+    background-color: #fafafa; border: thin solid #639; 
+  }
+  code, pre, tt { font-family: 'Roboto Mono', monospace; }
+  iframe { border: none; }
+  footer {
+    text-align: center; font-size: small; 
+    padding-top: 1em; margin-top: 1em; border-top: thin solid #639;
+  }
+  #content {
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: center;
+  }
+  iframe { width: 620px; height: 420px; } 
+</style>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const iframe = document.querySelector("#script");
+  // https://htmldom.dev/communication-between-an-iframe-and-its-parent-window/
+  if (iframe) {
+    const message = JSON.stringify({
+      color: iframe.dataset.color,
+      message: iframe.dataset.message,
+    });
+    console.log(`test: ${message}`);
+    // https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage
+    iframe.contentWindow.postMessage(message, null);
+    ` This will not work. p5.js does not allow cross-origin postMessage:
+    "dispatcher.js:35 Failed to execute 'postMessage' on 'DOMWindow': The target origin provided ('https://preview.p5js.org') does not match the recipient window's origin ('https://editor.p5js.org')."
+    `
+  }
+  return false;
+});
+var intervalID = setInterval( () => {
+  const iframe = document.querySelector("#script");
+  // https://htmldom.dev/communication-between-an-iframe-and-its-parent-window/
+  if (iframe) {
+    let r = (Math.floor(Math.random() * 6) * 3).toString(16);
+    let g = (Math.floor(Math.random() * 6) * 3).toString(16);
+    let b = (Math.floor(Math.random() * 6) * 3).toString(16);
+    const message = JSON.stringify({
+      color: `${r}${g}${b}`,
+    });
+    console.log(`test: ${message}`);
+    iframe.contentWindow.postMessage(message, null);
+  }
+}, 1000);
+</script>
+  </head>
+  <body>
+    <h1>p5.js Test</h1>
+    <div id="content">
+      <iframe id="script" src="https://psb-david-petty.github.io/p5js/coding-train-cc-59/src/" data-color="639" data-message="TEST"></iframe>
+    </div>
+    <footer>
+      <a href="https://github.com/psb-david-petty/p5js/tree/main/coding-train-cc-59/">🔗 permalink</a> and <a href="https://github.com/psb-david-petty/p5js/">🔩 repository</a> for <a href="https://editor.p5js.org/psb_david_petty/full/gblbwpq7g">this page</a>.
+    </footer>
+  </body>
+</html>
