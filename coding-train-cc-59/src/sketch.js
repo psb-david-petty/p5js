@@ -69,7 +69,7 @@ function style() {
  * "dispatcher.js:35 Failed to execute 'postMessage' on 'DOMWindow': The target origin provided ('https://preview.p5js.org') does not match the recipient window's origin ('https://editor.p5js.org')."
  */
 window.addEventListener("message", (event) => {
-  console.log(event);
+  // console.log(event);
   console.log(`sketch: ${event.data}`);
   const data = JSON.parse(event.data);
   // NOTE: for when sketch is hosted somewhere other than https://p5js.org/.
