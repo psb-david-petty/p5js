@@ -55,7 +55,7 @@ var intervalID = setInterval( () => {
     let b = (Math.floor(Math.random() * 6) * 3).toString(16);
     const message = JSON.stringify({
       color: `${r}${g}${b}`,
-      message: `n = ${count}`
+      message: `n = ${count++}`
     });
     console.log(`test: ${message}`);
     iframe.contentWindow.postMessage(message, null);
