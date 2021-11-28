@@ -125,7 +125,7 @@ function setup() {
   canvas.style(`display: block;`);
   style();
 
-  for (elt of window.top.querySelectorAll('#sketch')) console.log(elt);
+  for (elt of document.querySelectorAll('#sketch')) console.log(elt);
 }
 
 function draw() {
