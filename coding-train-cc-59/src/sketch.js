@@ -92,7 +92,7 @@ window.addEventListener("message", (event) => {
   if (data.color) bgColor = `#${data.color}`;
   if (data.message && data.message != message) {
     message = data.message;
-    createMesssage();
+    createMessage();
   }
 });
 
