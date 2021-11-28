@@ -24,13 +24,14 @@
   iframe { width: 620px; height: 420px; } 
 </style>
 <script>
-const iframe = document.querySelector("#script");
+var count = 0;
+const iframe = document.querySelector("#src");
 if (iframe) iframe.onLoad = scriptMessage;
 console.log(`iframe: ${iframe}`);
 document.addEventListener("DOMContentLoaded", scriptMessage);
 function scriptMessage() {
   // https://htmldom.dev/communication-between-an-iframe-and-its-parent-window/
-  const iframe = document.querySelector("#script");
+  const iframe = document.querySelector("#src");
   if (iframe && iframe.dataset) {
     const message = JSON.stringify({
       color: iframe.dataset.color,
@@ -46,7 +47,7 @@ function scriptMessage() {
   }
 }
 var intervalID = setInterval( () => {
-  const iframe = document.querySelector("#script");
+  const iframe = document.querySelector("#src");
   // https://htmldom.dev/communication-between-an-iframe-and-its-parent-window/
   if (iframe) {
     let r = (Math.floor(Math.random() * 6) * 3).toString(16);
@@ -54,6 +55,7 @@ var intervalID = setInterval( () => {
     let b = (Math.floor(Math.random() * 6) * 3).toString(16);
     const message = JSON.stringify({
       color: `${r}${g}${b}`,
+      message: `n = ${count}`
     });
     console.log(`test: ${message}`);
     iframe.contentWindow.postMessage(message, null);
@@ -63,7 +65,7 @@ var intervalID = setInterval( () => {
   <body>
     <h1>p5.js Test</h1>
     <div id="content">
-      <iframe id="script" src="https://psb-david-petty.github.io/p5js/coding-train-cc-59/src/" data-color="639" data-message="TEST"></iframe>
+      <iframe id="src" src="https://psb-david-petty.github.io/p5js/coding-train-cc-59/src/" data-color="639" data-message="TEST"></iframe>
     </div>
     <footer>
       <a href="https://github.com/psb-david-petty/p5js/tree/main/coding-train-cc-59/">🔗 permalink</a> and <a href="https://github.com/psb-david-petty/p5js/">🔩 repository</a> for <a href="https://editor.p5js.org/psb_david_petty/full/gblbwpq7g">this page</a>.
