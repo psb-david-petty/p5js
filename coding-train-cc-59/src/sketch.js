@@ -135,10 +135,12 @@ function setup() {
 }
 
 function draw() {
-  background(bgColor);
-  for (const v of vehicles) {
-    v.behaviors();
-    v.update();
-    v.show();
+  if (frameCount > 60) {
+    background(bgColor);
+    for (const v of vehicles) {
+      v.behaviors();
+      v.update();
+      v.show();
+    }
   }
 }

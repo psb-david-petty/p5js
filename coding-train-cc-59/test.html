@@ -24,6 +24,7 @@
   iframe { width: 620px; height: 420px; } 
 </style>
 <script>
+// https://www.lingihuang.com/docs-blog/article-31-onLoad-and-onDOMContentLoaded.html
 // iframe is always null, so cannot scriptMessage() onload.
 const iframe = document.querySelector("#src");
 if (iframe) iframe.onLoad = scriptMessage;
@@ -65,6 +66,8 @@ var intervalID = setInterval( () => {
     console.log(`test: ${message}`);
     iframe.contentWindow.postMessage(message, null);
   }
+  // Clear this interval, after being invoked once.
+  clearInterval(intervalID);
 }, interval);</script>
   </head>
   <body>
