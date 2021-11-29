@@ -49,10 +49,15 @@ function scriptMessage() {
     return false;
   }
 }
-const interval = 1000;
+const initialID = setInterval( () => {
+  scriptMessage();
+  clearInterval(initialID);
+}, 1000);
+// postMessage to #src every interval.
+const interval = 5000;
 var count = 0;
 /* postMessage every interval including random color and number message */ 
-var intervalID = setInterval( () => {
+const intervalID = setInterval( () => {
   const iframe = document.querySelector("#src");
   // https://htmldom.dev/communication-between-an-iframe-and-its-parent-window/
   if (iframe) {
@@ -66,8 +71,6 @@ var intervalID = setInterval( () => {
     console.log(`test: ${message}`);
     iframe.contentWindow.postMessage(message, null);
   }
-  // Clear this interval, after being invoked once.
-  clearInterval(intervalID);
 }, interval);</script>
   </head>
   <body>
