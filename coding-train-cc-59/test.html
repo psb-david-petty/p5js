@@ -2,28 +2,13 @@
 <!DOCTYPE html><html lang="en">
   <head>
     <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="../styles/style.css">
     <title>p5.js Test</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:ital,wght@0,300;0,700;1,300&display=swap');
-  @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap')
-  body {
-    font-family: 'Open Sans Condensed', sans-serif;
-    margin: 1em; padding: 1em;
-    background-color: #fafafa; border: thin solid #639; 
-  }
-  code, pre, tt { font-family: 'Roboto Mono', monospace; }
-  iframe { border: none; }
-  footer {
-    text-align: center; font-size: small; 
-    padding-top: 1em; margin-top: 1em; border-top: thin solid #639;
-  }
-  #content {
-    display: flex; flex-direction: column;
-    justify-content: center; align-items: center;
-  }
   iframe { width: 620px; height: 420px; } 
 </style>
 <script>
+/* TODO: move this to a separate directory w/ a separate .JS file. */
 // https://www.lingihuang.com/docs-blog/article-31-onLoad-and-onDOMContentLoaded.html
 // iframe is always null, so cannot scriptMessage() onload.
 const iframe = document.querySelector("#src");
@@ -76,7 +61,8 @@ const intervalID = setInterval( () => {
   <body>
     <h1>p5.js Test</h1>
     <div id="content">
-      <iframe id="src" src="https://psb-david-petty.github.io/p5js/coding-train-cc-59/src/?m=foo" ></iframe>
+      <!-- With the JS scriptMessage() function and data-* iframe attributes, *or* search parameters c & m on the iframe src URI, the color and message can be set - but not if hosted on https://p5js.org/. -->
+      <iframe id="src" src="https://psb-david-petty.github.io/p5js/coding-train-cc-59/src/" data-color="639" data-message="TEST"></iframe>
     </div>
     <footer>
       <a href="https://github.com/psb-david-petty/p5js/tree/main/coding-train-cc-59/">🔗 permalink</a> and <a href="https://github.com/psb-david-petty/p5js/">🔩 repository</a> for <a href="https://editor.p5js.org/psb_david_petty/full/gblbwpq7g">this page</a>.
