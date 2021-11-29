@@ -135,7 +135,7 @@ function setup() {
 }
 
 function draw() {
-  if (frameCount > 60) {
+  if (frameCount > 90) {
     background(bgColor);
     for (const v of vehicles) {
       v.behaviors();
