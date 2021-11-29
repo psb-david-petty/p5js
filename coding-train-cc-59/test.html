@@ -24,10 +24,12 @@
   iframe { width: 620px; height: 420px; } 
 </style>
 <script>
-var count = 0;
+// iframe is always null, so cannot scriptMessage() onload.
 const iframe = document.querySelector("#src");
 if (iframe) iframe.onLoad = scriptMessage;
 console.log(`iframe: ${iframe}`);
+// scriptMessage sent on DOMContentLoaded is never received by
+// document.querySelector("#src"), though it is received interval later.
 document.addEventListener("DOMContentLoaded", scriptMessage);
 function scriptMessage() {
   // https://htmldom.dev/communication-between-an-iframe-and-its-parent-window/
@@ -46,6 +48,9 @@ function scriptMessage() {
     return false;
   }
 }
+const interval = 10000;
+var count = 0;
+/* postMessage every interval including random color and number message */ 
 var intervalID = setInterval( () => {
   const iframe = document.querySelector("#src");
   // https://htmldom.dev/communication-between-an-iframe-and-its-parent-window/
@@ -55,12 +60,12 @@ var intervalID = setInterval( () => {
     let b = (Math.floor(Math.random() * 6) * 3).toString(16);
     const message = JSON.stringify({
       color: `${r}${g}${b}`,
-      message: `n = ${count++}`
+      message: `#${count++}`
     });
     console.log(`test: ${message}`);
     iframe.contentWindow.postMessage(message, null);
   }
-}, 1000);</script>
+}, interval);</script>
   </head>
   <body>
     <h1>p5.js Test</h1>
