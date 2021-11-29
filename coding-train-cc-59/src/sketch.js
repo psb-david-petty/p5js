@@ -76,8 +76,8 @@ function style() {
 
   // Calculate and log iframe style.
   let ifw = Math.max(canvas.width) + 20,
-    ifh = canvas.height + 20,
-    iframe = `  iframe { width: ${ifw}px; height: ${ifh}px; }`;
+    ifh = canvas.height + 20 + /* p5.js banner height */ 30,
+    iframe = `  iframe { min-width: ${ifw}px; min-height: ${ifh}px; }`;
   console.log(`${iframe}`);
 }
 
@@ -135,6 +135,7 @@ function setup() {
 }
 
 function draw() {
+  // Draw after 1.5s.
   if (frameCount > 90) {
     background(bgColor);
     for (const v of vehicles) {
