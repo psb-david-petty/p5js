@@ -10,10 +10,10 @@
  * I have updated it in a few ways.
  */
 
-// 4567890123456785678901234567890123456789012345678901234567890
-const width = 600,
-  height = 400; /* canvas dimensions */
+// 45678901234567856789012345678901234567890123456789012345678901234567890
+const width = 600, height = 400;  /* canvas dimensions */
 
+// Global variables.
 var font;
 var vehicles = [];
 var bgColor = "#666";
@@ -46,23 +46,25 @@ function fontData(message, w = width, h = height, factor = 0.8125, pt = 100) {
   return fontData;
 }
 
-/* Create message vehicles.
+/* Return vehicles created from message. 
  */
-function createMessage() {
-  // Calculate message in font to fill canvas and initialize 'vehicles.'
+function createMessage(message) {
+  // Calculate message points in font to fill canvas.
   let data = fontData(message);
   let points = font.textToPoints(message, data.x, data.y, data.size, {
     sampleFactor: 0.25,
   });
-  vehicles = []
+  // Convert points to vehicles.
+  vehicles = [];
   for (const point of points) {
     var vehicle = new Vehicle(point.x, point.y);
     vehicles.push(vehicle);
   }
+  return vehicles;
 }
 
-/* Set styles for #sketch* ids. Log iframe style for parent
- * webpage.
+/* Set styles for #sketch id in parent webpage. Log iframe style for 
+ * adding to parent webpage.
  */
 function style() {
   center = `
@@ -79,65 +81,64 @@ function style() {
   console.log(`${iframe}`);
 }
 
-/* Add event listener for messages from other frames.
- * This will not work if sketch is hosted on p5.js. p5.js does not allow cross-origin postMessage:
+/* Add event listener for messages from other frames. This will
+ * not work if sketch is hosted on p5.js. p5.js does not allow 
+ * cross-origin postMessage:
  * "dispatcher.js:35 Failed to execute 'postMessage' on 'DOMWindow': The target origin provided ('https://preview.p5js.org') does not match the recipient window's origin ('https://editor.p5js.org')."
  */
 window.addEventListener("message", (event) => {
-  // console.log(event);
   console.log(`sketch: ${event.data}`);
   const data = JSON.parse(event.data);
-  // NOTE: for when sketch is hosted somewhere other than https://p5js.org/.
-  // Update bgColor, used in draw(), and message, if different than current message.
+  // NOTE: when sketch is hosted on other than https://p5js.org/.
+  // Update global bgColor, if color in event.data.
   if (data.color) bgColor = `#${data.color}`;
+  // Update global message and vehicles, if message in event.data
+  // and different from current message.
   if (data.message && data.message != message) {
     message = data.message;
-    createMesssage();
+    vehicles = createMessage(message);
   }
 });
 
 function preload() {
   // https://www.fontspace.com/edge-of-the-galaxy-font-f45748
   font = loadFont("EdgeOfTheGalaxyRegular-OVEa6.otf");
-  // Get color and message from URI.
+  // Get color and message from URI, if available.
   let uri = new URL(window.location.href);
   let bgc = uri.searchParams.get("c");
   let msg = uri.searchParams.get("m");
   // https://stackoverflow.com/a/70070854/17467335
-  // NOTE: p5.js now makes it impossible for sketches to parse URI parameters.
-  // https://preview.p5js.org/psb_david_petty/present URIs are redirected to
-  // https://editor.p5js.org/psb_david_petty/full URIs.
-  // Hence, this sketch must be hosted somewhere other than https://p5js.org/.
+  // NOTE:
+  // p5.js now makes it impossible for sketches to parse URI search 
+  // parameters. https://preview.p5js.org/psb_david_petty/present URIs 
+  // are redirected to https://editor.p5js.org/psb_david_petty/full 
+  // URIs. Hence, this sketch must be hosted somewhere other than 
+  // https://p5js.org/ to use URI search parameters.
   let sketch = select("#sketch");
-  // Set bgColor and message.
+  // Set global bgColor and message - either from URI search parameters, 
+  // if available, or message from title in #sketch id in parent 
+  // webpage, or default initial values.
   bgColor = bgc ? `#${bgc}` : bgColor;
   message = msg ? msg.replace(/\+/g, " ") : sketch ? sketch.elt.title : message;
   console.log(`${bgc} ${msg} ${bgColor} '${message}' `);
 }
 
 function setup() {
-  /* Create message vehicles. */
-  createMessage();
-
-  /* Setup canvas and style(). */
+  // Setup canvas and style().
   canvas = createCanvas(width, height);
   canvas.parent("sketch-canvas");
   canvas.style(`display: block;`);
   style();
 
-  // Set frameRate to slow.
-  frameRate(4);
+  // Create message vehicles.
+  vehicles = createMessage(message);
 }
 
 function draw() {
-  console.log(frameCount);
-  if (frameCount > 0) {
-    frameRate(60);
-    background(bgColor);
-    for (const v of vehicles) {
-      v.behaviors();
-      v.update();
-      v.show();
-    }
+  background(bgColor);
+  for (const v of vehicles) {
+    v.behaviors();
+    v.update();
+    v.show();
   }
 }
