@@ -239,9 +239,9 @@ function setup() {
   for (const [key, value] of params.entries()) {
     let values = value.split("=");
     let prop = values[values.length - 1];
-    console.log(`${key} : ${prop}`)
-    for (prop in values) {
-      console.log(`${key} : ${prop}`);
+    console.log(`O:${key} : ${prop}`)
+    for (prop in values.slice(0, -1)) {
+      console.log(`M:${key} : ${prop}`);
     }
   }
 }
