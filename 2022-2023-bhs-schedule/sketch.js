@@ -251,7 +251,9 @@ function setup() {
   }
 
   // Setup canvas.
-  let horizontal = canvasWidth + oX * 2;
+  console.log(`${typeof canvasWidth} ${canvasWidth}`);
+  console.log(`${typeof fontSize} ${fontSize}`);
+  let horizontal = canvasWidth;
   let vertical = difference(topTime, bottomTime) * dots + oY * 2;
   let canvas = createCanvas(horizontal, vertical);
   background("#eee");
