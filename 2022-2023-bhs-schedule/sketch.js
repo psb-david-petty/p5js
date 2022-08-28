@@ -231,6 +231,7 @@ function update(name, property) {
   if ((n = "ln")) lunchNumber = p;
   if ((n = "fs")) fontSize = p;
   if ((n = "cw")) canvasWidth = p;
+  console.log(`n=${n}; p=${p}; ln=${lunchNumber}; fs=${fontSize}; cw=${canvasWidth};`);
 }
 
 function setup() {
