@@ -5,11 +5,11 @@ const oX = 10,
   oY = 10,
   topTime = "7:30",
   bottomTime = "3:00";
-var lunchNumber = 2,
+var margin = 2,
+  dots = 2,
+  lunchNumber = 2,
   canvasWidth = 1080,
-  fontSize = 16,
-  margin = 2,
-  dots = 2;
+  fontSize = 16;
 const schedule = {
   Monday: {
     Z1: { start: "7:30", stop: "8:14" },
@@ -155,11 +155,14 @@ function difference(start, stop) {
   return minutes;
 }
 
+function headerHeight() {
+  return fontSize * 2;
+}
 function getHorizontal() {
   return width - oX * 2;
 }
 function getVertical() {
-  return height - oY * 2;
+  return height - oY * 2 - headerHeight();
 }
 
 function rectangle(block, start, stop, dow, name, room) {
@@ -167,7 +170,7 @@ function rectangle(block, start, stop, dow, name, room) {
   let bg = getBackground(block);
   fill(bg);
   let blockX = oX + (dow * getHorizontal()) / Object.keys(schedule).length,
-    blockY = oY + difference(topTime, start) * dots,
+    blockY = oY + headerHeight() + difference(topTime, start) * dots,
     blockWidth = getHorizontal() / Object.keys(schedule).length,
     blockHeight = difference(start, stop) * dots;
   rect(blockX, blockY, blockWidth, blockHeight);
@@ -217,6 +220,20 @@ function week(lunch) {
   }
 }
 
+function drawHeader() {
+  let dow = 0;
+  const blockWidth = getHorizontal() / Object.keys(schedule).length;
+  for (const day in schedule) {
+    let textX = oX + dow * blockWidth + margin * dots * 1,
+      textY = oY + margin * dots * 1,
+      textWidth = blockWidth - margin * dots * 2,
+      textHeight = headerHeight() - margin * dots * 2;
+    textAlign(CENTER);
+    text(day, textX, textY, textWidth, textHeight);
+    dow += 1;
+  }
+}
+
 function update(name, property) {
   let n = name.toLowerCase(),
     p = property.replace(/[+]/g, " ");
@@ -227,9 +244,9 @@ function update(name, property) {
   // Add to rooms.
   if (n.length == 2 && n.charAt(1) == "r") rooms[n] = p;
   // Handle special search properties.
-  if ((n == "ln")) lunchNumber = p;
-  if ((n == "fs")) fontSize = +p;
-  if ((n == "cw")) canvasWidth = +p;
+  if (n == "ln") lunchNumber = p;
+  if (n == "fs") fontSize = +p;
+  if (n == "cw") canvasWidth = +p;
 }
 
 function setup() {
@@ -250,12 +267,12 @@ function setup() {
 
   // Setup canvas.
   let horizontal = canvasWidth;
-  let vertical = difference(topTime, bottomTime) * dots + oY * 2;
+  let vertical = difference(topTime, bottomTime) * dots + oY * 2 + headerHeight();
   let canvas = createCanvas(horizontal, vertical);
   background("#eee");
   textFont("Inconsolata", fontSize);
   frameRate(20);
-  
+
   // Setup styles.
   canvas.parent("sketch-canvas");
   canvas.style(`display: block;`);
@@ -273,6 +290,7 @@ function draw() {
   if (frameCount > 10) {
     let lunch = "L" + lunchNumber;
     if (isNaN(+lunchNumber)) lunch = lunchNumber.toUpperCase();
+    drawHeader();
     week(lunch);
   }
 }
