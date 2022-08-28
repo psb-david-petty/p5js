@@ -1,12 +1,14 @@
 /** Draw the BHS weekly schedule.
  */
 // 4567890123456789012345678901234567890123456789012345678901234567890
-const ww = 1080,
-  oX = 10,
+const oX = 10,
   oY = 10,
   topTime = "7:30",
   bottomTime = "3:00";
-var margin = 2,
+var lunchNumber = 2,
+  canvasWidth = 1080,
+  fontSize = 16,
+  margin = 2,
   dots = 2;
 const schedule = {
   Monday: {
@@ -100,16 +102,16 @@ function getBackground(block) {
 }
 
 var classes = {
-  zt: "Basketweaving",
-  at: "Autonomous Robotics II",
-  bt: "APCS-P (Mobile)",
-  ct: "APCS-A (Java)",
+  zt: "",
+  at: "",
+  bt: "",
+  ct: "",
   dt: "",
-  et: "Autonomous Robotics I",
+  et: "",
   ft: "",
-  gt: "APCS-P (Mobile)",
+  gt: "",
   tt: "",
-  xt: "Brookline Robotics Team",
+  xt: "",
 };
 
 function getClass(block) {
@@ -117,16 +119,16 @@ function getClass(block) {
 }
 
 var rooms = {
-  zr: "UA-007",
-  ar: "UA-33",
-  br: "UA-33",
-  cr: "UA-33",
+  zr: "",
+  ar: "",
+  br: "",
+  cr: "",
   dr: "",
-  er: "UA-33",
+  er: "",
   fr: "",
-  gr: "UA-33",
+  gr: "",
   tr: "",
-  xr: "UA-33",
+  xr: "",
 };
 
 function getRoom(block) {
@@ -216,7 +218,8 @@ function week(lunch) {
 }
 
 function update(name, property) {
-  let n = name.toLowerCase(), p = property.replace(/[+]/g, " ");
+  let n = name.toLowerCase(),
+    p = property.replace(/[+]/g, " ");
   // Add to colors.
   if (n.length == 2 && n.charAt(1) == "c") colors[n] = p;
   // Add to classes.
@@ -224,27 +227,12 @@ function update(name, property) {
   // Add to rooms.
   if (n.length == 2 && n.charAt(1) == "r") rooms[n] = p;
   // Handle special search properties.
-  if (n = 'size') textSize(p);
+  if ((n = "ln")) lunchNumber = p;
+  if ((n = "fs")) fontSize = p;
+  if ((n = "cw")) canvasWidth = p;
 }
 
 function setup() {
-  let horizontal = ww + oX * 2;
-  let vertical = difference(topTime, bottomTime) * dots + oY * 2;
-  let canvas = createCanvas(horizontal, vertical);
-  background("#eee");
-  textFont("Inconsolata", 16);
-
-  // Set styles.
-  canvas.parent("sketch-canvas");
-  canvas.style(`display: block;`);
-  let center = `
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;`;
-  let sketch = select("#sketch");
-  sketch.style(`${center}`);
-  
   // Parse URI search parameters.
   const uri = new URL(window.location.href);
   const params = new URLSearchParams(uri.search);
@@ -259,8 +247,32 @@ function setup() {
       update(key, prop);
     }
   }
+
+  // Setup canvas.
+  let horizontal = canvasWidth + oX * 2;
+  let vertical = difference(topTime, bottomTime) * dots + oY * 2;
+  let canvas = createCanvas(horizontal, vertical);
+  background("#eee");
+  textFont("Inconsolata", fontSize);
+  frameRate(20);
+  
+  // Setup styles.
+  canvas.parent("sketch-canvas");
+  canvas.style(`display: block;`);
+  let center = `
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;`;
+  let sketch = select("#sketch");
+  sketch.style(`${center}`);
 }
 
 function draw() {
-  week("L2");
+  // Draw after 0.5s.
+  if (frameCount > 10) {
+    let lunch = "L" + lunchNumber;
+    if (isNaN(+lunchNumber)) lunch = lunchNumber.toUpperCase();
+    week(lunch);
+  }
 }
