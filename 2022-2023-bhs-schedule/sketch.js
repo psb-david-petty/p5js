@@ -98,7 +98,9 @@ var colors = {
 function getBackground(block) {
   // Handle special 'TC' block (because 'C' and T' blocks already exist).
   if (str(block).toLowerCase() == "tc") return colors["tcc"];
-  return getBlock(block, colors, "c", "#ccc");
+  // Handle numerical color.
+  let bg = getBlock(block, colors, "c", "#ccc");
+  return Number.isNaN(parseInt(bg, 16)) ? bg : "#" + bg;
 }
 
 var classes = {
