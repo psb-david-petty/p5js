@@ -100,7 +100,8 @@ function getBackground(block) {
   if (str(block).toLowerCase() == "tc") return colors["tcc"];
   // Handle numerical color.
   let bg = getBlock(block, colors, "c", "#ccc");
-  return Number.isNaN(parseInt(bg, 16)) ? bg : "#" + bg;
+  // TODO: parseInt for some colors needs the +bg to return true
+  return Number.isNaN(parseInt(+bg, 16)) ? bg : "#" + bg;
 }
 
 var classes = {
