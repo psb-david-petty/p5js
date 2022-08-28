@@ -231,7 +231,6 @@ function update(name, property) {
   if ((n == "ln")) lunchNumber = p;
   if ((n == "fs")) fontSize = +p;
   if ((n == "cw")) canvasWidth = +p;
-  console.log(`n=${n}; p=${p}; ln=${lunchNumber}; fs=${fontSize}; cw=${canvasWidth};`);
 }
 
 function setup() {
@@ -239,7 +238,7 @@ function setup() {
   const uri = new URL(window.location.href);
   const params = new URLSearchParams(uri.search);
   for (let [key, value] of params.entries()) {
-    console.log(`${key} : ${value}`);
+    console.log(`P:${key} : ${value}`);
     let values = value.split("=");
     let prop = values[values.length - 1];
     console.log(`O:${key} : ${prop}`);
@@ -251,8 +250,6 @@ function setup() {
   }
 
   // Setup canvas.
-  console.log(`${typeof canvasWidth} ${canvasWidth}`);
-  console.log(`${typeof fontSize} ${fontSize}`);
   let horizontal = canvasWidth;
   let vertical = difference(topTime, bottomTime) * dots + oY * 2;
   let canvas = createCanvas(horizontal, vertical);
