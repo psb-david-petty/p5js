@@ -237,7 +237,12 @@ function setup() {
   const uri = new URL(window.location.href);
   const params = new URLSearchParams(uri.search);
   for (const [key, value] of params.entries()) {
-    console.log(`${key} : ${value}`)
+    let values = value.split("=");
+    let prop = values[values.length - 1];
+    console.log(`${key} : ${prop}`)
+    for (prop in values) {
+      console.log(`${key} : ${prop}`);
+    }
   }
 }
 
