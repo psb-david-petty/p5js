@@ -237,10 +237,11 @@ function setup() {
   const uri = new URL(window.location.href);
   const params = new URLSearchParams(uri.search);
   for (const [key, value] of params.entries()) {
+    console.log(`${key} : ${value}`);
     let values = value.split("=");
     let prop = values[values.length - 1];
-    console.log(`O:${key} : ${prop}`)
-    for (prop in values.slice(0, -1)) {
+    console.log(`O:${key} : ${prop}`);
+    for (prop of values.slice(0, -1)) {
       console.log(`M:${key} : ${prop}`);
     }
   }
