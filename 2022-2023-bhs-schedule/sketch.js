@@ -215,6 +215,18 @@ function week(lunch) {
   }
 }
 
+function update(name, property) {
+  let n = name.toLowerCase(), p = property.replace(/[+]/g, " ");
+  // Add to colors.
+  if (n.length == 2 && n.charAt(1) == "c") colors[n] = p;
+  // Add to classes.
+  if (n.length == 2 && n.charAt(1) == "t") classes[n] = p;
+  // Add to rooms.
+  if (n.length == 2 && n.charAt(1) == "r") rooms[n] = p;
+  // Handle special search properties.
+  if (n = 'size') textSize(p);
+}
+
 function setup() {
   let horizontal = ww + oX * 2;
   let vertical = difference(topTime, bottomTime) * dots + oY * 2;
@@ -241,8 +253,10 @@ function setup() {
     let values = value.split("=");
     let prop = values[values.length - 1];
     console.log(`O:${key} : ${prop}`);
+    update(key, prop);
     for (prop of values.slice(0, -1)) {
       console.log(`M:${key} : ${prop}`);
+      update(key, prop);
     }
   }
 }
