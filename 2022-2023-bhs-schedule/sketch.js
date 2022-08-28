@@ -254,7 +254,7 @@ function setup() {
     let prop = values[values.length - 1];
     console.log(`O:${key} : ${prop}`);
     update(key, prop);
-    for (prop of values.slice(0, -1)) {
+    for (key of values.slice(0, -1)) {
       console.log(`M:${key} : ${prop}`);
       update(key, prop);
     }
