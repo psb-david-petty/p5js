@@ -248,7 +248,7 @@ function setup() {
   // Parse URI search parameters.
   const uri = new URL(window.location.href);
   const params = new URLSearchParams(uri.search);
-  for (const [key, value] of params.entries()) {
+  for (let [key, value] of params.entries()) {
     console.log(`${key} : ${value}`);
     let values = value.split("=");
     let prop = values[values.length - 1];
