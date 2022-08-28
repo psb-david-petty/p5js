@@ -204,6 +204,7 @@ function week(lunch) {
       let start = times.start,
         stop = times.stop;
       if (typeof start == "undefined" && typeof stop == "undefined") {
+        console.log(lunch);
         start = times[lunch].start;
         stop = times[lunch].stop;
         lunchStart = times[lunch].lunch;
