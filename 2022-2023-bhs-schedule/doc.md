@@ -117,6 +117,15 @@ var colors = {
 
 The query property `ln` has case-insensitive valid values `L1`, `1`, `L2`, or `2`. The examples show the default values.
 
+## TODO
+
+- Add values to the `ln` query property for `C1` and `C2` *since they are not the same as `L1` and `L2`!*
+- Add more *other* query properties for things like `dots` and `margin` and other user requests.
+- Fix the code for when to use `black` text versus `white` text (or allow text color to be specified through query properties (!)).
+- Allow for specification of the *Teacher Colaboration* color(s).
+- Add an additional text field.
+- Allow for clickable links.
+
 <hr>
 
 [&#128279; permalink](https://psb-david-petty.github.io/p5js/2022-2023-bhs-schedule/doc.html) and [&#128297; repository](https://github.com/psb-david-petty/p5js/tree/main/2022-2023-bhs-schedule) for [this](https://editor.p5js.org/psb_david_petty/sketches/iYdU0GAic) sketch.
