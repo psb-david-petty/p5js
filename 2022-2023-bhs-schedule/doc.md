@@ -10,11 +10,11 @@ Please see [https://en.wikipedia.org/wiki/Uniform_Resource_Identifier#Syntax](ht
 
 There are valid query properties for **text**, **room**, and **color**, plus **other** properties of interest (lunch, canvas width, font size). As an example:
 
-[https://psb-david-petty.github.io/p5js/2022-2023-bhs-schedule/?at=bt=et=ft=gt=APCS&#8203;&ar=br=er=fr=gr=UA-33&#8203;&ac=hotpink&#8203;&bc=navy&#8203;&cc=orchid&#8203;&dc=gold&ec=lime&#8203;&fc=dodgerblue&#8203;&gc=rebeccapurple](https://psb-david-petty.github.io/p5js/2022-2023-bhs-schedule/?at=bt=et=ft=gt=APCS&ar=br=er=fr=gr=UA-33&ac=hotpink&bc=navy&cc=orchid&dc=gold&ec=lime&fc=dodgerblue&gc=rebeccapurple) sets the text for all five classes in blocks A, B, E, F, &amp; G as *APCS*, all five rooms in blocks A, B, E, F, &amp; G as *UA-33*, and individual colors for the seven blocks.
+[https://psb-david-petty.github.io/p5js/2022-2023-bhs-schedule/?at=bt=et=ft=gt=APCS&#8203;&ar=br=er=fr=gr=UA-33&#8203;&ac=hotpink&#8203;&bc=navy&#8203;&cc=orchid&#8203;&dc=gold&ec=chartreuse&#8203;&fc=dodgerblue&#8203;&gc=rebeccapurple](https://psb-david-petty.github.io/p5js/2022-2023-bhs-schedule/?at=bt=et=ft=gt=APCS&ar=br=er=fr=gr=UA-33&ac=hotpink&bc=navy&cc=orchid&dc=gold&ec=chartreuse&fc=dodgerblue&gc=rebeccapurple) sets the text for all five classes in blocks A, B, E, F, &amp; G as *APCS*, all five rooms in blocks A, B, E, F, &amp; G as *UA-33*, and individual colors for the seven blocks.
 
 Ordinarily, query property *values* (after the first '`=`') do not have additional semantics. To save space in the URI, this sketch allows multiple names followed by '`=`' to all refer to the same value, which follows the *last* '`=`.' That also means **'`=`' cannot appear in the value**.
 
-Based on [RFC 1738](https://www.rfc-editor.org/rfc/rfc1738), the only valid URI characters are: alphanumeric, special characters `$-_.+!*'(),`, and reserved characters `;/?:@=&` (meaning that '` `' and <code>"#%<>[]\^{}|~&#96;</code> are unsafe and must *always* be [percent encoded](https://en.wikipedia.org/wiki/Percent-encoding)). However, based on [an interpretation of RCF 3986](https://www.456bereastreet.com/archive/201008/what_characters_are_allowed_unencoded_in_query_strings), reserved characters `;/?:@=&` can be included in query property `text` *without* percent encoding (though any query characters *could* be percent encoded).
+Based on [RFC 1738](https://www.rfc-editor.org/rfc/rfc1738), the only valid URI characters are: alphanumeric, special characters `$-_.+!*'(),`, and reserved characters `;/?:@=&` (meaning that '` `' and <code>"#%<>[]\^{}|~&#96;</code> are unsafe and must *always* be [percent encoded](https://en.wikipedia.org/wiki/Percent-encoding)). However, based on [an interpretation of RCF 3986](https://www.456bereastreet.com/archive/201008/what_characters_are_allowed_unencoded_in_query_strings), reserved characters `;/?:@=&` can be included in query property `text` *without* percent encoding (though any query characters *could* be percent encoded without problem).
 
 It is typical in URIs to use '`+`' as a placeholder for '` `' in text, rather than the uglier percent-encoded space `%20`.
 
@@ -58,7 +58,7 @@ The complete document follows.
 
 ### Colors
 
-The block background colors default to the [OG](https://urbandictionary.com/define.php?term=OG) BHS schedule colors. You can change any of them, using [CSS color names](https://www.w3.org/TR/css-color-4/#named-colors) or 3- or 6-digit [hexadecimal](https://en.wikipedia.org/wiki/Hexadecimal) values. 
+The block background colors default to the [OG](https://urbandictionary.com/define.php?term=OG) BHS schedule colors. You can change any of them, using [CSS color names](https://www.w3.org/TR/css-color-4/#named-colors) or 3- or 6-digit [hexadecimal](https://en.wikipedia.org/wiki/Hexadecimal) values. See [this reference](https://dev.to/alvaromontoro/the-ultimate-guide-to-css-colors-2020-edition-1bh1) for a complete description of CSS colors.
 
 ### Named colors
 
@@ -68,9 +68,19 @@ Use one of the case-insensitive [CSS color names](https://www.w3.org/TR/css-colo
 
 The standard way to specify a color in an RGB color space is to use three two-digit hexadecimal numbers, one for each color. That yields 256 levels (from `00` to `ff`) of red, green, and blue. The color numbers can be specified as either 3 or 6 hexadecimal digits, where the 3-digit number simply repeats each digit twice. For example, [`rebeccapurple`](https://www.color-hex.com/color/663399) can be specified as either `639` or `663399`.
 
-| Name | Value | Type | Example |
+| Name | Value | Type | Example | Color |
 | --- | --- | --- | --- |
-| `zc` | Z-Block color | `color` | `zc=yellow` |
+| `zc` | Z-Block color | `color` | `zc=yellow` | `#FFFF00` |
+| `ac` | A-Block color | `color` | `ac=f00` | `red` |
+| `bc` | B-Block color | `color` | `bc=000080` | `navy` |
+| `cc` | C-Block color | `color` | `cc=7FFF00` | `chartreuse` |
+| `dc` | D-Block color | `color` | `dc=Sienna` | `#a0522d` |
+| `ec` | E-Block color | `color` | `ec=000` | `black` |
+| `fc` | F-Block color | `color` | `fc=white` | `#fff` |
+| `gc` | G-Block color | `color` | `gc=639` | `rebeccapurple` |
+| `lc` | Lunch Block color | `color` | `lc=PeachPuff` | `#FFDAB9` |
+| `tc` | T-Block color | `color` | `tc=ccc` | a light shade of gray |
+| `xc` | X-Block color | `color` | `xc=ccc` | a light shade of gray |
 
 <hr>
 
