@@ -10,7 +10,7 @@ Please see [https://en.wikipedia.org/wiki/Uniform_Resource_Identifier#Syntax](ht
 
 There are valid query properties for **text**, **room**, and **color**, plus **other** properties of interest (lunch, canvas width, font size). As an example:
 
-[https://psb-david-petty.github.io/p5js/2022-2023-bhs-schedule/?at=bt=et=ft=gt=APCS&#8203;&ar=br=er=fr=gr=UA-33&#8203;&ac=pink&#8203;&bc=navy&#8203;&cc=orchid&#8203;&dc=gold&ec=olive&#8203;&fc=dodgerblue&#8203;&gc=rebeccapurple](https://psb-david-petty.github.io/p5js/2022-2023-bhs-schedule/?at=bt=et=ft=gt=APCS&ar=br=er=fr=gr=UA-33&ac=pink&bc=navy&cc=orchid&dc=gold&ec=olive&fc=dodgerblue&gc=rebeccapurple) sets the text for all five classes in blocks A, B, E, F, &amp; G as *APCS*, all five rooms in blocks A, B, E, F, &amp; G as *UA-33*, and individual colors for the seven blocks.
+[https://psb-david-petty.github.io/p5js/2022-2023-bhs-schedule/?at=bt=et=ft=gt=APCS&#8203;&ar=br=er=fr=gr=UA-33&#8203;&ac=hotpink&#8203;&bc=navy&#8203;&cc=orchid&#8203;&dc=gold&ec=lime&#8203;&fc=dodgerblue&#8203;&gc=rebeccapurple](https://psb-david-petty.github.io/p5js/2022-2023-bhs-schedule/?at=bt=et=ft=gt=APCS&ar=br=er=fr=gr=UA-33&ac=hotpink&bc=navy&cc=orchid&dc=gold&ec=lime&fc=dodgerblue&gc=rebeccapurple) sets the text for all five classes in blocks A, B, E, F, &amp; G as *APCS*, all five rooms in blocks A, B, E, F, &amp; G as *UA-33*, and individual colors for the seven blocks.
 
 Ordinarily, query property *values* (after the first '`=`') do not have additional semantics. To save space in the URI, this sketch allows multiple names followed by '`=`' to all refer to the same value, which follows the *last* '`=`.' That also means **'`=`' cannot appear in the value**.
 
@@ -54,18 +54,24 @@ The complete document follows.
 | `tr` | Room for T-Block class | `text` | `tr=UA-33` |
 | `xr` | Room for X-Block class | `text` | `xr=UA-33` |
 
+<hr>
+
 ### Colors
 
 The block background colors default to the [OG](https://urbandictionary.com/define.php?term=OG) BHS schedule colors. You can change any of them, using [CSS color names](https://www.w3.org/TR/css-color-4/#named-colors) or 3- or 6-digit [hexadecimal](https://en.wikipedia.org/wiki/Hexadecimal) values. 
 
 ### Named colors
 
-There are 148 named colors that come from 16 original VGA colors, 131 of the 504 [X11 colors](https://www.w3schools.com/colors/colors_x11.asp), and [`rebeccapurple`](https://medium.com/@valgaze/the-hidden-purple-memorial-in-your-web-browser-7d84813bb416). ([https://youtu.be/HmStJQzclHc](https://youtu.be/HmStJQzclHc) is a history of the names.)
+Use one of the case-insensitive [CSS color names](https://www.w3.org/TR/css-color-4/#named-colors) as the query property value. There are 148 named colors that come from 16 original VGA colors, 131 of the 504 [X11 colors](https://www.w3schools.com/colors/colors_x11.asp), and [`rebeccapurple`](https://medium.com/@valgaze/the-hidden-purple-memorial-in-your-web-browser-7d84813bb416). ([https://youtu.be/HmStJQzclHc](https://youtu.be/HmStJQzclHc) is a history of the names.)
 
 ### Hexadecimal colors
 
-The standard way to specify a color in an RGB color space is to use three two-digit hexadecimal numbers, one for each color. That yields 256 levels (from `00` to `ff`) of red, green, and blue.
-  
+The standard way to specify a color in an RGB color space is to use three two-digit hexadecimal numbers, one for each color. That yields 256 levels (from `00` to `ff`) of red, green, and blue. The color numbers can be specified as either 3 or 6 hexadecimal digits, where the 3-digit number simply repeats each digit twice. For example, [`rebeccapurple`](https://www.color-hex.com/color/663399) can be specified as either `639` or `663399`.
+
+| Name | Value | Type | Example |
+| --- | --- | --- | --- |
+| `zc` | Z-Block color | `color` | `zc=yellow` |
+
 <hr>
 
-[&#128279; permalink](https://psb-david-petty.github.io/p5js/2022-2023-bhs-schedule) and [&#128297; repository](https://github.com/psb-david-petty/p5js/tree/main/2022-2023-bhs-schedule) for [this](https://editor.p5js.org/psb_david_petty/sketches/iYdU0GAic) page.
+[&#128279; permalink](https://psb-david-petty.github.io/p5js/2022-2023-bhs-schedule/doc.html) and [&#128297; repository](https://github.com/psb-david-petty/p5js/tree/main/2022-2023-bhs-schedule) for [this](https://editor.p5js.org/psb_david_petty/sketches/iYdU0GAic) sketch.
