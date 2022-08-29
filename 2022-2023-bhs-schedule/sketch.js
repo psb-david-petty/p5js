@@ -101,7 +101,7 @@ function getBackground(block) {
   // Handle numerical color.
   let bg = getBlock(block, colors, "c", "#ccc");
   // TODO: parseInt for some colors needs the +bg to return true
-  return Number.isNaN(parseInt(+bg, 16)) ? bg : "#" + bg;
+  return Number.isNaN(parseInt('0x' + bg, 16)) ? bg : "#" + bg;
 }
 
 var classes = {
