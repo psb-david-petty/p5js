@@ -1,13 +1,14 @@
 /** Draw the BHS weekly schedule.
  */
 // 4567890123456789012345678901234567890123456789012345678901234567890
-const oX = 10,
+const rev = "V.1C'",
+  oX = 10,
   oY = 10,
   topTime = "7:30",
-  bottomTime = "3:00";
-var margin = 2,
-  dots = 2,
-  lunchNumber = 2,
+  bottomTime = "3:00",
+  margin = 2,
+  dots = 2;
+var lunchNumber = 2,
   canvasWidth = 1080,
   fontSize = 16;
 const schedule = {
@@ -17,8 +18,8 @@ const schedule = {
     B1: { start: "9:22", stop: "10:17" },
     C1: { start: "10:24", stop: "11:19" },
     E1: {
-      L1: { start: "11:26", stop: "12:21", lunch: "12:24", class: "12:54" },
-      L2: { lunch: "11:22", class: "11:52", start: "11:56", stop: "12:51" },
+      L1: { lunch: "11:22", class: "11:52", start: "11:56", stop: "12:51" },
+      L2: { start: "11:26", stop: "12:21", lunch: "12:24", class: "12:54" },
     },
     F1: { start: "12:58", stop: "1:53" },
     G1: { start: "2:00", stop: "2:55" },
@@ -29,8 +30,8 @@ const schedule = {
     B2: { start: "9:22", stop: "10:17" },
     C2: { start: "10:24", stop: "11:19" },
     D1: {
-      L1: { start: "11:26", stop: "12:21", lunch: "12:24", class: "12:54" },
-      L2: { lunch: "11:22", class: "11:52", start: "11:56", stop: "12:51" },
+      L1: { lunch: "11:22", class: "11:52", start: "11:56", stop: "12:51" },
+      L2: { start: "11:26", stop: "12:21", lunch: "12:24", class: "12:54" },
     },
     F2: { start: "12:58", stop: "1:53" },
     G2: { start: "2:00", stop: "2:55" },
@@ -42,8 +43,8 @@ const schedule = {
     C3: { start: "10:03", stop: "10:58" },
     X: { start: "11:05", stop: "11:42" },
     D2: {
-      L1: { start: "11:49", stop: "12:44", lunch: "12:47", class: "1:17" },
-      L2: { lunch: "11:45", class: "12:15", start: "12:19", stop: "1:14" },
+      L1: { lunch: "11:45", class: "12:15", start: "12:19", stop: "1:14" },
+      L2: { start: "11:49", stop: "12:44", lunch: "12:47", class: "1:17" },
     },
     E2: { start: "1:21", stop: "2:16" },
     TC: { start: "2:20", stop: "3:00" },
@@ -54,8 +55,8 @@ const schedule = {
     B3: { start: "9:22", stop: "10:17" },
     D3: { start: "10:24", stop: "11:19" },
     G3: {
-      L1: { start: "11:26", stop: "12:21", lunch: "12:24", class: "12:54" },
-      L2: { lunch: "11:22", class: "11:52", start: "11:56", stop: "12:51" },
+      L1: { lunch: "11:22", class: "11:52", start: "11:56", stop: "12:51" },
+      L2: { start: "11:26", stop: "12:21", lunch: "12:24", class: "12:54" },
     },
     E3: { start: "12:58", stop: "1:53" },
     F3: { start: "2:00", stop: "2:55" },
@@ -66,8 +67,8 @@ const schedule = {
     C4: { start: "9:22", stop: "10:17" },
     D4: { start: "10:24", stop: "11:19" },
     E4: {
-      L1: { start: "11:26", stop: "12:21", lunch: "12:24", class: "12:54" },
-      L2: { lunch: "11:22", class: "11:52", start: "11:56", stop: "12:51" },
+      L1: { lunch: "11:22", class: "11:52", start: "11:56", stop: "12:51" },
+      L2: { start: "11:26", stop: "12:21", lunch: "12:24", class: "12:54" },
     },
     G4: { start: "12:58", stop: "1:53" },
     F4: { start: "2:00", stop: "2:55" },
@@ -236,6 +237,10 @@ function drawHeader() {
     textAlign(CENTER);
     text(day, textX, textY, textWidth, textHeight);
     dow += 1;
+    if (dow == Object.keys(schedule).length) {
+      textAlign(RIGHT);
+      text(rev, textX, textY, textWidth, textHeight);
+    }
   }
 }
 
@@ -276,6 +281,8 @@ function setup() {
   let canvas = createCanvas(horizontal, vertical);
   background("#eee");
   textFont("Inconsolata", fontSize);
+  textSize(fontSize * 9 / 8);
+  drawHeader();
   frameRate(20);
 
   // Setup styles.
