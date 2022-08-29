@@ -178,8 +178,10 @@ function rectangle(block, start, stop, dow, name, room) {
     blockHeight = difference(start, stop) * dots;
   rect(blockX, blockY, blockWidth, blockHeight);
   // Calcualte text block parameters.
+  const at = 105, bt = 204;  // thresholds for colors
   let average = (red(bg) + green(bg) + blue(bg)) / 3;
-  let fg = average < 105 ? "#fff" : "#000";
+  let bright = red(bg) > bt || green(bg) > bt || blue(bg) > bt;
+  let fg = average < at ? "#fff" : "#000";
   fill(fg);
   let leftLabel =
       `${block.padEnd(2, " ")}: ` +
