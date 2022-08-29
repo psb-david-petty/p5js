@@ -20,6 +20,8 @@ It is typical in URIs to use '`+`' as a placeholder for '` `' in text, rather th
 
 The complete document follows.
 
+<hr>
+
 ### Text
 
 | Name | Value | Type | Example |
@@ -34,6 +36,8 @@ The complete document follows.
 | `gt` | Text description of G-Block class | `text` | `gt=%41%50%43%53%2D%41%20%28%4A%61%76%61%29` |
 | `tt` | Text description of T-Block class | `text` | `tt=Advisory` |
 | `xt` | Text description of X-Block class | `text` | `xt=Brookline+Robotics+Team` |
+
+<hr>
 
 ### Room
 
