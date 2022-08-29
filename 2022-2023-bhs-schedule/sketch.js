@@ -193,6 +193,7 @@ function rectangle(block, start, stop, dow, name, room) {
     textY = blockY + margin * dots * 1,
     textWidth = blockWidth - margin * dots * 2,
     textHeight = blockHeight - margin * dots * 2;
+  textSize(fontSize);
   textAlign(LEFT);
   text(leftLabel, textX, textY, textWidth, textHeight);
   textAlign(RIGHT);
@@ -233,7 +234,8 @@ function drawHeader() {
     let textX = oX + dow * blockWidth + margin * dots * 1,
       textY = oY + margin * dots * 1,
       textWidth = blockWidth - margin * dots * 2,
-      textHeight = headerHeight() - margin * dots * 2;
+      textHeight = headerHeight() * 2 /* small fonts */ - margin * dots * 2;
+    textSize(fontSize * 9 / 8);
     textAlign(CENTER);
     text(day, textX, textY, textWidth, textHeight);
     dow += 1;
@@ -298,8 +300,8 @@ function setup() {
 }
 
 function draw() {
-  // Draw after 0.5s.
-  if (frameCount > 10) {
+  // Draw after 0.25s.
+  if (frameCount > 5) {
     let lunch = "L" + lunchNumber;
     if (isNaN(+lunchNumber)) lunch = lunchNumber.toUpperCase();
     drawHeader();
