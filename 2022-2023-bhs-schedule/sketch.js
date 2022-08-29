@@ -102,7 +102,7 @@ function getBackground(block) {
   // Handle numerical color.
   let bg = getBlock(block, colors, "c", "#ccc");
   // TODO: parseInt for some colors needs the +bg to return true
-   return Number.isNaN(parseInt(+('0x' + bg), 16)) ? bg : "#" + bg;
+  return Number.isNaN(parseInt(+("0x" + bg), 16)) ? bg : "#" + bg;
 }
 
 var classes = {
@@ -169,9 +169,35 @@ function getVertical() {
   return height - oY * 2 - headerHeight();
 }
 
+function drawHeader() {
+  let dow = 0;
+  const blockWidth = getHorizontal() / Object.keys(schedule).length;
+  for (const day in schedule) {
+    let textX = oX + dow * blockWidth + margin * dots * 1,
+      textY = oY + margin * dots * 1,
+      textWidth = blockWidth - margin * dots * 2,
+      textHeight = headerHeight() * 2 /* small fonts */ - margin * dots * 2;
+    // Wipe out text.
+    noStroke();
+    fill("#eee");
+    rect(textX, textY, textWidth, textHeight);
+    // Repaint text.
+    fill("#000");
+    textSize((fontSize * 9) / 8);
+    textAlign(CENTER);
+    text(day, textX, textY, textWidth, textHeight);
+    dow += 1;
+    if (dow == Object.keys(schedule).length) {
+      textAlign(RIGHT);
+      text(rev, textX, textY, textWidth, textHeight);
+    }
+  }
+}
+
 function rectangle(block, start, stop, dow, name, room) {
   // Calculate block rectangle parameters.
   let bg = getBackground(block);
+  stroke(0);
   fill(bg);
   let blockX = oX + (dow * getHorizontal()) / Object.keys(schedule).length,
     blockY = oY + headerHeight() + difference(topTime, start) * dots,
@@ -179,7 +205,8 @@ function rectangle(block, start, stop, dow, name, room) {
     blockHeight = difference(start, stop) * dots;
   rect(blockX, blockY, blockWidth, blockHeight);
   // Calcualte text block parameters.
-  const at = 105, bt = 204;  // thresholds for colors
+  const at = 105,
+    bt = 204; // thresholds for colors
   let average = (red(bg) + green(bg) + blue(bg)) / 3;
   let bright = red(bg) > bt || green(bg) > bt || blue(bg) > bt;
   let fg = average < at ? "#fff" : "#000";
@@ -227,25 +254,6 @@ function week(lunch) {
   }
 }
 
-function drawHeader() {
-  let dow = 0;
-  const blockWidth = getHorizontal() / Object.keys(schedule).length;
-  for (const day in schedule) {
-    let textX = oX + dow * blockWidth + margin * dots * 1,
-      textY = oY + margin * dots * 1,
-      textWidth = blockWidth - margin * dots * 2,
-      textHeight = headerHeight() * 2 /* small fonts */ - margin * dots * 2;
-    textSize(fontSize * 9 / 8);
-    textAlign(CENTER);
-    text(day, textX, textY, textWidth, textHeight);
-    dow += 1;
-    if (dow == Object.keys(schedule).length) {
-      textAlign(RIGHT);
-      text(rev, textX, textY, textWidth, textHeight);
-    }
-  }
-}
-
 function update(name, property) {
   let n = name.toLowerCase(),
     p = property.replace(/[+]/g, " ");
@@ -279,13 +287,13 @@ function setup() {
 
   // Setup canvas.
   let horizontal = canvasWidth;
-  let vertical = difference(topTime, bottomTime) * dots + oY * 2 + headerHeight();
+  let vertical =
+    difference(topTime, bottomTime) * dots + oY * 2 + headerHeight();
   let dim = `iframe { width: ${horizontal}px; height: ${vertical}px; border: none; }`;
   console.log(dim);
   let canvas = createCanvas(horizontal, vertical);
   background("#eee");
   textFont("Inconsolata", fontSize);
-  drawHeader();
   frameRate(20);
 
   // Setup styles.
@@ -303,6 +311,7 @@ function setup() {
 function draw() {
   // Draw after 0.25s.
   if (frameCount > 5) {
+    drawHeader();
     let lunch = "L" + lunchNumber;
     if (isNaN(+lunchNumber)) lunch = lunchNumber.toUpperCase();
     week(lunch);
