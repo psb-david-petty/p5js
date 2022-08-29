@@ -280,6 +280,8 @@ function setup() {
   // Setup canvas.
   let horizontal = canvasWidth;
   let vertical = difference(topTime, bottomTime) * dots + oY * 2 + headerHeight();
+  let dim = `iframe { width: ${horizontal}px; height: ${vertical}px; border: none; }`;
+  console.log(dim);
   let canvas = createCanvas(horizontal, vertical);
   background("#eee");
   textFont("Inconsolata", fontSize);
