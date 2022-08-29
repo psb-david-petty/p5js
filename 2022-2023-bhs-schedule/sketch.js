@@ -283,7 +283,6 @@ function setup() {
   let canvas = createCanvas(horizontal, vertical);
   background("#eee");
   textFont("Inconsolata", fontSize);
-  textSize(fontSize * 9 / 8);
   drawHeader();
   frameRate(20);
 
@@ -304,7 +303,6 @@ function draw() {
   if (frameCount > 5) {
     let lunch = "L" + lunchNumber;
     if (isNaN(+lunchNumber)) lunch = lunchNumber.toUpperCase();
-    drawHeader();
     week(lunch);
   }
 }
