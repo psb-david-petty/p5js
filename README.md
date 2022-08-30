@@ -16,6 +16,12 @@ Also included are projects inspired by *The Coding Train* ([http://codingtra.in/
 | --- | --- |
 | [./coding-train-cc-59/](https://psb-david-petty.github.io/p5js/coding-train-cc-59/) | This is based on [coding challenge 59](https://thecodingtrain.com/CodingChallenges/059-steering-text-paths.html). |
 
+Other useful sketches&hellip;
+
+| Sketch | Description |
+| --- | --- |
+| [./2022-2023-bhs-schedule/](https://psb-david-petty.github.io/p5js/2022-2023-bhs-schedule/doc.html) | The 2022-2023 [BHS](https://bhs.brookline.k12.ma.us/) customizable [schedule](https://psb-david-petty.github.io/p5js/2022-2023-bhs-schedule/). |
+
 <hr>
 
 [&#128279; permalink](https://psb-david-petty.github.io/p5js/) and [&#128297; repository](https://github.com/psb-david-petty/p5js/) for this page.
