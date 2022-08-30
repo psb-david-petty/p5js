@@ -117,12 +117,26 @@ var colors = {
 
 The query property `ln` has case-insensitive valid values `L1`, `1`, `L2`, or `2`. The examples show the default values.
 
+## To embed in Google Sites
+
+This HTML code sets the style and embeds an `iframe` for my 2022-2023 S1 schedule in my [PSB Google Site](http://j.mp/psb_david_petty).
+
+```html
+<style>
+  iframe { width: 1080px; height: 952px; border: none; }
+</style>
+<div style="width: 100%; display: flex; justify-content: center; align-items: center;">
+  <iframe src="https://psb-david-petty.github.io/p5js/2022-2023-bhs-schedule/?at=Autonomous+Robotics+II&bt=gt=APCS-P+(Mobile)&ct=APCS-A+(Java)&et=Autonomous+Robotics+I&xt=Brookline+Robotics%20Team&ar=br=cr=er=gr=xr=UA-33"></iframe>
+</div>
+```
+
 ## TODO
 
 - Add values to the `ln` query property for `C1` and `C2` *since they are not the same as `L1` and `L2`!*
 - Add more *other* query properties for things like `dots` and `margin` and other user requests.
 - Fix the code for when to use `black` text versus `white` text (or allow text color to be specified through query properties (!)).
 - Allow for specification of the *Teacher Colaboration* color(s).
+- Allow specification of the font (which requires knowing which are the default p5.js fonts). 
 - Add an additional text field.
 - Allow for clickable links.
 
