@@ -24,7 +24,7 @@ The complete documentation follows.
 
 ### Text
 
-Property names ending in '`T`' can be either two or three characters &mdash; depending on whether the property applies to all blocks or only a specific numbered block. To set all *all* A blocks to `APCS` use `at=APCS`. To set *only* block `A4` to `APCS Lab` use `a4t=APCS+Lab`. Using A block as an example, `at=` is equivalent to `a1t=a2t=a3t=a4t=`.
+Query property names ending in '`T`' can be either two or three characters &mdash; depending on whether the property applies to all blocks or only a specific numbered block. To set all *all* A blocks to `APCS` use `at=APCS`. To set *only* block `A4` to `APCS Lab` use `a4t=APCS+Lab`. Using A block as an example, `at=` is equivalent to `a1t=a2t=a3t=a4t=`.
 
 #### Properties
 
@@ -47,7 +47,7 @@ The default values are empty.
 
 ### Room
 
-Property names ending in '`R`' can be either two or three characters &mdash; depending on whether the property applies to all blocks or only a specific numbered block. To set all *all* A blocks to `UA-33` use `ar=UA-33`. To set *only* block `A4` to `STEM-105` use `a4r=STEM-105`. Using A block as an example, `ar=` is equivalent to `a1r=a2r=a3r=a4r=`.
+Query property names ending in '`R`' can be either two or three characters &mdash; depending on whether the property applies to all blocks or only a specific numbered block. To set all *all* A blocks to `UA-33` use `ar=UA-33`. To set *only* block `A4` to `STEM-105` use `a4r=STEM-105`. Using A block as an example, `ar=` is equivalent to `a1r=a2r=a3r=a4r=`.
 
 #### Properties
 
@@ -72,7 +72,7 @@ The default values are empty.
 
 The block background colors default to the [OG](https://urbandictionary.com/define.php?term=OG) BHS schedule colors. You can change any of them, using [CSS color names](https://www.w3.org/TR/css-color-4/#named-colors) or 3- or 6-digit [hexadecimal](https://en.wikipedia.org/wiki/Hexadecimal) (base 16) values. Because I'm slightly color blind, I typically use colors from the of 216 [web-safe colors](https://websafecolors.info/) on my websites. ([ColorHexa](https://www.colorhexa.com/663399) has an interesting *Color Blindness Simulator* as part of their color pages to help with [web accessibility](https://www.w3.org/WAI/fundamentals/accessibility-intro/).) See [this reference](https://dev.to/alvaromontoro/the-ultimate-guide-to-css-colors-2020-edition-1bh1) for a complete description of CSS colors.
 
-Property names ending in '`C`' can be either two or three characters &mdash; depending on whether the property applies to all blocks or only a specific numbered block. To set all *all* A blocks to `red` use `ac=red`. To set *only* block `A4` to `navy` use `a4c=navy`. Using A block as an example, `ac=` is equivalent to `a1c=a2c=a3c=a4c=`.
+Query property names ending in '`C`' can be either two or three characters &mdash; depending on whether the property applies to all blocks or only a specific numbered block. To set all *all* A blocks to `red` use `ac=red`. To set *only* block `A4` to `navy` use `a4c=navy`. Using A block as an example, `ac=` is equivalent to `a1c=a2c=a3c=a4c=`.
 
 #### Named colors
 
@@ -128,11 +128,15 @@ const colors = {
 | `ln` | Lunch Number | `string` | `ln=L2` | class 1 / lunch 2 |
 | `cw` | Canvas Width | `number` | `cw=1080` | in pixels |
 | `fs` | Font Size | `number` | `fs=16` | in points |
-| `ff` | Font Face | `string` | `ff=Arial` | one of the [webs-safe](https://blog.logrocket.com/web-fonts-in-css-how-to-examples/#whatweb) fonts |
+| `ff` | Font Face | `string` | `ff=Arial` | one of the [web-safe](https://blog.logrocket.com/web-fonts-in-css-how-to-examples/#whatweb) fonts |
 | `lg` | Footer Legend | `string` | `lg=` | additional text added to footer |
 | `pd` | Pad Character | `string` | `pd=%E2%80%87` | Unicode [figure space](https://unicode-table.com/en/2007/) |
 
-The query property `ln` has case-insensitive valid values `C1`, `L2`, `2`, `C2`, `L1`, or `1`. The examples show the default values.
+The examples show the default values for these query properties.
+
+The query property `ln` has case-insensitive valid values `C1`, `L2`, `2`, `C2`, `L1`, or `1`.
+
+The query property `pd` is a character used to pad out single-digit hours. To show, *e.g.*, two o'clock as `02:00` use `pd=0`. To remove any padding, use `pd=`.
 
 ## To embed in Google Sites
 
@@ -140,12 +144,14 @@ This HTML code sets the style and embeds an `iframe` for my 2022-2023 S1 schedul
 
 ```html
 <style>
-  iframe { width: 1080px; height: 952px; border: none; }
+  iframe { width: 1080px; height: 998px; border: none; }
 </style>
 <div style="width: 100%; display: flex; justify-content: center; align-items: center;">
   <iframe src="https://psb-david-petty.github.io/p5js/2022-2023-bhs-schedule/?at=Autonomous+Robotics+II&bt=gt=APCS-P+(Mobile)&ct=APCS-A+(Java)&et=Autonomous+Robotics+I&xt=Brookline+Robotics%20Team&ar=br=cr=er=gr=xr=UA-33"></iframe>
 </div>
 ```
+
+The `iFrame` height and width shown are for the default settings. If you change settings, the `iFrame` height and width for any *new* settings are echoed on the browser's [developer console](https://balsamiq.com/support/faqs/browserconsole/). Copy the echoed values between the `<style>` &amp; `</style>` tags in the above HTML code.
 
 ## TODO
 
