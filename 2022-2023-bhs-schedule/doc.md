@@ -128,11 +128,11 @@ const colors = {
 | `ln` | Lunch Number | `string` | `ln=L2` | class 1 / lunch 2 |
 | `cw` | Canvas Width | `number` | `cw=1080` | in pixels |
 | `fs` | Font Size | `number` | `fs=16` | in points |
-| `ff` | Font Face | `string` | `ff=Arial` | one of the [webs-afe](https://blog.logrocket.com/web-fonts-in-css-how-to-examples/#whatweb) fonts |
+| `ff` | Font Face | `string` | `ff=Arial` | one of the [webs-safe](https://blog.logrocket.com/web-fonts-in-css-how-to-examples/#whatweb) fonts |
 | `lg` | Footer Legend | `string` | `lg=` | additional text added to footer |
 | `pd` | Pad Character | `string` | `pd=%E2%80%87` | Unicode [figure space](https://unicode-table.com/en/2007/) |
 
-The query property `ln` has case-insensitive valid values `L1`, `1`, `L2`, or `2`. The examples show the default values.
+The query property `ln` has case-insensitive valid values `C1`, `L2`, `2`, `C2`, `L1`, or `1`. The examples show the default values.
 
 ## To embed in Google Sites
 
