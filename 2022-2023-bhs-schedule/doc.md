@@ -24,6 +24,10 @@ The complete documentation follows.
 
 ### Text
 
+Property names ending in '`T`' can be either two or three characters &mdash; depending on whether the property applies to all blocks or only a specific numbered block. To set all *all* A blocks to `APCS` use `at=APCS`. To set *only* block `A4` to `APCS Lab` use `a4t=APCS+Lab`. Using A block as an example, `at=` is equivalent to `a1t=a2t=a3t=a4t=`.
+
+#### Properties
+
 | Name | Value | Type | Example |
 | --- | --- | --- | --- |
 | `zt` | Text description of Z-Block class | `text` | `zt=APCS-A+(Java)` |
@@ -42,6 +46,10 @@ The default values are empty.
 <hr>
 
 ### Room
+
+Property names ending in '`R`' can be either two or three characters &mdash; depending on whether the property applies to all blocks or only a specific numbered block. To set all *all* A blocks to `UA-33` use `ar=UA-33`. To set *only* block `A4` to `STEM-105` use `a4r=STEM-105`. Using A block as an example, `ar=` is equivalent to `a1r=a2r=a3r=a4r=`.
+
+#### Properties
 
 | Name | Value | Type | Example |
 | --- | --- | --- | --- |
@@ -64,6 +72,8 @@ The default values are empty.
 
 The block background colors default to the [OG](https://urbandictionary.com/define.php?term=OG) BHS schedule colors. You can change any of them, using [CSS color names](https://www.w3.org/TR/css-color-4/#named-colors) or 3- or 6-digit [hexadecimal](https://en.wikipedia.org/wiki/Hexadecimal) (base 16) values. Because I'm slightly color blind, I typically use colors from the of 216 [web-safe colors](https://websafecolors.info/) on my websites. ([ColorHexa](https://www.colorhexa.com/663399) has an interesting *Color Blindness Simulator* as part of their color pages to help with [web accessibility](https://www.w3.org/WAI/fundamentals/accessibility-intro/).) See [this reference](https://dev.to/alvaromontoro/the-ultimate-guide-to-css-colors-2020-edition-1bh1) for a complete description of CSS colors.
 
+Property names ending in '`C`' can be either two or three characters &mdash; depending on whether the property applies to all blocks or only a specific numbered block. To set all *all* A blocks to `red` use `ac=red`. To set *only* block `A4` to `navy` use `a4c=navy`. Using A block as an example, `ac=` is equivalent to `a1c=a2c=a3c=a4c=`.
+
 #### Named colors
 
 The query property color values can be one of the case-insensitive [CSS color names](https://www.w3.org/TR/css-color-4/#named-colors). There are 148 named colors that come from 16 original VGA colors, 131 of the 504 [X11 colors](https://www.w3schools.com/colors/colors_x11.asp), and [`rebeccapurple`](https://medium.com/@valgaze/the-hidden-purple-memorial-in-your-web-browser-7d84813bb416). ([https://youtu.be/HmStJQzclHc](https://youtu.be/HmStJQzclHc) is a history of the names &mdash; who knew there was a [Crayola 72 pack](https://shop.crayola.com/color-and-draw/crayons/72-ct-crayon-kit-520031A000.html)?)
@@ -71,6 +81,8 @@ The query property color values can be one of the case-insensitive [CSS color na
 #### Hexadecimal colors
 
 The query property color values can be a hexadecimal number. The standard way to specify a color in an RGB color space is to use three two-digit hexadecimal numbers, one for each color. That yields 256 levels (from `00` to `ff`) of red, green, and blue. The color numbers can be specified as either 3 or 6 hexadecimal digits, where the 3-digit number simply repeats each digit twice. For example, [`rebeccapurple`](https://www.color-hex.com/color/663399) can be specified as either `639` or `663399`.
+
+#### Properties
 
 | Name | Value | Type | Example | Color |
 | --- | --- | --- | --- | --- |
@@ -85,23 +97,25 @@ The query property color values can be a hexadecimal number. The standard way to
 | `lc` | Lunch Block color | `color` | `lc=PeachPuff` | `#FFDAB9` |
 | `tc` | T-Block color | `color` | `tc=ccc` | a light shade of gray |
 | `xc` | X-Block color | `color` | `xc=ccc` | a light shade of gray |
+| `tcc` | Teacher Collaboration color | `color` | `tcc=ccc` | a light shade of gray |
 
 The code for the default values is:
 
 ```JavaScript
-var colors = {
-  zc: "#ff6", // Z: 255, 255, 84 -> #ff5 / #ff6
-  ac: "#c33", // A: 189, 75, 49 -> #b43 / #c33
-  bc: "#009", // B: 0, 0, 147 -> #009 / #009
-  cc: "#c69", // C: 185, 126, 158 -> #b79 / #c69
-  dc: "#f90", // D: 219, 149, 75 -> #d94 / #c93
-  ec: "#696", // E: 121, 166, 90 -> #7a5 / #696
-  fc: "#69c", // F: 121, 157, 229 -> #79d / #69c
-  gc: "#639", // G: 139, 125, 190 -> #87b / #96c
-  lc: "#ccc",
-  tc: "#ccc",
-  xc: "#ccc",
-  tcc: "#fff",
+// All colors keys end in "C".
+const colors = {
+  ZC: "#ff6", // Z: 255, 255,  84 -> #ff5 / #ff6
+  AC: "#c33", // A: 189,  75,  49 -> #b43 / #c33
+  BC: "#009", // B:   0,   0, 147 -> #009 / #009
+  CC: "#c69", // C: 185, 126, 158 -> #b79 / #c69
+  DC: "#f90", // D: 219, 149,  75 -> #d94 / #c93
+  EC: "#696", // E: 121, 166,  90 -> #7a5 / #696
+  FC: "#69c", // F: 121, 157, 229 -> #79d / #69c
+  GC: "#639", // G: 139, 125, 190 -> #87b / #96c
+  LC: "#ccc",
+  TC: "#ccc",
+  XC: "#ccc",
+  TCC: "#fff",
 };
 ```
 
@@ -111,9 +125,12 @@ var colors = {
 
 | Name | Value | Type | Example | Description |
 | --- | --- | --- | --- | --- |
-| `ln` | Lunch Number | `number` | `ln=L2` | class 1 / lunch 2 |
-| `fs` | Font Size | `number` | `fs=16` | in points |
+| `ln` | Lunch Number | `string` | `ln=L2` | class 1 / lunch 2 |
 | `cw` | Canvas Width | `number` | `cw=1080` | in pixels |
+| `fs` | Font Size | `number` | `fs=16` | in points |
+| `ff` | Font Face | `string` | `ff=Arial` | one of the [webs-afe](https://blog.logrocket.com/web-fonts-in-css-how-to-examples/#whatweb) fonts |
+| `lg` | Footer Legend | `string` | `lg=` | additional text added to footer |
+| `pd` | Pad Character | `string` | `pd=%E2%80%87` | Unicode [figure space](https://unicode-table.com/en/2007/) |
 
 The query property `ln` has case-insensitive valid values `L1`, `1`, `L2`, or `2`. The examples show the default values.
 
@@ -132,10 +149,7 @@ This HTML code sets the style and embeds an `iframe` for my 2022-2023 S1 schedul
 
 ## TODO
 
-- Add values to the `ln` query property for `C1` and `C2` *since they are not the same as `L1` and `L2`!*
 - Add more *other* query properties for things like `dots` and `margin` and other user requests.
-- Fix the code for when to use `black` text versus `white` text (or allow text color to be specified through query properties (!)).
-- Allow for specification of the *Teacher Colaboration* color(s).
 - Allow specification of the font (which requires knowing which are the default p5.js fonts). 
 - Add an additional text field.
 - Allow for clickable links.
