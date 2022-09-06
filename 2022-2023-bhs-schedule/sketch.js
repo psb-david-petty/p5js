@@ -7,7 +7,7 @@ var lunch = "L2",     // "LN" query key
   canvasWidth = 1080, // "CW" query key
   smallFontSize = 16, // "FS" query key
   largeFontSize = 20, // set w/ "FS" query
-  fontFace = "Arial Narrow", // "FF" query key
+  fontFace = "Arial", // "FF" query key
   footerLegend = "",  // "LG" query key
   padChar = "\u2007"; // "PD" query key
 /* Global constants used in formatting schedule. */
@@ -145,12 +145,12 @@ function getRoom(block) {
 
 // All colors keys end in "C".
 const colors = {
-  ZC: "#ff6", // Z: 255, 255, 84 -> #ff5 / #ff6
-  AC: "#c33", // A: 189, 75, 49 -> #b43 / #c33
-  BC: "#009", // B: 0, 0, 147 -> #009 / #009
+  ZC: "#ff6", // Z: 255, 255,  84 -> #ff5 / #ff6
+  AC: "#c33", // A: 189,  75,  49 -> #b43 / #c33
+  BC: "#009", // B:   0,   0, 147 -> #009 / #009
   CC: "#c69", // C: 185, 126, 158 -> #b79 / #c69
-  DC: "#f90", // D: 219, 149, 75 -> #d94 / #c93
-  EC: "#696", // E: 121, 166, 90 -> #7a5 / #696
+  DC: "#f90", // D: 219, 149,  75 -> #d94 / #c93
+  EC: "#696", // E: 121, 166,  90 -> #7a5 / #696
   FC: "#69c", // F: 121, 157, 229 -> #79d / #69c
   GC: "#639", // G: 139, 125, 190 -> #87b / #96c
   LC: "#ccc",
@@ -350,6 +350,8 @@ function draw() {
 /** Update global variables based on name and property. Globals used:
  * classes, rooms, colors, lunch, canvasWidth, smallFontSize, fontFace
  * footerLegend, padChar
+ * @param {string} name - property name
+ * @param {string} property - property value
  */
 function update(name, property) {
   let n = name.toUpperCase(),
