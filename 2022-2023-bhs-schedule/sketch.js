@@ -7,7 +7,7 @@ var lunch = "L2",     // "LN" query key
   canvasWidth = 1080, // "CW" query key
   smallFontSize = 16, // "FS" query key
   largeFontSize = 20, // set w/ "FS" query
-  fontFace = "Arial+Narrow", // "FF" query key
+  fontFace = "Arial Narrow", // "FF" query key
   footerLegend = "",  // "LG" query key
   padChar = "\u2007"; // "PD" query key
 /* Global constants used in formatting schedule. */
