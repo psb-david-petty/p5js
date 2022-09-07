@@ -253,10 +253,10 @@ function drawFooter() {
   text(legendLabel, textX, textY + (getFooterHeight() - smallFontSize) / 2, textWidth, textHeight);
 }
 
-/** Return true if b is a shorter block, L, T, or X, false otherwise.
+/** Return true if b is a shorter (lunch) block, false otherwise.
  * @returns {boolean} true if b is a shorter block, L, T, or X, false otherwise
  */
-const isShortBlock = (b) => b.length == 1 || b.startsWith("L");
+const isShortBlock = (b) => b.startsWith("L") /* || b.length == 1 */;
 
 /** Draw rectangle associated w/ block w/ name and room at horizontal 
  * size and position of dow and vertical size and position of start 
