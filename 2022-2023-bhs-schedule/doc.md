@@ -144,10 +144,10 @@ This HTML code sets the style and embeds an `iframe` for my 2022-2023 S1 schedul
 
 ```html
 <style>
-  iframe { width: 1080px; height: 998px; border: none; }
+  iframe { width: 1150; height: 1002px; border: none; }
 </style>
 <div style="width: 100%; display: flex; justify-content: center; align-items: center;">
-  <iframe src="https://psb-david-petty.github.io/p5js/2022-2023-bhs-schedule/?at=Autonomous+Robotics+II&bt=gt=APCS-P+(Mobile)&ct=APCS-A+(Java)&et=Autonomous+Robotics+I&xt=Brookline+Robotics%20Team&ar=br=cr=er=gr=xr=UA-33"></iframe>
+  <iframe src="https://psb-david-petty.github.io/p5js/2022-2023-bhs-schedule/?at=Autonomous+Robotics+II&bt=gt=APCS-P+(Mobile)&ct=APCS-A+(Java)&et=Autonomous+Robotics+I&xt=Brookline+Robotics+Team&ar=br=cr=er=gr=xr=UA-33&lg=Mr.+Petty+—+2022-2023+S1&ff=Inconsolata&width=1150"></iframe>
 </div>
 ```
 
