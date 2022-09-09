@@ -10,11 +10,11 @@ See [https://en.wikipedia.org/wiki/Uniform_Resource_Identifier#Syntax](https://e
 
 There are valid query properties for **text**, **room**, **lunch**, and **color**, plus **other** properties of interest (canvas width, font size, font face, footer legend, pad character). For example:
 
-The URI [https://psb-david-petty.github.io/p5js/2022-2023-bhs-schedule/?at=bt=et=ft=gt=APCS&#8203;&ar=br=er=fr=gr=UA-33&#8203;&dl=1&#8203;&ac=hotpink&#8203;&bc=navy&#8203;&cc=orchid&#8203;&dc=gold&ec=chartreuse&#8203;&fc=dodgerblue&#8203;&gc=rebeccapurple](https://psb-david-petty.github.io/p5js/2022-2023-bhs-schedule/?at=bt=et=ft=gt=APCS&ar=br=er=fr=gr=UA-33&dl=1&ac=hotpink&bc=navy&cc=orchid&dc=gold&ec=chartreuse&fc=dodgerblue&gc=rebeccapurple) sets the text for all five classes in blocks A, B, E, F, &amp; G as *APCS*, all five rooms in blocks A, B, E, F, &amp; G as *UA-33*, D lunch as lunch 1, and individual colors for the seven blocks.
+The URI [https://psb-david-petty.github.io/p5js/2022-2023-bhs-schedule/?at=bt=et=ft=gt=APCS&#8203;&ar=br=er=fr=gr=UA-33&#8203;&dl=1&#8203;&ac=hotpink&#8203;&bc=navy&#8203;&cc=orchid&#8203;&dc=gold&ec=chartreuse&#8203;&fc=dodgerblue&#8203;&gc=rebeccapurple](https://psb-david-petty.github.io/p5js/2022-2023-bhs-schedule/?at=bt=et=ft=gt=APCS&ar=br=er=fr=gr=UA-33&dl=1&ac=hotpink&bc=navy&cc=orchid&dc=gold&ec=chartreuse&fc=dodgerblue&gc=rebeccapurple) sets the text for all five classes in blocks A, B, E, F, &amp; G as *APCS*, all five rooms in blocks A, B, E, F, &amp; G as *UA-33*, D lunch as *Lunch 1*, and individual colors for the seven blocks.
 
 Ordinarily, query property *values* (after the first '`=`') do not have additional semantics. To save space in the URI, this sketch allows multiple names followed by '`=`' to all refer to the same value, which follows the *last* '`=`.' That also implies that **'`=`' cannot appear in the value** (unless it is the Unicode [full-width equals sign](https://unicode-table.com/en/FF1D/) percent encoded as `%EF%BC%9D`).
 
-Based on [RFC 1738](https://www.rfc-editor.org/rfc/rfc1738), the only valid URI characters are: alphanumeric, special characters `$-_.+!*'(),`, and reserved characters `;/?:@=&` (meaning that '` `' and <code>"#%<>[]\^{}|~&#96;</code> are unsafe and must *always* be [percent encoded](https://en.wikipedia.org/wiki/Percent-encoding)). However, based on [an interpretation of RCF 3986](https://www.456bereastreet.com/archive/201008/what_characters_are_allowed_unencoded_in_query_strings), reserved characters `;/?:@=&` can be included in query property `text` *without* percent encoding (though any query character *could* be percent encoded without problem).
+Based on [RFC 1738](https://www.rfc-editor.org/rfc/rfc1738), the only valid URI characters are: alphanumeric, special characters `$-_.+!*'(),`, and reserved characters `;/?:@=&` (meaning that '` `' and <code>"#%<>[]\^{}|~&#96;</code> are unsafe for use in a URI and must *always* be [percent encoded](https://en.wikipedia.org/wiki/Percent-encoding)). However, based on [an interpretation of RCF 3986](https://www.456bereastreet.com/archive/201008/what_characters_are_allowed_unencoded_in_query_strings), reserved characters `;/?:@=&` can be included in query property `text` *without* percent encoding (though every query character *could* be percent encoded without problem).
 
 It is typical in URIs to use '`+`' as a placeholder for '` `' in text, rather than the uglier percent-encoded space `%20`. That also implies that **'`+`' cannot appear in the value** (unless it is the Unicode [full-width plus sign](https://unicode-table.com/en/FF0B/) percent encoded as `%EF%BC%8B`).
 
@@ -76,11 +76,11 @@ Query property names ending in '`L`' can be either two or three characters &mdas
 
 | Name | Value | Type | Example |
 | --- | --- | --- | --- |
-| `dl` | Lunch for D-Block class D1 &amp; D2 | `text` | `dl=L1` |
-| `el` | Lunch for E-Block class E1 &amp; E4 | `text` | `el=L1` |
+| `dl` | Lunch for D-Block classes D1 &amp; D2 | `text` | `dl=L1` |
+| `el` | Lunch for E-Block classes E1 &amp; E4 | `text` | `el=L1` |
 | `gl` | Room for G-Block class G3 | `text` | `gl=L1` |
 
-The default values are `L2`.
+The default values are `L2` (sorry humanities departments!).
 
 <hr>
 
