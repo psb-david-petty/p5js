@@ -8,15 +8,15 @@ Use the link [https://psb-david-petty.github.io/p5js/2022-2023-bhs-schedule](htt
 
 See [https://en.wikipedia.org/wiki/Uniform_Resource_Identifier#Syntax](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier#Syntax) for a primer on the basic syntax of a URI. The properties of the schedule are set by the [name-value pair](https://en.wikipedia.org/wiki/Name%E2%80%93value_pair)s in the query portion of the URI (after the first '`?`') separated by ampersands ('`&`').
 
-There are valid query properties for **text**, **room**, and **color**, plus **other** properties of interest (lunch, canvas width, font size). For example:
+There are valid query properties for **text**, **room**, **lunch**, and **color**, plus **other** properties of interest (canvas width, font size, font face, footer legend, pad character). For example:
 
-The URI [https://psb-david-petty.github.io/p5js/2022-2023-bhs-schedule/?at=bt=et=ft=gt=APCS&#8203;&ar=br=er=fr=gr=UA-33&#8203;&ac=hotpink&#8203;&bc=navy&#8203;&cc=orchid&#8203;&dc=gold&ec=chartreuse&#8203;&fc=dodgerblue&#8203;&gc=rebeccapurple](https://psb-david-petty.github.io/p5js/2022-2023-bhs-schedule/?at=bt=et=ft=gt=APCS&ar=br=er=fr=gr=UA-33&ac=hotpink&bc=navy&cc=orchid&dc=gold&ec=chartreuse&fc=dodgerblue&gc=rebeccapurple) sets the text for all five classes in blocks A, B, E, F, &amp; G as *APCS*, all five rooms in blocks A, B, E, F, &amp; G as *UA-33*, and individual colors for the seven blocks.
+The URI [https://psb-david-petty.github.io/p5js/2022-2023-bhs-schedule/?at=bt=et=ft=gt=APCS&#8203;&ar=br=er=fr=gr=UA-33&#8203;&dl=1&#8203;&ac=hotpink&#8203;&bc=navy&#8203;&cc=orchid&#8203;&dc=gold&ec=chartreuse&#8203;&fc=dodgerblue&#8203;&gc=rebeccapurple](https://psb-david-petty.github.io/p5js/2022-2023-bhs-schedule/?at=bt=et=ft=gt=APCS&ar=br=er=fr=gr=UA-33&dl=1&ac=hotpink&bc=navy&cc=orchid&dc=gold&ec=chartreuse&fc=dodgerblue&gc=rebeccapurple) sets the text for all five classes in blocks A, B, E, F, &amp; G as *APCS*, all five rooms in blocks A, B, E, F, &amp; G as *UA-33*, D lunch as lunch 1, and individual colors for the seven blocks.
 
 Ordinarily, query property *values* (after the first '`=`') do not have additional semantics. To save space in the URI, this sketch allows multiple names followed by '`=`' to all refer to the same value, which follows the *last* '`=`.' That also implies that **'`=`' cannot appear in the value**.
 
 Based on [RFC 1738](https://www.rfc-editor.org/rfc/rfc1738), the only valid URI characters are: alphanumeric, special characters `$-_.+!*'(),`, and reserved characters `;/?:@=&` (meaning that '` `' and <code>"#%<>[]\^{}|~&#96;</code> are unsafe and must *always* be [percent encoded](https://en.wikipedia.org/wiki/Percent-encoding)). However, based on [an interpretation of RCF 3986](https://www.456bereastreet.com/archive/201008/what_characters_are_allowed_unencoded_in_query_strings), reserved characters `;/?:@=&` can be included in query property `text` *without* percent encoding (though any query character *could* be percent encoded without problem).
 
-It is typical in URIs to use '`+`' as a placeholder for '` `' in text, rather than the uglier percent-encoded space `%20`.
+It is typical in URIs to use '`+`' as a placeholder for '` `' in text, rather than the uglier percent-encoded space `%20`. That also implies that **'`+`' cannot appear in the value** (unless it is the Unicode [full-width plus sign](https://unicode-table.com/en/FF0B/) percent encoded as `%EF%BC%8B`).
 
 The complete documentation follows.
 
@@ -24,7 +24,7 @@ The complete documentation follows.
 
 ### Text
 
-Query property names ending in '`T`' can be either two or three characters &mdash; depending on whether the property applies to all blocks or only a specific numbered block. To set all *all* A blocks to `APCS` use `at=APCS`. To set *only* block `A4` to `APCS Lab` use `a4t=APCS+Lab`. Using A block as an example, `at=` is equivalent to `a1t=a2t=a3t=a4t=`.
+Query property names ending in '`T`' can be either two or three characters &mdash; depending on whether the property applies to all blocks or only a specific numbered block. To set all *all* A blocks to `APCS` use `at=APCS`. To set *only* block `A4` to `APCS Lab` use `a4t=APCS+Lab`. Using A block as an example, `at=` is equivalent to `a1t=a2t=a3t=a4t=`. Three-character query property names are more specific than their two-character counterparts, so their values override any associated with the less-specific query property names.
 
 #### Properties
 
@@ -47,7 +47,7 @@ The default values are empty.
 
 ### Room
 
-Query property names ending in '`R`' can be either two or three characters &mdash; depending on whether the property applies to all blocks or only a specific numbered block. To set all *all* A blocks to `UA-33` use `ar=UA-33`. To set *only* block `A4` to `STEM-105` use `a4r=STEM-105`. Using A block as an example, `ar=` is equivalent to `a1r=a2r=a3r=a4r=`.
+Query property names ending in '`R`' can be either two or three characters &mdash; depending on whether the property applies to all blocks or only a specific numbered block. To set all *all* A blocks to `UA-33` use `ar=UA-33`. To set *only* block `A4` to `STEM-105` use `a4r=STEM-105`. Using A block as an example, `ar=` is equivalent to `a1r=a2r=a3r=a4r=`. Three-character query property names are more specific than their two-character counterparts, so their values override any associated with the less-specific query property names.
 
 #### Properties
 
@@ -68,11 +68,27 @@ The default values are empty.
 
 <hr>
 
+### Lunch
+
+Query property names ending in '`L`' can be either two or three characters &mdash; depending on whether the property applies to all blocks or only a specific numbered block. To set all *all* E blocks to `L1` use `el=L1`. To set *only* block `E4` to `L2` use `e4l=L2`. Using E block as an example, `el=` is equivalent to `e1l=e4l=`. Three-character query property names are more specific than their two-character counterparts, so their values override any associated with the less-specific query property names. Query property names ending in '`L`' have case-insensitive valid values `C1`, `L2`, `2`, `C2`, `L1`, or `1`.
+
+#### Properties
+
+| Name | Value | Type | Example |
+| --- | --- | --- | --- |
+| `dl` | Lunch for D-Block class D1 &amp; D2 | `text` | `dl=L1` |
+| `el` | Lunch for E-Block class E1 &amp; E4 | `text` | `el=L1` |
+| `gl` | Room for G-Block class G3 | `text` | `gl=L1` |
+
+The default values are `L2`.
+
+<hr>
+
 ### Colors
 
 The block background colors default to the [OG](https://urbandictionary.com/define.php?term=OG) BHS schedule colors. You can change any of them, using [CSS color names](https://www.w3.org/TR/css-color-4/#named-colors) or 3- or 6-digit [hexadecimal](https://en.wikipedia.org/wiki/Hexadecimal) (base 16) values. Because I'm slightly color blind, I typically use colors from the of 216 [web-safe colors](https://websafecolors.info/) on my websites. ([ColorHexa](https://www.colorhexa.com/663399) has an interesting *Color Blindness Simulator* as part of their color pages to help with [web accessibility](https://www.w3.org/WAI/fundamentals/accessibility-intro/).) See [this reference](https://dev.to/alvaromontoro/the-ultimate-guide-to-css-colors-2020-edition-1bh1) for a complete description of CSS colors.
 
-Query property names ending in '`C`' can be either two or three characters &mdash; depending on whether the property applies to all blocks or only a specific numbered block. To set all *all* A blocks to `red` use `ac=red`. To set *only* block `A4` to `navy` use `a4c=navy`. Using A block as an example, `ac=` is equivalent to `a1c=a2c=a3c=a4c=`.
+Query property names ending in '`C`' can be either two or three characters &mdash; depending on whether the property applies to all blocks or only a specific numbered block. To set all *all* A blocks to `red` use `ac=red`. To set *only* block `A4` to `navy` use `a4c=navy`. Using A block as an example, `ac=` is equivalent to `a1c=a2c=a3c=a4c=`. Three-character query property names are more specific than their two-character counterparts, so their values override any associated with the less-specific query property names.
 
 #### Named colors
 
@@ -125,38 +141,40 @@ const colors = {
 
 | Name | Value | Type | Example | Description |
 | --- | --- | --- | --- | --- |
-| `ln` | Lunch Number | `string` | `ln=L2` | class 1 / lunch 2 |
 | `cw` | Canvas Width | `number` | `cw=1080` | in pixels |
 | `fs` | Font Size | `number` | `fs=16` | in points |
 | `ff` | Font Face | `string` | `ff=Arial` | one of the [web-safe](https://blog.logrocket.com/web-fonts-in-css-how-to-examples/#whatweb) fonts |
 | `lg` | Footer Legend | `string` | `lg=` | additional text added to footer |
 | `pd` | Pad Character | `string` | `pd=%E2%80%87` | Unicode [figure space](https://unicode-table.com/en/2007/) |
+| `ln` | Lunch Number | `string` | `ln=L2` | class 1 / lunch 2 |
 
 The examples show the default values for these query properties.
 
-The query property `ln` has case-insensitive valid values `C1`, `L2`, `2`, `C2`, `L1`, or `1`.
-
 The query property `pd` is a character used to pad out single-digit hours. To show, *e.g.*, two o'clock as `02:00` use `pd=0`. To remove any padding, use `pd=`.
+
+The query property `ln` has case-insensitive valid values `C1`, `L2`, `2`, `C2`, `L1`, or `1`. It is maintained for backward compatibility, but it is preferable to use query property names ending in '`L`' where `ln=` is equivalent to `dl=el=gl=`.
 
 ## To embed in Google Sites
 
-This HTML code sets the style and embeds an `iframe` for my 2022-2023 S1 schedule in my [PSB Google Site](http://j.mp/psb_david_petty).
+This HTML code sets the style and embeds an `iframe` for my 2022-2023 S1 schedule in my [PSB Google Site](http://j.mp/psb_david_petty). Use it as an example.
 
 ```html
 <style>
-  iframe { width: 1150; height: 1002px; border: none; }
+  iframe { width: 1150; height: 1002px; }
 </style>
 <div style="width: 100%; display: flex; justify-content: center; align-items: center;">
   <iframe src="https://psb-david-petty.github.io/p5js/2022-2023-bhs-schedule/?at=Autonomous+Robotics+II&bt=gt=APCS-P+(Mobile)&ct=APCS-A+(Java)&et=Autonomous+Robotics+I&xt=Brookline+Robotics+Team&ar=br=cr=er=gr=xr=UA-33&lg=Mr.+Petty+—+2022-2023+S1&ff=Inconsolata&width=1150"></iframe>
 </div>
 ```
 
-The `iFrame` height and width shown are for the default settings. If you change settings, the `iFrame` height and width for any *new* settings are echoed on the browser's [developer console](https://balsamiq.com/support/faqs/browserconsole/). Copy the echoed values between the `<style>` &amp; `</style>` tags in the above HTML code.
+The default `iFrame` height and width style is `iframe { width: 1080px; height: 996px; }`. If you change settings (as in my example schedule), the `iFrame` height and width for any *new* settings are echoed on the browser's [developer console](https://balsamiq.com/support/faqs/browserconsole/). Copy the echoed values between the `<style>` &amp; `</style>` tags in the above HTML code.
 
 ## TODO
 
 - Add more *other* query properties for things like `dots` and `margin` and other user requests.
-- Allow specification of the font (which requires knowing which are the default p5.js fonts). 
+- Add more Google fonts to `index.html` in addition to [Inconsolata](https://fonts.google.com/specimen/Inconsolata) (which ones?).
+- Enhance specification of the font to use knowledge of the default p5.js / browser fonts.
+- Make the `iFrame` height have a fixed value (`1000px`?).
 - Add an additional text field.
 - Allow for clickable links.
 
