@@ -3,13 +3,12 @@
 // 4567890123456789012345678901234567890123456789012345678901234567890
 
 /* Global variables used in formatting schedule. */
-var lunch = "L2",     // "LN" query key
-  canvasWidth = 1080, // "CW" query key
-  smallFontSize = 16, // "FS" query key
-  largeFontSize = 20, // set w/ "FS" query
-  fontFace = "Arial", // "FF" query key
-  footerLegend = "",  // "LG" query key
-  padChar = "\u2007"; // "PD" query key
+var canvasWidth = 1080, // "CW" query key
+  smallFontSize = 16,   // "FS" query key
+  largeFontSize = 20,   // set w/ "FS" query
+  fontFace = "Arial",   // "FF" query key
+  footerLegend = "",    // "LG" query key
+  padChar = "\u2007";   // "PD" query key
 /* Global constants used in formatting schedule. */
 const rev = "V.1C'",
   defaultColor = "#eee",
@@ -143,6 +142,19 @@ function getRoom(block) {
   return getBlock(block, rooms, "R", "");
 }
 
+// All lunches keys end in "L".
+const lunches = {
+  DL: "L2",
+  EL: "L2",
+  GL: "L2",
+};
+
+/** Return lunch associated w/ block or "L2" if undefined.
+ */
+function getLunch(block) {
+  return getBlock(block, lunches, "L", "L2");
+}
+
 // All colors keys end in "C".
 const colors = {
   ZC: "#ff6", // Z: 255, 255,  84 -> #ff5 / #ff6
@@ -231,7 +243,7 @@ function drawHeader() {
   }
 }
 
-/** Draw header. Uses globals:
+/** Draw footer. Uses globals:
  * margin, dots, footerLegend, rev, defaultColor, smallFontSize
  */
 function drawFooter() {
@@ -254,7 +266,8 @@ function drawFooter() {
 }
 
 /** Return true if b is a shorter (lunch) block, false otherwise.
- * @returns {boolean} true if b is a shorter block, L, T, or X, false otherwise
+ * TODO: did include L, T, or X, but now is only L
+ * @returns {boolean} true if b is a shorter (lunch) block, false otherwise
  */
 const isShortBlock = (b) => b.startsWith("L") /* || b.length == 1 */;
 
@@ -306,7 +319,7 @@ function rectangle(block, dow, start, stop, name, room) {
 
 /** Draw schedule rectangles for every (DoW) entry in schedule.
  * Uses globals:
- * schedule, lunch
+ * schedule
  */
 function week() {
   let dow = 0;
@@ -322,12 +335,15 @@ function week() {
       let start = times.start,
         stop = times.stop;
       if (typeof start == "undefined" && typeof stop == "undefined") {
+        // Render lunch block.
+        lunch = getLunch(block);
         start = times[lunch].start;
         stop = times[lunch].stop;
         lunchStart = times[lunch].lunch;
-        lunchStop = times[lunch]["class"];
+        lunchStop = times[lunch].class;
         rectangle(lunch, dow, lunchStart, lunchStop, "Lunch", "");
       }
+      // Render class block.
       //console.log(`${block} ${start} ${stop} [${difference(start, stop)}] `
       //  + `${dow} "${getClass(block)}" "${getRoom(block)}"`);
       rectangle(block, dow, start, stop, getClass(block), getRoom(block));
@@ -348,7 +364,7 @@ function draw() {
 }
 
 /** Update global variables based on name and property. Globals used:
- * classes, rooms, colors, lunch, canvasWidth, smallFontSize, fontFace
+ * classes, rooms, lunches, colors, canvasWidth, smallFontSize, fontFace,
  * footerLegend, padChar
  * @param {string} name - property name
  * @param {string} property - property value
@@ -361,23 +377,30 @@ function update(name, property) {
   if ((nl == 2 || nl == 3) && n.charAt(nl - 1) == "T") classes[n] = p;
   // Add to rooms.
   if ((nl == 2 || nl == 3) && n.charAt(nl - 1) == "R") rooms[n] = p;
+  // Add to lunches.
+  if ((nl == 2 || nl == 3) && n.charAt(nl - 1) == "L") lunches[n] = normalizeLunch(p);
   // Add to colors.
   if ((nl == 2 || nl == 3) && n.charAt(nl - 1) == "C") colors[n] = p;
   // Handle special search properties.
-  if (n == "LN") lunch = p;
   if (n == "CW") canvasWidth = +p;
   if (n == "FS") smallFontSize = +p;
   if (n == "FF") fontFace = p;
   if (n == "LG") footerLegend = p;
   if (n == "PD") padChar = p;
+  if (n == "LN") {                    // for backward compatibility
+    lunch = normalizeLunch(p);
+    for (const key of ["DL", "EL", "GL", ]) {
+      lunches[key] = lunch;
+    }
+  }
 }
 
 /** Return font size based on width of a block.
  * @returns {number} font size based on width of a block
  */
 function getLargeFontSize() {
-  const fudge = 0.95,
-    sample = `M:1 11:22 \u2014 12:34`,
+  const fudge = 0.90,
+    sample = `M1: 11:22 \u2014 12:34`,
     blockWidth = getHorizontal() / Object.keys(schedule).length,
     textWidth = getTextSize(sample, `${smallFontSize}px ${fontFace}`).width;
   //console.log(`${smallFontSize} -> ${Math.floor(smallFontSize * blockWidth / textWidth * fudge)}`);
@@ -401,16 +424,15 @@ function getTextSize(txt, font) {
     return txtSize;
 }
 
-/** Return lunch normalized to a valid schedule key: "L1" or "L2". 
- * The default value (if lunch is malformed) is "L2". Globals used:
- * lunch
+/** Return l normalized to a valid schedule key: "L1" or "L2". 
+ * The default value (if lunch is malformed) is "L2". 
  * @returns {string} normalized lunch to a valid schedule key.
  */
-function normalizeLunch() {
+function normalizeLunch(l) {
   const lunches1 = [ "C2", "c2", "L1", "l1", "1", ]
     lunch1 = "L1",
     lunch2 = "L2";
-    if (lunches1.includes(lunch)) return lunch1;
+    if (lunches1.includes(l)) return lunch1;
     else return lunch2;
 }
 
@@ -437,9 +459,6 @@ function parseURI() {
   largeFontSize = getLargeFontSize();
   smallFontSize = Math.min(smallFontSize, largeFontSize);
   console.log(`smallFontSize=${smallFontSize}; largeFontSize=${largeFontSize}`);
-
-  // Update lunch.
-  lunch = normalizeLunch();
 }
 
 // https://web.dev/local-fonts/
@@ -517,7 +536,7 @@ function setup() {
   let vertical =
     difference(topTime, bottomTime) * dots + oY * 2 
     + getHeaderHeight() + getFooterHeight();
-  let dim = `iframe { width: ${horizontal}px; height: ${vertical}px; border: none; }`;
+  let dim = `iframe { width: ${horizontal}px; height: ${vertical}px; }`;
   console.log(dim);
   let canvas = createCanvas(horizontal, vertical);
   background(defaultColor);
