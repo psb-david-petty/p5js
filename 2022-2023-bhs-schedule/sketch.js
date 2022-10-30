@@ -276,7 +276,7 @@ function getSeconds(hms) {
  */
 function findBlock() {
   const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", ],
-    offset = -(32 * 60  - 00) * 60 * 1000;  // TODO: for debugging
+    offset = -(00 * 60  - 00) * 60 * 1000;  // TODO: for debugging
   let
     today = new Date(Math.floor(Date.now() + offset)),
     now = today.toLocaleTimeString('en-US', { hour12: false }).substring(0, 8),
@@ -322,6 +322,7 @@ function findBlock() {
   }
 }
 
+// TODO: add js comments
 optionHM = { hour: 'numeric', minute: '2-digit', };
 formatHM = (t) => (new Date(`1947-04-07T${t.padStart(5, '0')}`))
   .toLocaleTimeString('en-US', optionHM).substring(0, 5);
@@ -330,9 +331,9 @@ optionMS = { minute: '2-digit', second: '2-digit', };
 formatMS = (t) => (new Date(`1947-04-07T${t}`))
   .toLocaleTimeString('en-US', optionMS).substring(0, 5);
 
-/** Return formatted String including block and HH:MM remaining or ""
- * if not currently in a block.
- * @return {String} formatted String including block and HH:MM remaining
+/** Return formatted String including now, block, and HH:MM remaining 
+ * or "" if not currently in a block.
+ * @return {String} now, block, and HH:MM remaining formatted
  */
 function countDown() {
   const toFormat = findBlock();
@@ -340,7 +341,7 @@ function countDown() {
   [block, now, next, ] = toFormat;
   [diffH, diffM, diffS, ] = difference(now, next)
     .map((n) => (n + "").padStart(2, "0"));
-  formatted = `${block} \u2014 ${diffH}:${diffM}:${diffS}`;
+  formatted = `${formatHM(now)} \u2014 ${block} \u2014 ${diffH}:${diffM}:${diffS}`;
   // TODO: only use HH:MM because all blocks less than one hour
   formatted = `${formatHM(now)} \u2014 ${block} \u2014 ${diffM}:${diffS}`;
   //console.log(toFormat, formatted);
