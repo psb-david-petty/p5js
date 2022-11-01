@@ -10,7 +10,8 @@ var canvasWidth = 1080, // "CW" query key
   largeFontSize = 20,   // set w/ "FS" query
   fontFace = "Arial",   // "FF" query key
   footerLegend = "",    // "LG" query key
-  padChar = "\u2007";   // "PD" query key
+  padChar = "\u2007",   // "PD" query key
+  timeOffset = 0;       // "TO" query key
 /* Global constants used in formatting schedule. */
 const rev = "V.1C'",
   defaultColor = "#eee",
@@ -118,6 +119,7 @@ const classes = {
   TCT: "",
 };
 
+// TODO: add jsdoc comments
 /** Return class associated w/ block or "" if undefined.
  */
 function getClass(block) {
@@ -139,6 +141,7 @@ const rooms = {
   TCR: "",
 };
 
+// TODO: add jsdoc comments
 /** Return room associated w/ block or "" if undefined.
  */
 function getRoom(block) {
@@ -152,6 +155,7 @@ const lunches = {
   GL: "L2",
 };
 
+// TODO: add jsdoc comments
 /** Return lunch associated w/ block or "L2" if undefined.
  */
 function getLunch(block) {
@@ -174,6 +178,7 @@ const colors = {
   TCC: "#fff",
 };
 
+// TODO: add jsdoc comments
 /** Return color associated w/ block or "#ccc" if undefined. Colors
  * can be X-11 named colors or hexadecimal numbers prefixed by "#".
  */
@@ -183,6 +188,9 @@ function getColor(block) {
   return Number.isNaN(parseInt(+("0x" + bg), 16)) ? bg : "#" + bg;
 }
 
+// TODO: add jsdoc comments
+/** Return time split into array [hours, minutes, seconds].
+ */
 function splitTime(time) {
   let hours, minutes, seconds;
   [hours, minutes, seconds, ] = time.split(":").map((n) => int(n));
@@ -190,7 +198,7 @@ function splitTime(time) {
   return [hours, minutes, seconds, ];
 }
 
-/** Return duration list [hours, minutes, seconds] from start to stop.
+/** Return duration array [hours, minutes, seconds] from start to stop.
  * @param {string} start - Start time in 24-hour format w/ or w/o seconds
  * @param {string} stop - Stop time in 24-hour format w/ or w/o seconds
  * @returns {number} [hours, minutes, seconds] from start to stop
@@ -269,22 +277,20 @@ function getSeconds(hms) {
   return (hours * 60 + minutes) * 60 + seconds;
 }
 
-/** Return Array w/ block, time now, and time of next transition or
+/** Return array w/ block, time now, and time of next transition or
  * "undefined" if not currently in a block.
  * {Array} block, time now, and time of next transition or "undefined"
- * Uses globals: schedule, bottomTime
+ * Uses globals: timeOffset, schedule, bottomTime
  */
 function findBlock() {
-  const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", ],
-    offset = -(00 * 60  - 00) * 60 * 1000;  // TODO: for debugging
+  const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", ];
   let
-    today = new Date(Math.floor(Date.now() + offset)),
+    today = new Date(Math.floor(Date.now() + timeOffset * 1000)),
     now = today.toLocaleTimeString('en-US', { hour12: false }).substring(0, 8),
     closest = bottomTime,
     second = getSeconds([today.getHours(), today.getMinutes(), today.getMinutes(), ]),
     dow = days[today.getDay() - 1],
     blocks = schedule[dow];
-  //console.log(`* ${formatHM(bottomTime)} ${formatMS(bottomTime)}`)
   let startSecond, stopSecond, latest;
   // Search all blocks in dow for current block.
   for (const block in blocks) {
@@ -322,7 +328,7 @@ function findBlock() {
   }
 }
 
-// TODO: add js comments
+// TODO: add jsdoc comments
 optionHM = { hour: 'numeric', minute: '2-digit', };
 formatHM = (t) => (new Date(`1947-04-07T${t.padStart(5, '0')}`))
   .toLocaleTimeString('en-US', optionHM).substring(0, 5);
@@ -538,7 +544,9 @@ function update(name, property) {
   if (n == "FF") fontFace = p;
   if (n == "LG") footerLegend = p;
   if (n == "PD") padChar = p;
-  if (n == "LN") {                    // for backward compatibility
+  if (n == "TO") timeOffset = +p;
+  // For backward compatibility. Should use "dl=el=gl=".
+  if (n == "LN") {
     lunch = normalizeLunch(p);
     for (const key of ["DL", "EL", "GL", ]) {
       lunches[key] = lunch;
@@ -576,15 +584,15 @@ function getTextSize(txt, font) {
 }
 
 /** Return l normalized to a valid schedule key: "L1" or "L2". 
- * The default value (if lunch is malformed) is "L2". 
+ * The default value (if lunch is malformed) is "L2".
+ * @param {string} l - lunch as parsed from URI query name end in "L"
  * @returns {string} normalized lunch to a valid schedule key.
  */
 function normalizeLunch(l) {
   const lunches1 = [ "C2", "c2", "L1", "l1", "1", ]
     lunch1 = "L1",
     lunch2 = "L2";
-    if (lunches1.includes(l)) return lunch1;
-    else return lunch2;
+    return lunches1.includes(l) ? lunch1 : lunch2;
 }
 
 /** Parse URI to set global variables. Multiple keys can be set with 
@@ -610,6 +618,12 @@ function parseURI() {
   largeFontSize = getLargeFontSize();
   smallFontSize = Math.min(smallFontSize, largeFontSize);
   console.log(`smallFontSize=${smallFontSize}; largeFontSize=${largeFontSize}`);
+
+  // Log today if timeOffset != 0.
+  if (timeOffset) {
+    today = new Date(Math.floor(Date.now() + timeOffset * 1000));
+    console.log(`${today}`);
+  }
 }
 
 // https://web.dev/local-fonts/
