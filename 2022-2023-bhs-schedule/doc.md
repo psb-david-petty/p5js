@@ -147,6 +147,8 @@ const colors = {
 | `lg` | Footer Legend | `string` | `lg=` | additional text added to footer |
 | `pd` | Pad Character | `string` | `pd=%E2%80%87` | Unicode [figure space](https://unicode-table.com/en/2007/) |
 | `ln` | Lunch Number | `string` | `ln=L2` | class 1 / lunch 2 |
+| `ts` | Timer Shown | `string` | `ts=0` | anything other than `0` shows timer |
+| `to` | Time Offset | `number` | `to=0` | offset in seconds from [now](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/now) (debugging) |
 
 The examples show the default values for these query properties.
 
