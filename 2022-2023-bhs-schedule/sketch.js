@@ -372,8 +372,9 @@ function countDown() {
 
 /** Return Array of formatted string for remaining, timer, and footer 
  * or undefined if not currently in a block.
+ * TODO: call only once and pass parameters to drawFooter & drawTimer
  * @return {Array.<{remaining: string, timer: string, footer: string}>} 
- *     remaining time, timer message, and footer message
+ *     remaining time, timer message, and footer message, if any
  */
 function countDownFormatted() {
   const toFormat = countDown();
@@ -387,10 +388,9 @@ function countDownFormatted() {
   remaining = `${diffM}:${diffS}`;
   // Format timer message.
   timer = `${block}${timerClassName} ends at ${formatHM(next)}`;
-  footerLeft = [formatHM(now), footerLegend, rev, ].filter(Boolean).join(" \u2014 ");
   footerRight = [ className, block, remaining, ].filter(Boolean).join(" \u2014 ");
   //console.log(toFormat, [ remaining, timer, footerLeft, footerRight, ]);
-  return [ remaining, timer, footerLeft, footerRight, ];
+  return [ remaining, timer, footerRight, ];
 }
 
 /** Return height of header in pixels. 
@@ -448,24 +448,30 @@ function drawHeader() {
  * margin, dots, footerLegend, rev, defaultColor, smallFontSize
  */
 function drawFooter() {
-  const countDownStrings = countDownFormatted();
-  if (isUndef(countDownStrings)) return;
-  const [ remaining, timerLabel, footerLeft, footerRight, ] = countDownStrings,
+  const
     textX = oX + margin * dots * 1,
     textY = oY + getHeaderHeight() + getVertical() + margin * dots * 1,
     textWidth = getHorizontal() + margin * dots * 1,
-    textHeight = getFooterHeight();
-  //console.log(`${legendLabel} ${textX} ${textY} ${textWidth} ${textHeight} ${height}`)
+    textHeight = getFooterHeight(),
+    [ today, now, ] = getNow(),
+    footerLeft = [formatHM(now), footerLegend, rev, ]
+      .filter(Boolean).join(" \u2014 ");
+  //console.log(`${textX} ${textY} ${textWidth} ${textHeight} ${height} ${footerLeft}`)
   // Wipe out text.
   noStroke();
   fill(defaultColor);
   rect(textX, textY, textWidth, textHeight);
-  // Repaint text.
+  // Repaint text for left footer.
   fill("black");
   textSize(smallFontSize);
   textStyle(BOLD);
   textAlign(LEFT);
   text(footerLeft, textX, textY + (getFooterHeight() - smallFontSize) / 2, textWidth, textHeight);
+  // Repaint text for right footer, if any.
+  const countDownStrings = countDownFormatted();
+  if (isUndef(countDownStrings)) return;
+  // remaining & timerLabel not used here.
+  const [ remaining, timerLabel, footerRight, ] = countDownStrings;
   textAlign(RIGHT);
   text(footerRight, textX, textY + (getFooterHeight() - smallFontSize) / 2, textWidth, textHeight);
 }
@@ -557,13 +563,14 @@ function week() {
   }
 }
 
-/** Draw timer window in the middle of the screen.
+/** Draw timer window in the middle of the screen, if any
  */
 function drawTimer() {
   if (!timerShown) return;
   const countDownStrings = countDownFormatted();
   if (isUndef(countDownStrings)) return;
-  const [ remaining, timerLabel, footerL, footerR, ] = countDownStrings,
+  // footerRight not used here.
+  const [ remaining, timerLabel, footerRight, ] = countDownStrings,
     gray = "#eeee",
     rebeccapurple = "#639",
     percent = 90 / 100,
