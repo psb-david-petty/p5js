@@ -1,6 +1,6 @@
 /** Draw the BHS weekly schedule.
  *
- * https://github.com/psb-david-petty/p5js/tree/main/2022-2023-bhs-schedule 
+ * https://github.com/psb-david-petty/p5js/tree/main/2022-2023-bhs-schedule
  *
  * TODO: check and document all global variables in all functions
  */
@@ -23,8 +23,8 @@ const rev = "V.1C'",
   topTime = "7:30",
   bottomTime = "15:00",
   margin = 2,
-  dots = 2
-  ticks = 10;
+  dots = 2;
+ticks = 10;
 const schedule = {
   Monday: {
     Z1: { start: "7:30", stop: "8:14" },
@@ -90,7 +90,7 @@ const schedule = {
 };
 
 /** Return object value keyed by first 3- or 2-characters of block
- * concatenated w/ suffix or defaultValue if neither is defined. All 
+ * concatenated w/ suffix or defaultValue if neither is defined. All
  * object keys are 3- or 2-characters and end with suffix. 3-character
  * keys are checked first, then 2-character keys.
  * @param {string} block - block name
@@ -196,9 +196,9 @@ function getColor(block) {
  */
 function splitTime(time) {
   let hours, minutes, seconds;
-  [hours, minutes, seconds, ] = time.split(":").map((n) => int(n));
+  [hours, minutes, seconds] = time.split(":").map((n) => int(n));
   seconds = seconds ? seconds : 0;
-  return [hours, minutes, seconds, ];
+  return [hours, minutes, seconds];
 }
 
 /** Return duration array [hours, minutes, seconds] from start to stop.
@@ -210,18 +210,15 @@ function difference(start, stop) {
   let startHours, startMins, startSecs, stopHours, stopMins, stopSecs;
   [startHours, startMins, startSecs] = splitTime(start);
   [stopHours, stopMins, stopSecs] = splitTime(stop);
-  //console.log(`${start} -> ${startHours} ${stop} -> ${stopHours} `)  
-  let 
-    startDate = new Date(0, 0, 0, startHours, startMins, startSecs),
+  //console.log(`${start} -> ${startHours} ${stop} -> ${stopHours} `)
+  let startDate = new Date(0, 0, 0, startHours, startMins, startSecs),
     stopDate = new Date(0, 0, 0, stopHours, stopMins, stopSecs);
-  let 
-    diff = stopDate.getTime() - startDate.getTime();
-  let
-    hours = Math.floor(diff / 1000 / 60 / 60);
-    minutes = Math.floor(diff / 1000 / 60 % 60);
-    seconds = Math.floor(diff / 1000 % 60);
+  let diff = stopDate.getTime() - startDate.getTime();
+  let hours = Math.floor(diff / 1000 / 60 / 60);
+  minutes = Math.floor((diff / 1000 / 60) % 60);
+  seconds = Math.floor((diff / 1000) % 60);
   //console.log(`${hours}:${minutes}:${seconds}`);
-  return [hours, minutes, seconds, ];
+  return [hours, minutes, seconds];
 }
 
 /** Return duration in seconds from start to stop.
@@ -230,7 +227,7 @@ function difference(start, stop) {
  * @returns {number} Duration in seconds from start to stop
  */
 function diffSeconds(start, stop) {
-  const [hours, minutes, seconds, ] = difference(start, stop);
+  const [hours, minutes, seconds] = difference(start, stop);
   return (hours * 60 + minutes) * 60 + seconds;
 }
 
@@ -240,7 +237,7 @@ function diffSeconds(start, stop) {
  * @returns {number} Duration in minutes from start to stop
  */
 function diffMinutes(start, stop) {
-  const [hours, minutes, seconds, ] = difference(start, stop);
+  const [hours, minutes, seconds] = difference(start, stop);
   return hours * 60 + minutes;
 }
 
@@ -255,7 +252,7 @@ const isUndef = (o) => typeof o == "undefined";
  * C1: { start: "10:24", stop: "11:19" },
  * L1: { lunch: "11:22", class: "11:52", start: "11:56", stop: "12:51" },
  * @param {String} block - block name property
- * @param {Object} blocks - 
+ * @param {Object} blocks -
  * @return {Object} times object containing "start", "stop", and "isLunch"
  */
 function getTimes(block, blocks) {
@@ -266,9 +263,9 @@ function getTimes(block, blocks) {
   }
   if (isUndef(times.start) && isUndef(times.stop)) {
     lunch = getLunch(block);
-    return { ...times[lunch], ...{ isLunch: true} };
+    return { ...times[lunch], ...{ isLunch: true } };
   }
-  return { ...times, ...{ isLunch: false} };
+  return { ...times, ...{ isLunch: false } };
 }
 
 /** Return total seconds from midnight to hms = [hours, minutes, seconds, ].
@@ -276,7 +273,7 @@ function getTimes(block, blocks) {
  * @returns {number} total seconds from midnight to hms
  */
 function getSeconds(hms) {
-  const [hours, minutes, seconds, ] = hms
+  const [hours, minutes, seconds] = hms;
   return (hours * 60 + minutes) * 60 + seconds;
 }
 
@@ -285,25 +282,27 @@ function getSeconds(hms) {
  *     current Date and 24-hour-format string time now
  */
 function getNow() {
-  let
-    today = new Date(Math.floor(Date.now() + timeOffset * 1000)),
-    now = today.toLocaleTimeString('en-US', { hour12: false }).substring(0, 8);
-    return [ today, now, ];
+  let today = new Date(Math.floor(Date.now() + timeOffset * 1000)),
+    now = today.toLocaleTimeString("en-US", { hour12: false }).substring(0, 8);
+  return [today, now];
 }
 
 /** Return array w/ block, time now, and time of next transition or
  * undefined if not currently in a block.
- * @return {{Array.<{block: string, now: string, eext: string}>} 
+ * @return {{Array.<{block: string, now: string, eext: string}>}
  *     block, time now, and time of next transition or undefined
  * Uses globals: timeOffset, schedule, bottomTime
  */
 function findBlock() {
-  const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", ];
-  let
-    today = new Date(Math.floor(Date.now() + timeOffset * 1000)),
-    now = today.toLocaleTimeString('en-US', { hour12: false }).substring(0, 8),
+  const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
+  let today = new Date(Math.floor(Date.now() + timeOffset * 1000)),
+    now = today.toLocaleTimeString("en-US", { hour12: false }).substring(0, 8),
     closest = bottomTime,
-    second = getSeconds([today.getHours(), today.getMinutes(), today.getSeconds(), ]),
+    second = getSeconds([
+      today.getHours(),
+      today.getMinutes(),
+      today.getSeconds(),
+    ]),
     dow = days[today.getDay() - 1],
     blocks = schedule[dow];
   let startSecond, stopSecond, latest;
@@ -316,11 +315,12 @@ function findBlock() {
       stopSecond = getSeconds(splitTime(times.class));
       if (startSecond <= second && second <= stopSecond) {
         //console.log(times, times.class);
-        return [getLunch(block), now, times.class, ];
+        return [getLunch(block), now, times.class];
       }
       // Remember closest lunch time.
       let diff = diffSeconds(now, times.lunch);
-      closest = diff > 0 && diff < diffSeconds(now, closest) ? times.lunch : closest;
+      closest =
+        diff > 0 && diff < diffSeconds(now, closest) ? times.lunch : closest;
       //console.log("L", times.lunch, now, closest, difference(now, closest), difference(now, times.lunch));
     }
     // Determine whether second is between start and stop.
@@ -328,58 +328,68 @@ function findBlock() {
     stopSecond = getSeconds(splitTime(times.stop));
     if (startSecond <= second && second <= stopSecond) {
       //console.log(times, times.class);
-      return [block, now, times.stop, ];
+      return [block, now, times.stop];
     }
     // Remember closest time.
     let diff = diffSeconds(now, times.start);
-    closest = diff > 0 && diff < diffSeconds(now, closest) ? times.start : closest;
+    closest =
+      diff > 0 && diff < diffSeconds(now, closest) ? times.start : closest;
     //console.log("C", times.start, now, closest, difference(now, closest), difference(now, times.start));
     // Remember latest time (not necessarily topTime).
     latest = times.stop;
   }
   // Return passing-time Array, if is school day and now during school hours.
   //console.log("P", topTime, now, latest, closest, difference(topTime, now), difference(now, latest));
-  if (!isUndef(dow) && diffSeconds(topTime, now) > 0 && diffSeconds(now, latest) > 0) {
+  if (
+    !isUndef(dow) &&
+    diffSeconds(topTime, now) > 0 &&
+    diffSeconds(now, latest) > 0
+  ) {
     return ["PASSING", now, closest];
   }
   return undefined;
 }
 
 // TODO: add jsdoc comments
-optionHM = { hour: 'numeric', minute: '2-digit', };
-formatHM = (t) => (new Date(`1947-04-07T${t.padStart(5, '0')}`))
-  .toLocaleTimeString('en-US', optionHM).substring(0, 5);
+optionHM = { hour: "numeric", minute: "2-digit" };
+formatHM = (t) =>
+  new Date(`1947-04-07T${t.padStart(5, "0")}`)
+    .toLocaleTimeString("en-US", optionHM)
+    .substring(0, 5);
 
-optionMS = { minute: '2-digit', second: '2-digit', };
-formatMS = (t) => (new Date(`1947-04-07T${t}`))
-  .toLocaleTimeString('en-US', optionMS).substring(0, 5);
+optionMS = { minute: "2-digit", second: "2-digit" };
+formatMS = (t) =>
+  new Date(`1947-04-07T${t}`)
+    .toLocaleTimeString("en-US", optionMS)
+    .substring(0, 5);
 
-/** Return array with block, now, and HH, MM, SS until next transition 
+/** Return array with block, now, and HH, MM, SS until next transition
  * as strings or undefined if not currently in a block.
- * @return {{Array.<{block: string, now: string, next: string, 
+ * @return {{Array.<{block: string, now: string, next: string,
  *     hh: string, mm: string, ss: string}>}}
  *     block, time now, and HH, MM, SS until next transition
  */
 function countDown() {
   const foundBlock = findBlock();
   if (isUndef(foundBlock)) return undefined;
-  [block, now, next, ] = foundBlock;
-  [diffH, diffM, diffS, ] = difference(now, next)
-    .map((n) => (n + "").padStart(2, "0"));
+  [block, now, next] = foundBlock;
+  [diffH, diffM, diffS] = difference(now, next).map((n) =>
+    (n + "").padStart(2, "0")
+  );
   //console.log(foundBlock, block, now, next, diffH, diffM, diffS);
-  return [ block, now, next, diffH, diffM, diffS, ];
+  return [block, now, next, diffH, diffM, diffS];
 }
 
-/** Return Array of formatted string for remaining, timer, and footer 
+/** Return Array of formatted string for remaining, timer, and footer
  * or undefined if not currently in a block.
  * TODO: call only once and pass parameters to drawFooter & drawTimer
- * @return {Array.<{remaining: string, timer: string, footer: string}>} 
+ * @return {Array.<{remaining: string, timer: string, footer: string}>}
  *     remaining time, timer message, and footer message, if any
  */
 function countDownFormatted() {
   const toFormat = countDown();
   if (isUndef(toFormat)) return toFormat;
-  const [block, now, next, diffH, diffM, diffS, ] = toFormat,
+  const [block, now, next, diffH, diffM, diffS] = toFormat,
     className = getClass(block),
     timerClassName = className ? ` (${className})` : "";
   // Format remaining time.
@@ -388,30 +398,30 @@ function countDownFormatted() {
   remaining = `${diffM}:${diffS}`;
   // Format timer message.
   timer = `${block}${timerClassName} ends at ${formatHM(next)}`;
-  footerRight = [ className, block, remaining, ].filter(Boolean).join(" \u2014 ");
+  footerRight = [className, block, remaining].filter(Boolean).join(" \u2014 ");
   //console.log(toFormat, [ remaining, timer, footerLeft, footerRight, ]);
-  return [ remaining, timer, footerRight, ];
+  return [remaining, timer, footerRight];
 }
 
-/** Return height of header in pixels. 
+/** Return height of header in pixels.
  * @return {number} height of header in pixels
  */
 function getHeaderHeight() {
   return largeFontSize * 2;
 }
-/** Return height of footer in pixels. 
+/** Return height of footer in pixels.
  * @return {number} height of footer in pixels
  */
 function getFooterHeight() {
   return smallFontSize * 2;
 }
-/** Return width of working schedule in pixels. 
+/** Return width of working schedule in pixels.
  * @return {number} width of working schedule in pixels
  */
 function getHorizontal() {
-  return canvasWidth - oX * 2;  // cannot depend on width
+  return canvasWidth - oX * 2; // cannot depend on width
 }
-/** Return height of working schedule in pixels. 
+/** Return height of working schedule in pixels.
  * @return {number} height of working schedule in pixels
  */
 function getVertical() {
@@ -448,14 +458,14 @@ function drawHeader() {
  * margin, dots, footerLegend, rev, defaultColor, smallFontSize
  */
 function drawFooter() {
-  const
-    textX = oX + margin * dots * 1,
+  const textX = oX + margin * dots * 1,
     textY = oY + getHeaderHeight() + getVertical() + margin * dots * 1,
     textWidth = getHorizontal() + margin * dots * 1,
     textHeight = getFooterHeight(),
-    [ today, now, ] = getNow(),
-    footerLeft = [formatHM(now), footerLegend, rev, ]
-      .filter(Boolean).join(" \u2014 ");
+    [today, now] = getNow(),
+    footerLeft = [formatHM(now), footerLegend, rev]
+      .filter(Boolean)
+      .join(" \u2014 ");
   //console.log(`${textX} ${textY} ${textWidth} ${textHeight} ${height} ${footerLeft}`)
   // Wipe out text.
   noStroke();
@@ -466,24 +476,36 @@ function drawFooter() {
   textSize(smallFontSize);
   textStyle(BOLD);
   textAlign(LEFT);
-  text(footerLeft, textX, textY + (getFooterHeight() - smallFontSize) / 2, textWidth, textHeight);
+  text(
+    footerLeft,
+    textX,
+    textY + (getFooterHeight() - smallFontSize) / 2,
+    textWidth,
+    textHeight
+  );
   // Repaint text for right footer, if any.
   const countDownStrings = countDownFormatted();
   if (isUndef(countDownStrings)) return;
   // remaining & timerLabel not used here.
-  const [ remaining, timerLabel, footerRight, ] = countDownStrings;
+  const [remaining, timerLabel, footerRight] = countDownStrings;
   textAlign(RIGHT);
-  text(footerRight, textX, textY + (getFooterHeight() - smallFontSize) / 2, textWidth, textHeight);
+  text(
+    footerRight,
+    textX,
+    textY + (getFooterHeight() - smallFontSize) / 2,
+    textWidth,
+    textHeight
+  );
 }
 
 /** Return true if b is a shorter (lunch) block, false otherwise.
  * TODO: did include L, T, or X, but now is only L
  * @returns {boolean} true if b is a shorter (lunch) block, false otherwise
  */
-const isShortBlock = (b) => b.startsWith("L") /* || b.length == 1 */;
+const isShortBlock = (b) => b.startsWith("L"); /* || b.length == 1 */
 
-/** Draw rectangle associated w/ block w/ name and room at horizontal 
- * size and position of dow and vertical size and position of start 
+/** Draw rectangle associated w/ block w/ name and room at horizontal
+ * size and position of dow and vertical size and position of start
  * and stop. Uses globals:
  * schedule, topTime, margin, dots, padChar, largeFontSize, smallFontSize
  */
@@ -505,7 +527,9 @@ function rectangle(block, dow, start, stop, name, room) {
     textWidth = blockWidth - margin * dots * 1, // TODO: shoud be 2
     textHeight = blockHeight - margin * dots * 2;
   let ulLabel = `${block.padEnd(2, " ")}: `,
-    urLabel = `${formatHM(start).padStart(5, padChar)} \u2014 ${formatHM(stop).padStart(5, padChar)}`;
+    urLabel = `${formatHM(start).padStart(5, padChar)} \u2014 ${formatHM(
+      stop
+    ).padStart(5, padChar)}`;
   textSize(largeFontSize);
   textAlign(LEFT);
   text(ulLabel, textX, textY, textWidth, textHeight);
@@ -516,16 +540,34 @@ function rectangle(block, dow, start, stop, name, room) {
   let middleLabel = isShortBlock(block) ? "" : `${name}`;
   textSize(smallFontSize);
   textAlign(LEFT);
-  text(middleLabel, textX, textY + blockHeight / 2 - smallFontSize / 2, textWidth, textHeight);
+  text(
+    middleLabel,
+    textX,
+    textY + blockHeight / 2 - smallFontSize / 2,
+    textWidth,
+    textHeight
+  );
 
   // Calculate text parameters for LL & LR and render it.
   let llLabel = isShortBlock(block) ? `${name}` : `${room}`,
     lrLabel = `[${diffMinutes(start, stop)}]`;
   textSize(smallFontSize);
   textAlign(LEFT);
-  text(llLabel, textX, textY + textHeight - smallFontSize, textWidth, textHeight);
+  text(
+    llLabel,
+    textX,
+    textY + textHeight - smallFontSize,
+    textWidth,
+    textHeight
+  );
   textAlign(RIGHT);
-  text(lrLabel, textX, textY + textHeight - smallFontSize, textWidth, textHeight);
+  text(
+    lrLabel,
+    textX,
+    textY + textHeight - smallFontSize,
+    textWidth,
+    textHeight
+  );
 }
 
 /** Draw schedule rectangles for every (DoW) entry in schedule.
@@ -570,12 +612,13 @@ function drawTimer() {
   const countDownStrings = countDownFormatted();
   if (isUndef(countDownStrings)) return;
   // footerRight not used here.
-  const [ remaining, timerLabel, footerRight, ] = countDownStrings,
+  const [remaining, timerLabel, footerRight] = countDownStrings,
     gray = "#eeee",
     rebeccapurple = "#639",
     percent = 90 / 100,
     timerWidth = getHorizontal() * percent,
-    timerHeight = (getVertical() - getHeaderHeight() - getFooterHeight()) * percent,
+    timerHeight =
+      (getVertical() - getHeaderHeight() - getFooterHeight()) * percent,
     timerX = oX + (getHorizontal() - timerWidth) / 2,
     timerY = oY + (getVertical() - timerHeight) / 2 + getHeaderHeight(),
     largeFontSize = getLargeFontSize("12:34", timerWidth * percent),
@@ -588,17 +631,23 @@ function drawTimer() {
   fill(rebeccapurple);
   textSize(largeFontSize);
   textAlign(CENTER);
-  text(remaining, 
-    timerX + timerWidth * (1 - percent) / 2, 
-    timerY + timerHeight / 2 - largeFontSize / 2, 
-    timerWidth, timerHeight);
+  text(
+    remaining,
+    timerX + (timerWidth * (1 - percent)) / 2,
+    timerY + timerHeight / 2 - largeFontSize / 2,
+    timerWidth,
+    timerHeight
+  );
   // Add timer label.
   textSize(smallFontSize);
   textAlign(CENTER);
-  text(timerLabel, 
-    timerX, 
-    timerY + timerHeight - smallFontSize * 2, 
-    timerWidth, timerHeight);
+  text(
+    timerLabel,
+    timerX,
+    timerY + timerHeight - smallFontSize * 2,
+    timerWidth,
+    timerHeight
+  );
 }
 
 /** Toggle timerShown.
@@ -636,7 +685,8 @@ function update(name, property) {
   // Add to rooms.
   if ((nl == 2 || nl == 3) && n.charAt(nl - 1) == "R") rooms[n] = p;
   // Add to lunches.
-  if ((nl == 2 || nl == 3) && n.charAt(nl - 1) == "L") lunches[n] = normalizeLunch(p);
+  if ((nl == 2 || nl == 3) && n.charAt(nl - 1) == "L")
+    lunches[n] = normalizeLunch(p);
   // Add to colors.
   if ((nl == 2 || nl == 3) && n.charAt(nl - 1) == "C") colors[n] = p;
   // Handle special search properties.
@@ -650,7 +700,7 @@ function update(name, property) {
   // For backward compatibility. Should use "dl=el=gl=".
   if (n == "LN") {
     lunch = normalizeLunch(p);
-    for (const key of ["DL", "EL", "GL", ]) {
+    for (const key of ["DL", "EL", "GL"]) {
       lunches[key] = lunch;
     }
   }
@@ -661,17 +711,20 @@ function update(name, property) {
  * @returns {number} font size based on sample and width
  */
 function getLargeFontSize(sample, blockWidth) {
-  const fudge = 0.90,
+  const fudge = 0.9,
     textWidth = getTextSize(sample, `${smallFontSize}px ${fontFace}`).width;
   //console.log(`${smallFontSize} -> ${Math.floor(smallFontSize * blockWidth / textWidth * fudge)}`);
-  return Math.floor(smallFontSize * blockWidth / textWidth * fudge);
+  return Math.floor(((smallFontSize * blockWidth) / textWidth) * fudge);
 }
 
 /** Return large font size based on longest line and block width.
  * @returns {number} font size based on longest line and block width
  */
 function getLargeBlockFontSize() {
-  return getLargeFontSize(`M1: 11:22 \u2014 12:34`, getHorizontal() / Object.keys(schedule).length)
+  return getLargeFontSize(
+    `M1: 11:22 \u2014 12:34`,
+    getHorizontal() / Object.keys(schedule).length
+  );
 }
 
 /** Return rectangle object w/ width and height of txt rendered in font.
@@ -681,29 +734,28 @@ function getLargeBlockFontSize() {
  * @return {object} object w/ width and height of txt rendered in font
  */
 function getTextSize(txt, font) {
-    let element = document.createElement("canvas");
-    let context = element.getContext("2d");
-    context.font = font;
-    let txtSize = {
-      "width": context.measureText(txt).width, 
-      "height": parseInt(context.font),
-    };
-    return txtSize;
+  let element = document.createElement("canvas");
+  let context = element.getContext("2d");
+  context.font = font;
+  let txtSize = {
+    width: context.measureText(txt).width,
+    height: parseInt(context.font),
+  };
+  return txtSize;
 }
 
-/** Return l normalized to a valid schedule key: "L1" or "L2". 
+/** Return l normalized to a valid schedule key: "L1" or "L2".
  * The default value (if lunch is malformed) is "L2".
  * @param {string} l - lunch as parsed from URI query name end in "L"
  * @returns {string} normalized lunch to a valid schedule key.
  */
 function normalizeLunch(l) {
-  const lunches1 = [ "C2", "c2", "L1", "l1", "1", ]
-    lunch1 = "L1",
-    lunch2 = "L2";
-    return lunches1.includes(l) ? lunch1 : lunch2;
+  const lunches1 = ["C2", "c2", "L1", "l1", "1"];
+  (lunch1 = "L1"), (lunch2 = "L2");
+  return lunches1.includes(l) ? lunch1 : lunch2;
 }
 
-/** Parse URI to set global variables. Multiple keys can be set with 
+/** Parse URI to set global variables. Multiple keys can be set with
  * the same property. For example "ar=br=cr=dr=er=UA-33"
  */
 function parseURI() {
@@ -760,7 +812,10 @@ async function checkFonts() {
  */
 function srgb(rgb) {
   // https://www.w3.org/Graphics/Color/sRGB.html
-  const th = 0.03928, div = 12.92, eps = 0.055, exp = 2.4;
+  const th = 0.03928,
+    div = 12.92,
+    eps = 0.055,
+    exp = 2.4;
   return rgb <= th ? rgb / div : ((rgb + eps) / (1 + eps)) ** exp;
 }
 
@@ -770,7 +825,9 @@ function srgb(rgb) {
  */
 function luminance(c) {
   // https://www.w3.org/TR/WCAG20/#relativeluminancedef
-  const rFactor = 0.2126, gFactor = 0.7152, bFactor = 0.0722;
+  const rFactor = 0.2126,
+    gFactor = 0.7152,
+    bFactor = 0.0722;
   const r = red(c) / 255,
     g = green(c) / 255,
     b = blue(c) / 255;
@@ -794,7 +851,8 @@ function contrastRatio(light, dark) {
  * @returns {color} highest contrast-ratio p5.js color to c
  */
 function fgColor(c) {
-  const blackColor = color("black"), whiteColor = color("white");
+  const blackColor = color("black"),
+    whiteColor = color("white");
   const ratio2Black = contrastRatio(c, blackColor),
     ratio2White = contrastRatio(whiteColor, c);
   return ratio2Black > ratio2White ? blackColor : whiteColor;
@@ -807,8 +865,10 @@ function setup() {
   // Setup canvas.
   let horizontal = canvasWidth;
   let vertical =
-    diffMinutes(topTime, bottomTime) * dots + oY * 2 
-    + getHeaderHeight() + getFooterHeight();
+    diffMinutes(topTime, bottomTime) * dots +
+    oY * 2 +
+    getHeaderHeight() +
+    getFooterHeight();
   let dim = `iframe { width: ${horizontal}px; height: ${vertical}px; }`;
   console.log(dim);
   let canvas = createCanvas(horizontal, vertical);
@@ -825,5 +885,5 @@ function setup() {
   justify-content: center;
   align-items: center;`;
   let sketch = select("#sketch");
-    sketch.style(`${center}`);
+  sketch.style(`${center}`);
 }
