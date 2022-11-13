@@ -355,13 +355,13 @@ optionHM = { hour: "numeric", minute: "2-digit" };
 formatHM = (t) =>
   new Date(`1947-04-07T${t.padStart(5, "0")}`)
     .toLocaleTimeString("en-US", optionHM)
-    .substring(0, 5);
+    .substring(0, 5).trim();
 
 optionMS = { minute: "2-digit", second: "2-digit" };
 formatMS = (t) =>
   new Date(`1947-04-07T${t}`)
     .toLocaleTimeString("en-US", optionMS)
-    .substring(0, 5);
+    .substring(0, 5).trim();
 
 /** Return array with block, now, and HH, MM, SS until next transition
  * as strings or undefined if not currently in a block.
@@ -399,7 +399,7 @@ function countDownFormatted() {
   // Format timer message.
   timer = `${block}${timerClassName} ends at ${formatHM(next)}`;
   footerRight = [className, block, remaining].filter(Boolean).join(" \u2014 ");
-  //console.log(toFormat, [ remaining, timer, footerLeft, footerRight, ]);
+  //console.log(toFormat, [ remaining, timer, footerRight, ]);
   return [remaining, timer, footerRight];
 }
 
@@ -524,12 +524,11 @@ function rectangle(block, dow, start, stop, name, room) {
   fill(fgColor(bg));
   let textX = blockX + margin * dots * 1,
     textY = blockY + margin * dots * 1,
-    textWidth = blockWidth - margin * dots * 1, // TODO: shoud be 2
+    textWidth = blockWidth - margin * dots * 1, // TODO: should be 2
     textHeight = blockHeight - margin * dots * 2;
   let ulLabel = `${block.padEnd(2, " ")}: `,
-    urLabel = `${formatHM(start).padStart(5, padChar)} \u2014 ${formatHM(
-      stop
-    ).padStart(5, padChar)}`;
+    urLabel = `${formatHM(start).padStart(5, padChar)} \u2014 `
+    + `${formatHM(stop).padStart(5, padChar)}`;
   textSize(largeFontSize);
   textAlign(LEFT);
   text(ulLabel, textX, textY, textWidth, textHeight);
