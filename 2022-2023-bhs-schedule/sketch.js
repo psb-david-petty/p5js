@@ -391,7 +391,7 @@ function countDownFormatted() {
   if (isUndef(toFormat)) return toFormat;
   const [block, now, next, diffH, diffM, diffS] = toFormat,
     className = getClass(block),
-    timerClassName = className ? ` (${className})` : "";
+    timerClassName = className ? ` [${className}]` : "";
   // Format remaining time.
   remaining = `${diffH}:${diffM}:${diffS}`;
   // TODO: only use HH:MM because all blocks less than one hour
