@@ -21,7 +21,7 @@ Other useful sketches&hellip;
 | Sketch | Description |
 | --- | --- |
 | [./2022-2023-bhs-schedule/](https://psb-david-petty.github.io/p5js/2022-2023-bhs-schedule/doc.html) | The 2022-2023 [BHS](https://bhs.brookline.k12.ma.us/) customizable [schedule](https://psb-david-petty.github.io/p5js/2022-2023-bhs-schedule/). |
-| [./2023-2024-bhs-schedule/](https://psb-david-petty.github.io/p5js/2023-2024-bhs-schedule/doc.html) | The 2022-2023 [BHS](https://bhs.brookline.k12.ma.us/) customizable [schedule](https://psb-david-petty.github.io/p5js/2023-2024-bhs-schedule/). |
+| [./2023-2024-bhs-schedule/](https://psb-david-petty.github.io/p5js/2023-2024-bhs-schedule/doc.html) | The 2023-2024 [BHS](https://bhs.brookline.k12.ma.us/) customizable [schedule](https://psb-david-petty.github.io/p5js/2023-2024-bhs-schedule/). |
 
 <hr>
 
