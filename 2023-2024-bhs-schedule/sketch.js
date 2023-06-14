@@ -1,6 +1,6 @@
 /** Draw the BHS weekly schedule.
  *
- * https://github.com/psb-david-petty/p5js/tree/main/2022-2023-bhs-schedule
+ * https://github.com/psb-david-petty/p5js/tree/main/2023-2024-bhs-schedule
  *
  * TODO: check and document all global variables in all functions
  */
@@ -16,7 +16,7 @@ var canvasWidth = 1080, // "CW" query key
   timerShown = 0,       // "TS" query key
   timeOffset = 0;       // "TO" query key
 /* Global constants used in formatting schedule. */
-const rev = "V.1C'",
+const rev = "V.1A",
   defaultColor = "#eee",
   oX = 10,
   oY = 10,
@@ -30,7 +30,7 @@ const schedule = {
     Z1: { start: "7:30", stop: "8:14" },
     A1: { start: "8:20", stop: "9:15" },
     B1: { start: "9:22", stop: "10:17" },
-    C1: { start: "10:24", stop: "11:19" },
+    D1: { start: "10:24", stop: "11:19" },
     E1: {
       L1: { lunch: "11:22", class: "11:52", start: "11:56", stop: "12:51" },
       L2: { start: "11:26", stop: "12:21", lunch: "12:24", class: "12:54" },
@@ -40,10 +40,10 @@ const schedule = {
   },
   Tuesday: {
     Z2: { start: "7:30", stop: "8:14" },
-    A2: { start: "8:20", stop: "9:15" },
+    C1: { start: "8:20", stop: "9:15" },
     B2: { start: "9:22", stop: "10:17" },
-    C2: { start: "10:24", stop: "11:19" },
-    D1: {
+    D2: { start: "10:24", stop: "11:19" },
+    E2: {
       L1: { lunch: "11:22", class: "11:52", start: "11:56", stop: "12:51" },
       L2: { start: "11:26", stop: "12:21", lunch: "12:24", class: "12:54" },
     },
@@ -52,35 +52,35 @@ const schedule = {
   },
   Wednesday: {
     Z3: { start: "7:30", stop: "8:14" },
-    A3: { start: "8:20", stop: "9:15" },
+    A2: { start: "8:20", stop: "9:15" },
     T: { start: "9:20", stop: "9:57" },
-    C3: { start: "10:03", stop: "10:58" },
+    C2: { start: "10:03", stop: "10:58" },
     X: { start: "11:05", stop: "11:42" },
-    D2: {
+    D3: {
       L1: { lunch: "11:45", class: "12:15", start: "12:19", stop: "13:14" },
       L2: { start: "11:49", stop: "12:44", lunch: "12:47", class: "13:17" },
     },
-    E2: { start: "13:21", stop: "14:16" },
+    E3: { start: "13:21", stop: "14:16" },
     TC: { start: "14:20", stop: "15:00" },
   },
   Thursday: {
     Z4: { start: "7:30", stop: "8:14" },
-    A4: { start: "8:20", stop: "9:15" },
+    A3: { start: "8:20", stop: "9:15" },
     B3: { start: "9:22", stop: "10:17" },
-    D3: { start: "10:24", stop: "11:19" },
+    C3: { start: "10:24", stop: "11:19" },
     G3: {
       L1: { lunch: "11:22", class: "11:52", start: "11:56", stop: "12:51" },
       L2: { start: "11:26", stop: "12:21", lunch: "12:24", class: "12:54" },
     },
-    E3: { start: "12:58", stop: "13:53" },
+    E4: { start: "12:58", stop: "13:53" },
     F3: { start: "14:00", stop: "14:55" },
   },
   Friday: {
     Z5: { start: "7:30", stop: "8:14" },
-    B4: { start: "8:20", stop: "9:15" },
-    C4: { start: "9:22", stop: "10:17" },
-    D4: { start: "10:24", stop: "11:19" },
-    E4: {
+    A4: { start: "8:20", stop: "9:15" },
+    B4: { start: "9:22", stop: "10:17" },
+    C4: { start: "10:24", stop: "11:19" },
+    D4: {
       L1: { lunch: "11:22", class: "11:52", start: "11:56", stop: "12:51" },
       L2: { start: "11:26", stop: "12:21", lunch: "12:24", class: "12:54" },
     },
@@ -391,7 +391,7 @@ function countDownFormatted() {
   if (isUndef(toFormat)) return toFormat;
   const [block, now, next, diffH, diffM, diffS] = toFormat,
     className = getClass(block),
-    timerClassName = className ? ` [${className}]` : "";
+    timerClassName = className ? ` (${className})` : "";
   // Format remaining time.
   remaining = `${diffH}:${diffM}:${diffS}`;
   // TODO: only use HH:MM because all blocks less than one hour

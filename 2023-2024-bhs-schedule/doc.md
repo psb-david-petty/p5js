@@ -76,8 +76,8 @@ Query property names ending in '`L`' can be either two or three characters &mdas
 
 | Name | Value | Type | Example |
 | --- | --- | --- | --- |
-| `dl` | Lunch for D-Block classes D1 &amp; D2 | `text` | `dl=L1` |
-| `el` | Lunch for E-Block classes E1 &amp; E4 | `text` | `el=L1` |
+| `dl` | Lunch for D-Block classes D3 &amp; D4 | `text` | `dl=L1` |
+| `el` | Lunch for E-Block classes E1 &amp; E2 | `text` | `el=L1` |
 | `gl` | Room for G-Block class G3 | `text` | `gl=L1` |
 
 The default values are `L2` (sorry humanities departments!).
