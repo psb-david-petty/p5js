@@ -70,7 +70,7 @@ The default values are empty.
 
 ### Lunch
 
-Query property names ending in '`L`' can be either two or three characters &mdash; depending on whether the property applies to all blocks or only a specific numbered block. To set all *all* E blocks to `L1` use `el=L1`. To set *only* block `E4` to `L2` use `e4l=L2`. Using E block as an example, `el=` is equivalent to `e1l=e4l=`. Three-character query property names are more specific than their two-character counterparts, so their values override any associated with the less-specific query property names. Query property names ending in '`L`' have case-insensitive valid values `C1`, `L2`, `2`, `C2`, `L1`, or `1`.
+Query property names ending in '`L`' can be either two or three characters &mdash; depending on whether the property applies to all blocks or only a specific numbered block. To set all *all* D blocks to `L1` use `dl=L1`. To set *only* block `D4` to `L2` use `d4l=L2`. Using D block as an example, `dl=` is equivalent to `d3l=d4l=`. Three-character query property names are more specific than their two-character counterparts, so their values override any associated with the less-specific query property names. Query property names ending in '`L`' have case-insensitive valid values `C1`, `L2`, `2`, `C2`, `L1`, or `1`.
 
 #### Properties
 
