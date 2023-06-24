@@ -40,15 +40,5 @@ label::after { content: ":"; }
 input { width: 10em; min-width: 2em; }
 input.box { width: 3em; }
 
-.filter-navy { background-color: red;
-  filter: /*brightness(0) saturate(100%) */
-    invert(7%) sepia(92%) saturate(5619%) hue-rotate(244deg) brightness(81%) contrast(127%);
-}
-.filter-red {
-  filter: brightness(0) saturate(100%) 
-    invert(9%) sepia(95%) saturate(7252%) hue-rotate(15deg) brightness(90%) contrast(118%);
-}
-/* https://uxwing.com/copy-icon */
-.cb1 { width: 1em; color: green;
-  content: url("./copy-icon.svg"); 
-}
+<a target="_blank" href="https://icons8.com/icon/86206/copy">Copy</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
+``

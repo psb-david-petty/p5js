@@ -134,6 +134,7 @@ function initialize() {
   for (const details of document.querySelectorAll(`details`)) {
     details.addEventListener(`toggle`, toggle);
   }
+  document.querySelector(`#copyuri`).addEventListener("click", copyURI, false);
   checkEnabled();
   update();
   return false;
@@ -150,8 +151,6 @@ function copyURI() {
 });
   return false;
 }
-
-document.getElementBy(`#copyuri`).addEventListener("click", copyURI, false);
 
 // http://onwebdevelopment.blogspot.com/2008/07/chaining-functions-in-javascript.html
 const chain = function(args) {
