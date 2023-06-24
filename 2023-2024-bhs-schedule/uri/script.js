@@ -118,6 +118,11 @@ function schedule() {
 
 function initialize() {
   console.log(`Initializing...`);
+  navigator.permissions.query({ name: "write-on-clipboard" }).then((result) => {
+    if (result.state == "granted" || result.state == "prompt") {
+      console.log(`Clipboard write access granted.`);
+    }
+  });
   for (const box of document.querySelectorAll(`.checkbox`)) {
     box.addEventListener(`change`, input);
   }
@@ -136,13 +141,13 @@ function initialize() {
 
 function copyURI() {
   navigator.clipboard.writeText(uri()).then(() => {
-  console.log('Content copied to clipboard');
   /* Resolved - text copied to clipboard successfully */
+  console.log(`Copied ${uri()} to clipboard.`);
+  window.alert(`Copied ${uri()} to clipboard.`);
 },() => {
   console.error('Failed to copy');
   /* Rejected - text failed to copy to the clipboard */
 });
-  window.alert(`Copied ${uri()} to clipboard.`);
   return false;
 }
 
