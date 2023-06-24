@@ -13,11 +13,14 @@
 
 <body>
   <main>
-    <p>My friend and colleague <a href="">Tyler Brown</a> &mdash; always a good source of suggestions &mdash; suggested that I create this page for the <a href="https://github.com/psb-david-petty/p5js/tree/main/2023-2024-bhs-schedule">2023-2024-bhs-schedule</a>. (Also, several colleagues have said that they cannot decipher the documentation to personalize to the <a href="https://en.wikipedia.org/wiki/Query_string">URI query string</a>.) Enjoy!</p>
+    <p>My colleague and friend <a href="">Tyler Brown</a> &mdash; always a good source of suggestions &mdash; suggested that I create this page for the <a href="https://github.com/psb-david-petty/p5js/tree/main/2023-2024-bhs-schedule">2023-2024-bhs-schedule</a>. (Also, several colleagues have said that they cannot decipher the [documentation](https://psb-david-petty.github.io/p5js/2023-2024-bhs-schedule/doc.html) to personalize to the <a href="https://en.wikipedia.org/wiki/Query_string">URI query string</a>.) Enjoy!</p>
     <div style="width: 100%; display: flex; justify-content: center; align-items: center;">
       <iframe width="1080" height="996px" src="https://psb-david-petty.github.io/p5js/2023-2024-bhs-schedule/"></iframe>
     </div>
-    <p id="uri"></p>
+    <p class="uri">
+      <span id="uri"></span>
+      <img src="./icons8-copy-blue-24.png" onclick="return copyURI();">
+    </p>
     <form onsubmit="return schedule();">
       <details class="a">
         <summary>

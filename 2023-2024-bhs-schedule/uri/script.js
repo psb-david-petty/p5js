@@ -134,6 +134,18 @@ function initialize() {
   return false;
 }
 
+function copyURI() {
+  navigator.clipboard.writeText(uri()).then(() => {
+  console.log('Content copied to clipboard');
+  /* Resolved - text copied to clipboard successfully */
+},() => {
+  console.error('Failed to copy');
+  /* Rejected - text failed to copy to the clipboard */
+});
+  window.alert(`Copied ${uri()} to clipboard.`);
+  return false;
+}
+
 // http://onwebdevelopment.blogspot.com/2008/07/chaining-functions-in-javascript.html
 const chain = function(args) {
   return function() {

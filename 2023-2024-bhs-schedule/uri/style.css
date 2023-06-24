@@ -4,7 +4,7 @@ body {
   padding: 1%; padding-top: 0; border: thin solid gray;
   font-family: 'PT Sans Narrow', sans-serif; font-size: 14pt;
 }
-#uri { font-family: 'Inconsolata', monospace; text-align: center; }
+.uri { font-family: 'Inconsolata', monospace; text-align: center; }
 input { font-family: inherit; font-size: inherit; }
 
 /* Link styles: Lord Vader Hates Fluffy Animals */
@@ -39,3 +39,16 @@ label { margin: 0 2px; min-width: 2em; text-align: right; border: thin solid gre
 label::after { content: ":"; }
 input { width: 10em; min-width: 2em; }
 input.box { width: 3em; }
+
+.filter-navy { background-color: red;
+  filter: /*brightness(0) saturate(100%) */
+    invert(7%) sepia(92%) saturate(5619%) hue-rotate(244deg) brightness(81%) contrast(127%);
+}
+.filter-red {
+  filter: brightness(0) saturate(100%) 
+    invert(9%) sepia(95%) saturate(7252%) hue-rotate(15deg) brightness(90%) contrast(118%);
+}
+/* https://uxwing.com/copy-icon */
+.cb1 { width: 1em; color: green;
+  content: url("./copy-icon.svg"); 
+}
