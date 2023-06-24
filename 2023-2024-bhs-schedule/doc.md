@@ -4,7 +4,7 @@ This is a [p5.js](https://p5js.org/) sketch for the 2023-2024 Brookline High Sch
 
 Use the link [https://psb-david-petty.github.io/p5js/2023-2024-bhs-schedule](https://psb-david-petty.github.io/p5js/2023-2024-bhs-schedule) with suitable query properties to display your custom schedule. The query properties are described below.
 
-## URI Query properties.
+## URI Query properties &mdash; TMI
 
 See [https://en.wikipedia.org/wiki/Uniform_Resource_Identifier#Syntax](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier#Syntax) for a primer on the basic syntax of a URI. The properties of the schedule are set by the [name-value pair](https://en.wikipedia.org/wiki/Name%E2%80%93value_pair)s in the query portion of the URI (after the first '`?`') separated by ampersands ('`&`').
 
@@ -12,13 +12,17 @@ There are valid query properties for **text**, **room**, **lunch**, and **color*
 
 The URI [https://psb-david-petty.github.io/p5js/2023-2024-bhs-schedule/?at=bt=et=ft=gt=APCS&#8203;&ar=br=er=fr=gr=Room+373&#8203;&dl=1&#8203;&ac=hotpink&#8203;&bc=navy&#8203;&cc=orchid&#8203;&dc=gold&ec=chartreuse&#8203;&fc=dodgerblue&#8203;&gc=rebeccapurple](https://psb-david-petty.github.io/p5js/2023-2024-bhs-schedule/?at=bt=et=ft=gt=APCS&ar=br=er=fr=gr=Room+373&dl=1&ac=hotpink&bc=navy&cc=orchid&dc=gold&ec=chartreuse&fc=dodgerblue&gc=rebeccapurple) sets the text for all five classes in blocks A, B, E, F, &amp; G as *APCS*, all five rooms in blocks A, B, E, F, &amp; G as *Room 373*, D lunch as *Lunch 1*, and individual colors for the seven blocks.
 
+## Special characters
+
 Ordinarily, query property *values* (after the first '`=`') do not have additional semantics. To save space in the URI, this sketch allows multiple names followed by '`=`' to all refer to the same value, which follows the *last* '`=`.' That also implies that **'`=`' cannot appear in the value** (unless it is the Unicode [full-width equals sign](https://unicode-table.com/en/FF1D/) percent encoded as `%EF%BC%9D`).
 
 Based on [RFC 1738](https://www.rfc-editor.org/rfc/rfc1738), the only valid URI characters are: alphanumeric, special characters `$-_.+!*'(),`, and reserved characters `;/?:@=&` (meaning that '` `' and <code>"#%<>[]\^{}|~&#96;</code> are unsafe for use in a URI and must *always* be [percent encoded](https://en.wikipedia.org/wiki/Percent-encoding)). However, based on [an interpretation of RCF 3986](https://www.456bereastreet.com/archive/201008/what_characters_are_allowed_unencoded_in_query_strings), reserved characters `;/?:@=&` can be included in query property `text` *without* percent encoding (though every query character *could* be percent encoded without problem).
 
+However, query properties are delimited by '`&`' (and parsed with the [`URLSearchParames`](https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams/URLSearchParams) JavaScript function). That implies that **`&` cannot appear in the value** (unless it is the Unicode [full-width ampersand](https://unicode-table.com/en/FF1D/) percent encoded as `%EF%BC%86`).
+
 It is typical in URIs to use '`+`' as a placeholder for '` `' in text, rather than the uglier percent-encoded space `%20`. That also implies that **'`+`' cannot appear in the value** (unless it is the Unicode [full-width plus sign](https://unicode-table.com/en/FF0B/) percent encoded as `%EF%BC%8B`).
 
-The complete documentation follows.
+The complete documentation for query properties follows.
 
 <hr>
 
