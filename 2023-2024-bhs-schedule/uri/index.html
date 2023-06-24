@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>BHS Schedule Formatter</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inconsolata&family=PT+Sans+Narrow&display=swap" rel="stylesheet">
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <main>
+    <p>My friend and colleague <a href="">Tyler Brown</a> &mdash; always a good source of suggestions &mdash; suggested that I create this page for the <a href="https://github.com/psb-david-petty/p5js/tree/main/2023-2024-bhs-schedule">2023-2024-bhs-schedule</a>. (Also, several colleagues have said that they cannot decipher the documentation to personalize to the <a href="https://en.wikipedia.org/wiki/Query_string">URI query string</a>.) Enjoy!</p>
+    <div style="width: 100%; display: flex; justify-content: center; align-items: center;">
+      <iframe width="1080" height="996px" src="https://psb-david-petty.github.io/p5js/2023-2024-bhs-schedule/"></iframe>
+    </div>
+    <p id="uri"></p>
+    <form onsubmit="return schedule();">
+      <details class="a">
+        <summary>
+          <!-- A-Block checkbox -->
+          <label for="a">A</label>
+          <input class="checkbox" type="checkbox" id="a" name="a">
+          <!-- Course text -->
+          <label for="at">Text</label>
+          <input class="text" type="input" id="at" placeholder="Enter text&hellip;">
+          <!-- Room number -->
+          <label for="ar">Room</label>
+          <input class="text" type="input" id="ar" placeholder="Enter room&hellip;">
+          <!-- Course color -->
+          <label for="ac">Color</label>
+          <input class="text" type="input" id="ac" placeholder="Enter color&hellip;">
+          <!-- Course lunch -->
+          <label for="al">Lunch</label>
+          <input class="text" type="input" id="al" placeholder="Enter lunch&hellip;">
+        </summary>
+        <ul>
+          <li>
+            <!-- A1-Block checkbox -->
+            <label for="a1">A1</label>
+            <input class="checkbox" type="checkbox" id="a1" name="a1">
+            <!-- Course text -->
+            <label for="a1t">Text</label>
+            <input class="text" type="input" id="a1t" placeholder="Enter text&hellip;">
+            <!-- Room number -->
+            <label for="a1r">Room</label>
+            <input class="text" type="input" id="a1r" placeholder="Enter room&hellip;">
+            <!-- Course color -->
+            <label for="a1c">Color</label>
+            <input class="text" type="input" id="a1c" placeholder="Enter color&hellip;">
+            <!-- Course lunch -->
+            <label for="a1l">Lunch</label>
+            <input class="text" type="input" id="a1l" placeholder="Enter lunch&hellip;">
+          </li>
+          <li>
+            <!-- A2-Block checkbox -->
+            <label for="a2">A2</label>
+            <input class="checkbox" type="checkbox" id="a2" name="a2">
+            <!-- Course text -->
+            <label for="a2t">Text</label>
+            <input class="text" type="input" id="a2t" placeholder="Enter text&hellip;">
+            <!-- Room number -->
+            <label for="a2r">Room</label>
+            <input class="text" type="input" id="a2r" placeholder="Enter room&hellip;">
+            <!-- Course color -->
+            <label for="a2c">Color</label>
+            <input class="text" type="input" id="a2c" placeholder="Enter color&hellip;">
+            <!-- Course lunch -->
+            <label for="a2l">Lunch</label>
+            <input class="text" type="input" id="a2l" placeholder="Enter lunch&hellip;">
+          </li>
+          <li>
+            <!-- A3-Block checkbox -->
+            <label for="a3">A3</label>
+            <input class="checkbox" type="checkbox" id="a3" name="a3">
+            <!-- Course text -->
+            <label for="a3t">Text</label>
+            <input class="text" type="input" id="a3t" placeholder="Enter text&hellip;">
+            <!-- Room number -->
+            <label for="a3r">Room</label>
+            <input class="text" type="input" id="a3r" placeholder="Enter room&hellip;">
+            <!-- Course color -->
+            <label for="a3c">Color</label>
+            <input class="text" type="input" id="a3c" placeholder="Enter color&hellip;">
+            <!-- Course lunch -->
+            <label for="a3l">Lunch</label>
+            <input class="text" type="input" id="a3l" placeholder="Enter lunch&hellip;">
+          </li>
+          <li>
+            <!-- A4-Block checkbox -->
+            <label for="a4">A4</label>
+            <input class="checkbox" type="checkbox" id="a4" name="a4">
+            <!-- Course text -->
+            <label for="a4t">Text</label>
+            <input class="text" type="input" id="a4t" placeholder="Enter text&hellip;">
+            <!-- Room number -->
+            <label for="a4r">Room</label>
+            <input class="text" type="input" id="a4r" placeholder="Enter room&hellip;">
+            <!-- Course color -->
+            <label for="a4c">Color</label>
+            <input class="text" type="input" id="a4c" placeholder="Enter color&hellip;">
+            <!-- Course lunch -->
+            <label for="a4l">Lunch</label>
+            <input class="text" type="input" id="a4l" placeholder="Enter lunch&hellip;">
+          </li>
+        </ul>
+      </details>
+      <div class="o">
+        <ul>
+          <li>
+            <!-- cw - Canvas Width -->
+            <label for="cw">CW</label>
+            <input class="text" type="input" id="cw" placeholder="Enter column width&hellip;">
+          </li>
+          <li>
+            <!-- fs - Font Size -->
+            <label for="cw">FS</label>
+            <input class="text" type="input" id="fs" placeholder="Enter font size&hellip;">
+          </li>
+          <li>
+            <!-- ff - Font Face -->
+            <label for="cw">FF</label>
+            <input class="text" type="input" id="ff" placeholder="Enter font face&hellip;">
+          </li>
+          <li>
+            <!-- lg - Footer Legend -->
+            <label for="cw">CW</label>
+            <input class="text" type="input" id="lg" placeholder="Enter footer legend&hellip;">
+          </li>
+          <li>
+            <!-- pd - Pad Character -->
+            <label for="cw">CW</label>
+            <input class="text" type="input" id="pd" placeholder="Enter pad character&hellip;">
+          </li>
+        </ul>
+      </div>
+      <input type="submit" value="Update">
+    </form>
+    <script src="script.js"></script>
+  </main>
+</body>
+
+</html>

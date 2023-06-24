@@ -1,0 +1,41 @@
+/* Global styles */
+html { width: 100%; height: 100%; }
+body {
+  padding: 1%; padding-top: 0; border: thin solid gray;
+  font-family: 'PT Sans Narrow', sans-serif; font-size: 14pt;
+}
+#uri { font-family: 'Inconsolata', monospace; text-align: center; }
+input { font-family: inherit; font-size: inherit; }
+
+/* Link styles: Lord Vader Hates Fluffy Animals */
+a:link { color: inherit; text-decoration: inherit; }
+a:visited { color: inherit; text-decoration: inherit; }
+a:hover { color: rebeccapurple; text-decoration: underline; }
+a:focus { color: inherit; text-decoration: underline; }
+a:active { color: inherit; text-decoration: underline; }
+
+/* Drop-down details styles */
+details summary::before {
+  content: "\25B6\0020";
+}
+details[open] summary {
+  background-color: #eee;
+  content: "\25BC\0020";
+}
+details[open] summary::before, details li::before {
+    content: "\25BC\0020";
+}
+
+/* Input styles */
+label, input, ul { margin: 0; padding: 0; }
+ul { list-style: none; }
+details summary, details ul li, .o ul {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  border: thin solid red;
+}
+label { margin: 0 2px; min-width: 2em; text-align: right; border: thin solid green; }
+label::after { content: ":"; }
+input { width: 10em; min-width: 2em; }
+input.box { width: 3em; }
