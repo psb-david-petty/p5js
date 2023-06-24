@@ -146,6 +146,8 @@ function copyURI() {
   return false;
 }
 
+document.getElementBy(`#copyuri`).addEventListener("click", copyURI, false);
+
 // http://onwebdevelopment.blogspot.com/2008/07/chaining-functions-in-javascript.html
 const chain = function(args) {
   return function() {
