@@ -4,36 +4,10 @@
 
 const URI = `https://psb-david-petty.github.io/p5js/2023-2024-bhs-schedule/`
 
-function input(event) {
-  console.log(`id:${event.target.id} `
-    + `checked:${event.target.checked} `
-    + `value:"${event.target.value}" `
-  );
-  checkEnabled();
-  update();
-  //console.log(event);
-}
-
-function checkEnabled() {
-  for (const box of document.querySelectorAll(`.checkbox`)) {
-    //console.log(`.text[id^='${box.id}']`);  // wildcard selector
-    for (const suffix of `trcl`) {
-      for (const text of document.querySelectorAll(`#${box.id}${suffix}`)) {
-        let
-          not_lunch = !/l$/i.test(text.id), 
-          valid_lunch_block = /^[deg]/i.test(text.id);
-        text.disabled = !(box.checked 
-          && (not_lunch || valid_lunch_block));
-        if (text.disabled) text.value = ``;
-      }
-    }
-  }
-}
-
 function keydown(event) {
   console.log(`keydown: ${event.key} ${event.code} ${event.keyCode}`);
   if (event.key === `Enter` || event.code === `Enter`) {
-    console.log(`ENTER`);
+    console.log(`Enter`);
     return schedule();
     //console.log(event);
   }
@@ -42,14 +16,13 @@ function keydown(event) {
 function keyup(event) {
   console.log(`keyup: ${event.key} ${event.code} ${event.keyCode}`);
   if (event.key === `Space` || event.code === `Space`) {
-    console.log(`SPACE`);
+    console.log(`Space`);
     event.preventDefault();
     //console.log(event);
   }
 }
 
 function toggle(event) {
-  //console.log(`toggle: ${event.key} ${event.code} ${event.keyCode}`);
   checkToggle();
   //console.log(event);
 }
@@ -69,6 +42,32 @@ function checkToggle() {
   }
 }
 
+function input(event) {
+  console.log(`id:${event.target.id} `
+    + `checked:${event.target.checked} `
+    + `value:"${event.target.value}" `
+  );
+  checkEnabled(); // Check checkbox input
+  update();       // Check text input
+  //console.log(event);
+}
+
+function checkEnabled() {
+  for (const box of document.querySelectorAll(`.checkbox`)) {
+    //console.log(`.text[id^='${box.id}']`);  // wildcard selector
+    for (const suffix of `trcl`) {
+      for (const text of document.querySelectorAll(`#${box.id}${suffix}`)) {
+        let
+          not_lunch = !/l$/i.test(text.id), 
+          valid_lunch_block = /^[deg]/i.test(text.id);
+        text.disabled = !(box.checked 
+          && (not_lunch || valid_lunch_block));
+        if (text.disabled) text.value = ``;
+      }
+    }
+  }
+}
+
 // https://ultimatecourses.com/blog/reverse-object-keys-and-values-in-javascript
 const flip = (data) => Object.fromEntries(
   Object
@@ -80,7 +79,7 @@ function uri() {
   const valkey = new Object();
   for (const text of document.querySelectorAll(`.text`)) {
     if (text.value) {
-      console.log(text.value);
+      //console.log(text.value);
       valkey[text.value] = (valkey[text.value] ?? ``) + `${text.id}=`;
     }
   }
@@ -118,7 +117,7 @@ function schedule() {
 }
 
 function initialize() {
-  console.log(`INITIALIZING...`);
+  console.log(`Initializing...`);
   for (const box of document.querySelectorAll(`.checkbox`)) {
     box.addEventListener(`change`, input);
   }
