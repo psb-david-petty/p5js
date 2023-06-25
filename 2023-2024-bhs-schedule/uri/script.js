@@ -8,9 +8,9 @@ function keydown(event) {
   console.log(`keydown: ${event.key} ${event.code} ${event.keyCode}`);
   if (event.key === `Enter` || event.code === `Enter`) {
     console.log(`Enter`);
-    return schedule();
     //console.log(event);
-  }
+    return schedule();
+   }
 }
 
 function keyup(event) {
@@ -93,12 +93,16 @@ function uri() {
         .replace(/\+/g, '\uFF0B') // replace '+'
         .replace(/ /g, '+')}`;    // replace ' '
   }
+  query = query.replace(/&gt=/g, `&gx=`); // TODO: fixes &gt parsing
+  //console.log(`*   ${query}`);
   let result = new DOMParser()
     .parseFromString(query, "text/html").documentElement.textContent;
   result = result 
     ? encodeURI(`${URI}${result.replace(/&/, '?')}`)
     : `${URI}`;
-  console.log(`${result}`);
+  //console.log(`**  ${result}`);
+  result = result.replace(/gx=/g, `gt=`); // TODO: fixes &gt parsing
+  //console.log(`*** ${result}`);
   return result;
 }
 
@@ -121,15 +125,22 @@ function copyCode() {
 }
 
 function update() {
-  document.querySelector(`#uri`).innerHTML = `${uri()}`;
+  document.querySelector(`#uri`).innerHTML = `${uri().replace(/&/g, `&amp;`)}`;
 }
 
 function schedule() {
   let 
     iframe = document.querySelector(`iframe`),
     cw = (new URL(uri())).searchParams.get(`cw`);
-  if (cw) iframe.width = `${cw}`;
+  if (cw && !isNaN(+cw)) {
+    width = parseInt(+cw);
+    height = parseInt(width / 20 + 950);  // TODO: this is an approximate hack
+    iframe.width = `${width}`;  
+    iframe.height = `${height}`;
+    console.log(`Dimension: ${width}x${height}`)
+  }
   iframe.src = `${uri()}`;
+  console.log(iframe.src);
   return false;
 }
 

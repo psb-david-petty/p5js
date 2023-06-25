@@ -5,6 +5,7 @@ body {
   font-family: 'PT Sans Narrow', sans-serif; font-size: 14pt;
 }
 code, pre, .uri { font-family: 'Inconsolata', monospace; text-align: center; }
+iframe { border: 0; overflow: hidden; }
 input { font-family: inherit; font-size: inherit; }
 table { border-collapse: collapse; }
 th { border: thin solid gray; }
