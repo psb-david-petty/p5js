@@ -83,7 +83,7 @@ function uri() {
       valkey[text.value] = (valkey[text.value] ?? ``) + `${text.id}=`;
     }
   }
-  const keyval = flip(valkey), keys = Object.keys(keyval);
+  const keyval = flip(valkey), keys = Object.keys(keyval).sort();
   //console.log(valkey, keyval, keys);
   let query = ``;
   for (const key of keys) {
@@ -102,6 +102,24 @@ function uri() {
   return result;
 }
 
+function copyURI() {
+  const text = uri(), message = `"${text}"`;
+  copyToClipboard(text, message);
+  return false;  
+}
+
+function copyCode() {
+  // TODO: figure a way to get the correct width & height
+  const text = `<style>
+  iframe { width: 1080; height: 1000; }
+</style>
+<div style="width: 100%; display: flex; justify-content: center; align-items: center;">
+  <iframe src="${uri()}"></iframe>
+</div>`, message = `code`;
+  copyToClipboard(text, message);
+  return false;
+}
+
 function update() {
   document.querySelector(`#uri`).innerHTML = `${uri()}`;
 }
@@ -110,7 +128,7 @@ function schedule() {
   let iframe = document.querySelector(`iframe`);
   for (const [key, value] of (new URLSearchParams(uri())).entries()) {
     console.log(`${key} ${value}`);
-    if (key === `cw`) iframe.width = `${value}px`;
+    if (key === `cw`) iframe.width = `${value}`;
   }
   iframe.src = `${uri()}`;
   return false;
@@ -118,11 +136,14 @@ function schedule() {
 
 function initialize() {
   console.log(`Initializing...`);
-  navigator.permissions.query({ name: "write-on-clipboard" }).then((result) => {
+  // TODO: find out why permissions.query does not work
+  // https://www.freecodecamp.org/news/copy-text-to-clipboard-javascript/
+/*  navigator.permissions.query({ name: "write-on-clipboard" }).then((result) => {
     if (result.state == "granted" || result.state == "prompt") {
       console.log(`Clipboard write access granted.`);
     }
   });
+*/
   for (const box of document.querySelectorAll(`.checkbox`)) {
     box.addEventListener(`change`, input);
   }
@@ -135,21 +156,21 @@ function initialize() {
     details.addEventListener(`toggle`, toggle);
   }
   document.querySelector(`#copyuri`).addEventListener("click", copyURI, false);
+  document.querySelector(`#copycode`).addEventListener("click", copyCode, false);
   checkEnabled();
   update();
   return false;
 }
 
-function copyURI() {
-  navigator.clipboard.writeText(uri()).then(() => {
-  /* Resolved - text copied to clipboard successfully */
-  console.log(`Copied ${uri()} to clipboard.`);
-  window.alert(`Copied ${uri()} to clipboard.`);
-},() => {
-  console.error('Failed to copy');
-  /* Rejected - text failed to copy to the clipboard */
-});
-  return false;
+function copyToClipboard(text, message) {
+  navigator.clipboard.writeText(text).then(() => {
+    /* Resolved - text copied to clipboard successfully */
+    console.log(`Copied ${message} to clipboard.`);
+    window.alert(`Copied ${message} to clipboard.`);
+  },() => {
+    console.error('Failed to copy');
+    /* Rejected - text failed to copy to the clipboard */
+  });
 }
 
 // http://onwebdevelopment.blogspot.com/2008/07/chaining-functions-in-javascript.html
@@ -166,3 +187,13 @@ window.addLoad = function(fn) {
 };
 
 window.addLoad(initialize);
+
+// Sample copyCode output.
+`
+<style>
+  iframe { width: 1080; height: 1000; }
+</style>
+<div style="width: 100%; display: flex; justify-content: center; align-items: center;">
+  <iframe src="https://psb-david-petty.github.io/p5js/2023-2024-bhs-schedule/"></iframe>
+</div>
+`
