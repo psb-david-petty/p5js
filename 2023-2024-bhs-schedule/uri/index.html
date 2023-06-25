@@ -1,27 +1,33 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
-  <title>BHS Schedule Formatter</title>
+  <title>2023-2024 BHS schedule URI query formatter</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inconsolata&family=PT+Sans+Narrow&display=swap" rel="stylesheet">
-  <link href="style.css" rel="stylesheet" type="text/css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inconsolata&family=PT+Sans+Narrow&display=block" rel="stylesheet">
+  <link href="style.css" rel="stylesheet" type="text/css">
   <script src="script.js"></script>
 </head>
 
 <body>
   <main>
-    <p>My colleague and friend <a href="">Tyler Brown</a> &mdash; always a good source of suggestions &mdash; suggested that I create this page for the <a href="https://github.com/psb-david-petty/p5js/tree/main/2023-2024-bhs-schedule">2023-2024-bhs-schedule</a>. (Also, several colleagues have said that they cannot decipher the [documentation](https://psb-david-petty.github.io/p5js/2023-2024-bhs-schedule/doc.html) to personalize to the <a href="https://en.wikipedia.org/wiki/Query_string">URI query string</a>.) Enjoy!</p>
+    <h1>Create URI query for the <code>2023-2024-bhs-schedule</code></h1>
+    <p>My colleague and friend <a href="">Tyler Brown</a> &mdash; always a good source of suggestions &mdash; suggested that I create this page for the <a href="https://github.com/psb-david-petty/p5js/tree/main/2023-2024-bhs-schedule">2023-2024-bhs-schedule</a>. (Also, several colleagues have said they had trouble deciphering the <a href="https://psb-david-petty.github.io/p5js/2023-2024-bhs-schedule/doc.html">documentation</a> to personalize the <a href="https://en.wikipedia.org/wiki/Query_string">URI query string</a>.) Enjoy!</p>
     <div style="width: 100%; display: flex; justify-content: center; align-items: center;">
-      <iframe width="1080" height="996px" src="https://psb-david-petty.github.io/p5js/2023-2024-bhs-schedule/"></iframe>
+      <iframe width="1080" height="996" src="https://psb-david-petty.github.io/p5js/2023-2024-bhs-schedule/"></iframe>
     </div>
+    <h2>Use</h2>
+    <ul>
+      <li>Click the checkbox to enable that block, then enter text in the appropriate text boxes. Click <em>Update</em> or hit <em>Enter</em> to see results. Any boxes left blank will use default values.</li>
+      <li>Use <em>Copy URI</em> to copy created URI to the clipboard. Use <em>Copy code</em> to copy code suitable for embedding in a <a href="https://sites.google.com/">Google site</a> to the clipboard.</li>
+    </ul>
     <p class="uri">
       <span id="uri"></span>
-      <img src="./icons8-copy-blue-24.png" id="copyuri">
-      <img src="./icons8-copy-red-24.png" id="copycode">
+      <img src="./icons8-copy-blue-24.png" alt="copy icon blue" title="Copy URI" id="copyuri">
+      <img src="./icons8-copy-red-24.png" alt="copy icon red" title="Copy code" id="copycode">
     </p>
     <form onsubmit="return schedule();">
       <details class="a">
@@ -31,16 +37,16 @@
           <input class="checkbox" type="checkbox" id="a" name="a">
           <!-- Course text -->
           <label for="at">Text</label>
-          <input class="text" type="input" id="at" placeholder="Enter text&hellip;">
+          <input class="text" type="text" id="at" placeholder="Enter text&hellip;">
           <!-- Room number -->
           <label for="ar">Room</label>
-          <input class="text" type="input" id="ar" placeholder="Enter room&hellip;">
+          <input class="text" type="text" id="ar" placeholder="Enter room&hellip;">
           <!-- Course color -->
           <label for="ac">Color</label>
-          <input class="text" type="input" id="ac" placeholder="Enter color&hellip;">
+          <input class="text" type="text" id="ac" placeholder="Enter color&hellip;">
           <!-- Course lunch -->
           <label for="al">Lunch</label>
-          <input class="text" type="input" id="al" placeholder="Enter lunch&hellip;">
+          <input class="text" type="text" id="al" placeholder="Enter lunch&hellip;">
         </summary>
         <ul>
           <li>
@@ -49,16 +55,16 @@
             <input class="checkbox" type="checkbox" id="a1" name="a1">
             <!-- Course text -->
             <label for="a1t">Text</label>
-            <input class="text" type="input" id="a1t" placeholder="Enter text&hellip;">
+            <input class="text" type="text" id="a1t" placeholder="Enter text&hellip;">
             <!-- Room number -->
             <label for="a1r">Room</label>
-            <input class="text" type="input" id="a1r" placeholder="Enter room&hellip;">
+            <input class="text" type="text" id="a1r" placeholder="Enter room&hellip;">
             <!-- Course color -->
             <label for="a1c">Color</label>
-            <input class="text" type="input" id="a1c" placeholder="Enter color&hellip;">
+            <input class="text" type="text" id="a1c" placeholder="Enter color&hellip;">
             <!-- Course lunch -->
             <label for="a1l">Lunch</label>
-            <input class="text" type="input" id="a1l" placeholder="Enter lunch&hellip;">
+            <input class="text" type="text" id="a1l" placeholder="Enter lunch&hellip;">
           </li>
           <li>
             <!-- A2-Block checkbox -->
@@ -66,16 +72,16 @@
             <input class="checkbox" type="checkbox" id="a2" name="a2">
             <!-- Course text -->
             <label for="a2t">Text</label>
-            <input class="text" type="input" id="a2t" placeholder="Enter text&hellip;">
+            <input class="text" type="text" id="a2t" placeholder="Enter text&hellip;">
             <!-- Room number -->
             <label for="a2r">Room</label>
-            <input class="text" type="input" id="a2r" placeholder="Enter room&hellip;">
+            <input class="text" type="text" id="a2r" placeholder="Enter room&hellip;">
             <!-- Course color -->
             <label for="a2c">Color</label>
-            <input class="text" type="input" id="a2c" placeholder="Enter color&hellip;">
+            <input class="text" type="text" id="a2c" placeholder="Enter color&hellip;">
             <!-- Course lunch -->
             <label for="a2l">Lunch</label>
-            <input class="text" type="input" id="a2l" placeholder="Enter lunch&hellip;">
+            <input class="text" type="text" id="a2l" placeholder="Enter lunch&hellip;">
           </li>
           <li>
             <!-- A3-Block checkbox -->
@@ -83,16 +89,16 @@
             <input class="checkbox" type="checkbox" id="a3" name="a3">
             <!-- Course text -->
             <label for="a3t">Text</label>
-            <input class="text" type="input" id="a3t" placeholder="Enter text&hellip;">
+            <input class="text" type="text" id="a3t" placeholder="Enter text&hellip;">
             <!-- Room number -->
             <label for="a3r">Room</label>
-            <input class="text" type="input" id="a3r" placeholder="Enter room&hellip;">
+            <input class="text" type="text" id="a3r" placeholder="Enter room&hellip;">
             <!-- Course color -->
             <label for="a3c">Color</label>
-            <input class="text" type="input" id="a3c" placeholder="Enter color&hellip;">
+            <input class="text" type="text" id="a3c" placeholder="Enter color&hellip;">
             <!-- Course lunch -->
             <label for="a3l">Lunch</label>
-            <input class="text" type="input" id="a3l" placeholder="Enter lunch&hellip;">
+            <input class="text" type="text" id="a3l" placeholder="Enter lunch&hellip;">
           </li>
           <li>
             <!-- A4-Block checkbox -->
@@ -100,16 +106,694 @@
             <input class="checkbox" type="checkbox" id="a4" name="a4">
             <!-- Course text -->
             <label for="a4t">Text</label>
-            <input class="text" type="input" id="a4t" placeholder="Enter text&hellip;">
+            <input class="text" type="text" id="a4t" placeholder="Enter text&hellip;">
             <!-- Room number -->
             <label for="a4r">Room</label>
-            <input class="text" type="input" id="a4r" placeholder="Enter room&hellip;">
+            <input class="text" type="text" id="a4r" placeholder="Enter room&hellip;">
             <!-- Course color -->
             <label for="a4c">Color</label>
-            <input class="text" type="input" id="a4c" placeholder="Enter color&hellip;">
+            <input class="text" type="text" id="a4c" placeholder="Enter color&hellip;">
             <!-- Course lunch -->
             <label for="a4l">Lunch</label>
-            <input class="text" type="input" id="a4l" placeholder="Enter lunch&hellip;">
+            <input class="text" type="text" id="a4l" placeholder="Enter lunch&hellip;">
+          </li>
+        </ul>
+      </details>
+      <details class="b">
+        <summary>
+          <!-- B-Block checkbox -->
+          <label for="b">B</label>
+          <input class="checkbox" type="checkbox" id="b" name="b">
+          <!-- Course text -->
+          <label for="bt">Text</label>
+          <input class="text" type="text" id="bt" placeholder="Enter text&hellip;">
+          <!-- Room number -->
+          <label for="br">Room</label>
+          <input class="text" type="text" id="br" placeholder="Enter room&hellip;">
+          <!-- Course color -->
+          <label for="bc">Color</label>
+          <input class="text" type="text" id="bc" placeholder="Enter color&hellip;">
+          <!-- Course lunch -->
+          <label for="bl">Lunch</label>
+          <input class="text" type="text" id="bl" placeholder="Enter lunch&hellip;">
+        </summary>
+        <ul>
+          <li>
+            <!-- B1-Block checkbox -->
+            <label for="b1">B1</label>
+            <input class="checkbox" type="checkbox" id="b1" name="b1">
+            <!-- Course text -->
+            <label for="b1t">Text</label>
+            <input class="text" type="text" id="b1t" placeholder="Enter text&hellip;">
+            <!-- Room number -->
+            <label for="b1r">Room</label>
+            <input class="text" type="text" id="b1r" placeholder="Enter room&hellip;">
+            <!-- Course color -->
+            <label for="b1c">Color</label>
+            <input class="text" type="text" id="b1c" placeholder="Enter color&hellip;">
+            <!-- Course lunch -->
+            <label for="b1l">Lunch</label>
+            <input class="text" type="text" id="b1l" placeholder="Enter lunch&hellip;">
+          </li>
+          <li>
+            <!-- B2-Block checkbox -->
+            <label for="b2">B2</label>
+            <input class="checkbox" type="checkbox" id="b2" name="b2">
+            <!-- Course text -->
+            <label for="b2t">Text</label>
+            <input class="text" type="text" id="b2t" placeholder="Enter text&hellip;">
+            <!-- Room number -->
+            <label for="b2r">Room</label>
+            <input class="text" type="text" id="b2r" placeholder="Enter room&hellip;">
+            <!-- Course color -->
+            <label for="b2c">Color</label>
+            <input class="text" type="text" id="b2c" placeholder="Enter color&hellip;">
+            <!-- Course lunch -->
+            <label for="b2l">Lunch</label>
+            <input class="text" type="text" id="b2l" placeholder="Enter lunch&hellip;">
+          </li>
+          <li>
+            <!-- B3-Block checkbox -->
+            <label for="b3">B3</label>
+            <input class="checkbox" type="checkbox" id="b3" name="b3">
+            <!-- Course text -->
+            <label for="b3t">Text</label>
+            <input class="text" type="text" id="b3t" placeholder="Enter text&hellip;">
+            <!-- Room number -->
+            <label for="b3r">Room</label>
+            <input class="text" type="text" id="b3r" placeholder="Enter room&hellip;">
+            <!-- Course color -->
+            <label for="b3c">Color</label>
+            <input class="text" type="text" id="b3c" placeholder="Enter color&hellip;">
+            <!-- Course lunch -->
+            <label for="b3l">Lunch</label>
+            <input class="text" type="text" id="b3l" placeholder="Enter lunch&hellip;">
+          </li>
+          <li>
+            <!-- B4-Block checkbox -->
+            <label for="b4">B4</label>
+            <input class="checkbox" type="checkbox" id="b4" name="b4">
+            <!-- Course text -->
+            <label for="b4t">Text</label>
+            <input class="text" type="text" id="b4t" placeholder="Enter text&hellip;">
+            <!-- Room number -->
+            <label for="b4r">Room</label>
+            <input class="text" type="text" id="b4r" placeholder="Enter room&hellip;">
+            <!-- Course color -->
+            <label for="b4c">Color</label>
+            <input class="text" type="text" id="b4c" placeholder="Enter color&hellip;">
+            <!-- Course lunch -->
+            <label for="b4l">Lunch</label>
+            <input class="text" type="text" id="b4l" placeholder="Enter lunch&hellip;">
+          </li>
+        </ul>
+      </details>
+      <details class="c">
+        <summary>
+          <!-- C-Block checkbox -->
+          <label for="c">C</label>
+          <input class="checkbox" type="checkbox" id="c" name="c">
+          <!-- Course text -->
+          <label for="ct">Text</label>
+          <input class="text" type="text" id="ct" placeholder="Enter text&hellip;">
+          <!-- Room number -->
+          <label for="cr">Room</label>
+          <input class="text" type="text" id="cr" placeholder="Enter room&hellip;">
+          <!-- Course color -->
+          <label for="cc">Color</label>
+          <input class="text" type="text" id="cc" placeholder="Enter color&hellip;">
+          <!-- Course lunch -->
+          <label for="cl">Lunch</label>
+          <input class="text" type="text" id="cl" placeholder="Enter lunch&hellip;">
+        </summary>
+        <ul>
+          <li>
+            <!-- C1-Block checkbox -->
+            <label for="c1">C1</label>
+            <input class="checkbox" type="checkbox" id="c1" name="c1">
+            <!-- Course text -->
+            <label for="c1t">Text</label>
+            <input class="text" type="text" id="c1t" placeholder="Enter text&hellip;">
+            <!-- Room number -->
+            <label for="c1r">Room</label>
+            <input class="text" type="text" id="c1r" placeholder="Enter room&hellip;">
+            <!-- Course color -->
+            <label for="c1c">Color</label>
+            <input class="text" type="text" id="c1c" placeholder="Enter color&hellip;">
+            <!-- Course lunch -->
+            <label for="c1l">Lunch</label>
+            <input class="text" type="text" id="c1l" placeholder="Enter lunch&hellip;">
+          </li>
+          <li>
+            <!-- C2-Block checkbox -->
+            <label for="c2">C2</label>
+            <input class="checkbox" type="checkbox" id="c2" name="c2">
+            <!-- Course text -->
+            <label for="c2t">Text</label>
+            <input class="text" type="text" id="c2t" placeholder="Enter text&hellip;">
+            <!-- Room number -->
+            <label for="c2r">Room</label>
+            <input class="text" type="text" id="c2r" placeholder="Enter room&hellip;">
+            <!-- Course color -->
+            <label for="c2c">Color</label>
+            <input class="text" type="text" id="c2c" placeholder="Enter color&hellip;">
+            <!-- Course lunch -->
+            <label for="c2l">Lunch</label>
+            <input class="text" type="text" id="c2l" placeholder="Enter lunch&hellip;">
+          </li>
+          <li>
+            <!-- C3-Block checkbox -->
+            <label for="c3">C3</label>
+            <input class="checkbox" type="checkbox" id="c3" name="c3">
+            <!-- Course text -->
+            <label for="c3t">Text</label>
+            <input class="text" type="text" id="c3t" placeholder="Enter text&hellip;">
+            <!-- Room number -->
+            <label for="c3r">Room</label>
+            <input class="text" type="text" id="c3r" placeholder="Enter room&hellip;">
+            <!-- Course color -->
+            <label for="c3c">Color</label>
+            <input class="text" type="text" id="c3c" placeholder="Enter color&hellip;">
+            <!-- Course lunch -->
+            <label for="c3l">Lunch</label>
+            <input class="text" type="text" id="c3l" placeholder="Enter lunch&hellip;">
+          </li>
+          <li>
+            <!-- C4-Block checkbox -->
+            <label for="c4">C4</label>
+            <input class="checkbox" type="checkbox" id="c4" name="c4">
+            <!-- Course text -->
+            <label for="c4t">Text</label>
+            <input class="text" type="text" id="c4t" placeholder="Enter text&hellip;">
+            <!-- Room number -->
+            <label for="c4r">Room</label>
+            <input class="text" type="text" id="c4r" placeholder="Enter room&hellip;">
+            <!-- Course color -->
+            <label for="c4c">Color</label>
+            <input class="text" type="text" id="c4c" placeholder="Enter color&hellip;">
+            <!-- Course lunch -->
+            <label for="c4l">Lunch</label>
+            <input class="text" type="text" id="c4l" placeholder="Enter lunch&hellip;">
+          </li>
+        </ul>
+      </details>
+      <details class="d">
+        <summary>
+          <!-- D-Block checkbox -->
+          <label for="d">D</label>
+          <input class="checkbox" type="checkbox" id="d" name="d">
+          <!-- Course text -->
+          <label for="dt">Text</label>
+          <input class="text" type="text" id="dt" placeholder="Enter text&hellip;">
+          <!-- Room number -->
+          <label for="dr">Room</label>
+          <input class="text" type="text" id="dr" placeholder="Enter room&hellip;">
+          <!-- Course color -->
+          <label for="dc">Color</label>
+          <input class="text" type="text" id="dc" placeholder="Enter color&hellip;">
+          <!-- Course lunch -->
+          <label for="dl">Lunch</label>
+          <input class="text" type="text" id="dl" placeholder="Enter lunch&hellip;">
+        </summary>
+        <ul>
+          <li>
+            <!-- D1-Block checkbox -->
+            <label for="d1">D1</label>
+            <input class="checkbox" type="checkbox" id="d1" name="d1">
+            <!-- Course text -->
+            <label for="d1t">Text</label>
+            <input class="text" type="text" id="d1t" placeholder="Enter text&hellip;">
+            <!-- Room number -->
+            <label for="d1r">Room</label>
+            <input class="text" type="text" id="d1r" placeholder="Enter room&hellip;">
+            <!-- Course color -->
+            <label for="d1c">Color</label>
+            <input class="text" type="text" id="d1c" placeholder="Enter color&hellip;">
+            <!-- Course lunch -->
+            <label for="d1l">Lunch</label>
+            <input class="text" type="text" id="d1l" placeholder="Enter lunch&hellip;">
+          </li>
+          <li>
+            <!-- D2-Block checkbox -->
+            <label for="d2">D2</label>
+            <input class="checkbox" type="checkbox" id="d2" name="d2">
+            <!-- Course text -->
+            <label for="d2t">Text</label>
+            <input class="text" type="text" id="d2t" placeholder="Enter text&hellip;">
+            <!-- Room number -->
+            <label for="d2r">Room</label>
+            <input class="text" type="text" id="d2r" placeholder="Enter room&hellip;">
+            <!-- Course color -->
+            <label for="d2c">Color</label>
+            <input class="text" type="text" id="d2c" placeholder="Enter color&hellip;">
+            <!-- Course lunch -->
+            <label for="d2l">Lunch</label>
+            <input class="text" type="text" id="d2l" placeholder="Enter lunch&hellip;">
+          </li>
+          <li>
+            <!-- D3-Block checkbox -->
+            <label for="d3">D3</label>
+            <input class="checkbox" type="checkbox" id="d3" name="d3">
+            <!-- Course text -->
+            <label for="d3t">Text</label>
+            <input class="text" type="text" id="d3t" placeholder="Enter text&hellip;">
+            <!-- Room number -->
+            <label for="d3r">Room</label>
+            <input class="text" type="text" id="d3r" placeholder="Enter room&hellip;">
+            <!-- Course color -->
+            <label for="d3c">Color</label>
+            <input class="text" type="text" id="d3c" placeholder="Enter color&hellip;">
+            <!-- Course lunch -->
+            <label for="d3l">Lunch</label>
+            <input class="text" type="text" id="d3l" placeholder="Enter lunch&hellip;">
+          </li>
+          <li>
+            <!-- D4-Block checkbox -->
+            <label for="d4">D4</label>
+            <input class="checkbox" type="checkbox" id="d4" name="d4">
+            <!-- Course text -->
+            <label for="d4t">Text</label>
+            <input class="text" type="text" id="d4t" placeholder="Enter text&hellip;">
+            <!-- Room number -->
+            <label for="d4r">Room</label>
+            <input class="text" type="text" id="d4r" placeholder="Enter room&hellip;">
+            <!-- Course color -->
+            <label for="d4c">Color</label>
+            <input class="text" type="text" id="d4c" placeholder="Enter color&hellip;">
+            <!-- Course lunch -->
+            <label for="d4l">Lunch</label>
+            <input class="text" type="text" id="d4l" placeholder="Enter lunch&hellip;">
+          </li>
+        </ul>
+      </details>
+      <details class="e">
+        <summary>
+          <!-- E-Block checkbox -->
+          <label for="e">E</label>
+          <input class="checkbox" type="checkbox" id="e" name="e">
+          <!-- Course text -->
+          <label for="et">Text</label>
+          <input class="text" type="text" id="et" placeholder="Enter text&hellip;">
+          <!-- Room number -->
+          <label for="er">Room</label>
+          <input class="text" type="text" id="er" placeholder="Enter room&hellip;">
+          <!-- Course color -->
+          <label for="ec">Color</label>
+          <input class="text" type="text" id="ec" placeholder="Enter color&hellip;">
+          <!-- Course lunch -->
+          <label for="el">Lunch</label>
+          <input class="text" type="text" id="el" placeholder="Enter lunch&hellip;">
+        </summary>
+        <ul>
+          <li>
+            <!-- E1-Block checkbox -->
+            <label for="e1">E1</label>
+            <input class="checkbox" type="checkbox" id="e1" name="e1">
+            <!-- Course text -->
+            <label for="e1t">Text</label>
+            <input class="text" type="text" id="e1t" placeholder="Enter text&hellip;">
+            <!-- Room number -->
+            <label for="e1r">Room</label>
+            <input class="text" type="text" id="e1r" placeholder="Enter room&hellip;">
+            <!-- Course color -->
+            <label for="e1c">Color</label>
+            <input class="text" type="text" id="e1c" placeholder="Enter color&hellip;">
+            <!-- Course lunch -->
+            <label for="e1l">Lunch</label>
+            <input class="text" type="text" id="e1l" placeholder="Enter lunch&hellip;">
+          </li>
+          <li>
+            <!-- E2-Block checkbox -->
+            <label for="e2">E2</label>
+            <input class="checkbox" type="checkbox" id="e2" name="e2">
+            <!-- Course text -->
+            <label for="e2t">Text</label>
+            <input class="text" type="text" id="e2t" placeholder="Enter text&hellip;">
+            <!-- Room number -->
+            <label for="e2r">Room</label>
+            <input class="text" type="text" id="e2r" placeholder="Enter room&hellip;">
+            <!-- Course color -->
+            <label for="e2c">Color</label>
+            <input class="text" type="text" id="e2c" placeholder="Enter color&hellip;">
+            <!-- Course lunch -->
+            <label for="e2l">Lunch</label>
+            <input class="text" type="text" id="e2l" placeholder="Enter lunch&hellip;">
+          </li>
+          <li>
+            <!-- E3-Block checkbox -->
+            <label for="e3">E3</label>
+            <input class="checkbox" type="checkbox" id="e3" name="e3">
+            <!-- Course text -->
+            <label for="e3t">Text</label>
+            <input class="text" type="text" id="e3t" placeholder="Enter text&hellip;">
+            <!-- Room number -->
+            <label for="e3r">Room</label>
+            <input class="text" type="text" id="e3r" placeholder="Enter room&hellip;">
+            <!-- Course color -->
+            <label for="e3c">Color</label>
+            <input class="text" type="text" id="e3c" placeholder="Enter color&hellip;">
+            <!-- Course lunch -->
+            <label for="e3l">Lunch</label>
+            <input class="text" type="text" id="e3l" placeholder="Enter lunch&hellip;">
+          </li>
+          <li>
+            <!-- E4-Block checkbox -->
+            <label for="e4">E4</label>
+            <input class="checkbox" type="checkbox" id="e4" name="e4">
+            <!-- Course text -->
+            <label for="e4t">Text</label>
+            <input class="text" type="text" id="e4t" placeholder="Enter text&hellip;">
+            <!-- Room number -->
+            <label for="e4r">Room</label>
+            <input class="text" type="text" id="e4r" placeholder="Enter room&hellip;">
+            <!-- Course color -->
+            <label for="e4c">Color</label>
+            <input class="text" type="text" id="e4c" placeholder="Enter color&hellip;">
+            <!-- Course lunch -->
+            <label for="e4l">Lunch</label>
+            <input class="text" type="text" id="e4l" placeholder="Enter lunch&hellip;">
+          </li>
+        </ul>
+      </details>
+      <details class="f">
+        <summary>
+          <!-- F-Block checkbox -->
+          <label for="f">F</label>
+          <input class="checkbox" type="checkbox" id="f" name="f">
+          <!-- Course text -->
+          <label for="ft">Text</label>
+          <input class="text" type="text" id="ft" placeholder="Enter text&hellip;">
+          <!-- Room number -->
+          <label for="fr">Room</label>
+          <input class="text" type="text" id="fr" placeholder="Enter room&hellip;">
+          <!-- Course color -->
+          <label for="fc">Color</label>
+          <input class="text" type="text" id="fc" placeholder="Enter color&hellip;">
+          <!-- Course lunch -->
+          <label for="fl">Lunch</label>
+          <input class="text" type="text" id="fl" placeholder="Enter lunch&hellip;">
+        </summary>
+        <ul>
+          <li>
+            <!-- F1-Block checkbox -->
+            <label for="f1">F1</label>
+            <input class="checkbox" type="checkbox" id="f1" name="f1">
+            <!-- Course text -->
+            <label for="f1t">Text</label>
+            <input class="text" type="text" id="f1t" placeholder="Enter text&hellip;">
+            <!-- Room number -->
+            <label for="f1r">Room</label>
+            <input class="text" type="text" id="f1r" placeholder="Enter room&hellip;">
+            <!-- Course color -->
+            <label for="f1c">Color</label>
+            <input class="text" type="text" id="f1c" placeholder="Enter color&hellip;">
+            <!-- Course lunch -->
+            <label for="f1l">Lunch</label>
+            <input class="text" type="text" id="f1l" placeholder="Enter lunch&hellip;">
+          </li>
+          <li>
+            <!-- F2-Block checkbox -->
+            <label for="f2">F2</label>
+            <input class="checkbox" type="checkbox" id="f2" name="f2">
+            <!-- Course text -->
+            <label for="f2t">Text</label>
+            <input class="text" type="text" id="f2t" placeholder="Enter text&hellip;">
+            <!-- Room number -->
+            <label for="f2r">Room</label>
+            <input class="text" type="text" id="f2r" placeholder="Enter room&hellip;">
+            <!-- Course color -->
+            <label for="f2c">Color</label>
+            <input class="text" type="text" id="f2c" placeholder="Enter color&hellip;">
+            <!-- Course lunch -->
+            <label for="f2l">Lunch</label>
+            <input class="text" type="text" id="f2l" placeholder="Enter lunch&hellip;">
+          </li>
+          <li>
+            <!-- F3-Block checkbox -->
+            <label for="f3">F3</label>
+            <input class="checkbox" type="checkbox" id="f3" name="f3">
+            <!-- Course text -->
+            <label for="f3t">Text</label>
+            <input class="text" type="text" id="f3t" placeholder="Enter text&hellip;">
+            <!-- Room number -->
+            <label for="f3r">Room</label>
+            <input class="text" type="text" id="f3r" placeholder="Enter room&hellip;">
+            <!-- Course color -->
+            <label for="f3c">Color</label>
+            <input class="text" type="text" id="f3c" placeholder="Enter color&hellip;">
+            <!-- Course lunch -->
+            <label for="f3l">Lunch</label>
+            <input class="text" type="text" id="f3l" placeholder="Enter lunch&hellip;">
+          </li>
+          <li>
+            <!-- F4-Block checkbox -->
+            <label for="f4">F4</label>
+            <input class="checkbox" type="checkbox" id="f4" name="f4">
+            <!-- Course text -->
+            <label for="f4t">Text</label>
+            <input class="text" type="text" id="f4t" placeholder="Enter text&hellip;">
+            <!-- Room number -->
+            <label for="f4r">Room</label>
+            <input class="text" type="text" id="f4r" placeholder="Enter room&hellip;">
+            <!-- Course color -->
+            <label for="f4c">Color</label>
+            <input class="text" type="text" id="f4c" placeholder="Enter color&hellip;">
+            <!-- Course lunch -->
+            <label for="f4l">Lunch</label>
+            <input class="text" type="text" id="f4l" placeholder="Enter lunch&hellip;">
+          </li>
+        </ul>
+      </details>
+      <details class="g">
+        <summary>
+          <!-- G-Block checkbox -->
+          <label for="g">G</label>
+          <input class="checkbox" type="checkbox" id="g" name="g">
+          <!-- Course text -->
+          <label for="gt">Text</label>
+          <input class="text" type="text" id="gt" placeholder="Enter text&hellip;">
+          <!-- Room number -->
+          <label for="gr">Room</label>
+          <input class="text" type="text" id="gr" placeholder="Enter room&hellip;">
+          <!-- Course color -->
+          <label for="gc">Color</label>
+          <input class="text" type="text" id="gc" placeholder="Enter color&hellip;">
+          <!-- Course lunch -->
+          <label for="gl">Lunch</label>
+          <input class="text" type="text" id="gl" placeholder="Enter lunch&hellip;">
+        </summary>
+        <ul>
+          <li>
+            <!-- G1-Block checkbox -->
+            <label for="g1">G1</label>
+            <input class="checkbox" type="checkbox" id="g1" name="g1">
+            <!-- Course text -->
+            <label for="g1t">Text</label>
+            <input class="text" type="text" id="g1t" placeholder="Enter text&hellip;">
+            <!-- Room number -->
+            <label for="g1r">Room</label>
+            <input class="text" type="text" id="g1r" placeholder="Enter room&hellip;">
+            <!-- Course color -->
+            <label for="g1c">Color</label>
+            <input class="text" type="text" id="g1c" placeholder="Enter color&hellip;">
+            <!-- Course lunch -->
+            <label for="g1l">Lunch</label>
+            <input class="text" type="text" id="g1l" placeholder="Enter lunch&hellip;">
+          </li>
+          <li>
+            <!-- G2-Block checkbox -->
+            <label for="g2">G2</label>
+            <input class="checkbox" type="checkbox" id="g2" name="g2">
+            <!-- Course text -->
+            <label for="g2t">Text</label>
+            <input class="text" type="text" id="g2t" placeholder="Enter text&hellip;">
+            <!-- Room number -->
+            <label for="g2r">Room</label>
+            <input class="text" type="text" id="g2r" placeholder="Enter room&hellip;">
+            <!-- Course color -->
+            <label for="g2c">Color</label>
+            <input class="text" type="text" id="g2c" placeholder="Enter color&hellip;">
+            <!-- Course lunch -->
+            <label for="g2l">Lunch</label>
+            <input class="text" type="text" id="g2l" placeholder="Enter lunch&hellip;">
+          </li>
+          <li>
+            <!-- G3-Block checkbox -->
+            <label for="g3">G3</label>
+            <input class="checkbox" type="checkbox" id="g3" name="g3">
+            <!-- Course text -->
+            <label for="g3t">Text</label>
+            <input class="text" type="text" id="g3t" placeholder="Enter text&hellip;">
+            <!-- Room number -->
+            <label for="g3r">Room</label>
+            <input class="text" type="text" id="g3r" placeholder="Enter room&hellip;">
+            <!-- Course color -->
+            <label for="g3c">Color</label>
+            <input class="text" type="text" id="g3c" placeholder="Enter color&hellip;">
+            <!-- Course lunch -->
+            <label for="g3l">Lunch</label>
+            <input class="text" type="text" id="g3l" placeholder="Enter lunch&hellip;">
+          </li>
+          <li>
+            <!-- G4-Block checkbox -->
+            <label for="g4">G4</label>
+            <input class="checkbox" type="checkbox" id="g4" name="g4">
+            <!-- Course text -->
+            <label for="g4t">Text</label>
+            <input class="text" type="text" id="g4t" placeholder="Enter text&hellip;">
+            <!-- Room number -->
+            <label for="g4r">Room</label>
+            <input class="text" type="text" id="g4r" placeholder="Enter room&hellip;">
+            <!-- Course color -->
+            <label for="g4c">Color</label>
+            <input class="text" type="text" id="g4c" placeholder="Enter color&hellip;">
+            <!-- Course lunch -->
+            <label for="g4l">Lunch</label>
+            <input class="text" type="text" id="g4l" placeholder="Enter lunch&hellip;">
+          </li>
+        </ul>
+      </details>
+      <details class="t">
+        <summary>
+          <!-- T-Block checkbox -->
+          <label for="t">T</label>
+          <input class="checkbox" type="checkbox" id="t" name="t">
+          <!-- Course text -->
+          <label for="tt">Text</label>
+          <input class="text" type="text" id="tt" placeholder="Enter text&hellip;">
+          <!-- Room number -->
+          <label for="tr">Room</label>
+          <input class="text" type="text" id="tr" placeholder="Enter room&hellip;">
+          <!-- Course color -->
+          <label for="tc">Color</label>
+          <input class="text" type="text" id="tc" placeholder="Enter color&hellip;">
+          <!-- Course lunch -->
+          <label for="tl">Lunch</label>
+          <input class="text" type="text" id="tl" placeholder="Enter lunch&hellip;">
+        </summary>
+      </details>
+      <details class="x">
+        <summary>
+          <!-- X-Block checkbox -->
+          <label for="x">X</label>
+          <input class="checkbox" type="checkbox" id="x" name="x">
+          <!-- Course text -->
+          <label for="xt">Text</label>
+          <input class="text" type="text" id="xt" placeholder="Enter text&hellip;">
+          <!-- Room number -->
+          <label for="xr">Room</label>
+          <input class="text" type="text" id="xr" placeholder="Enter room&hellip;">
+          <!-- Course color -->
+          <label for="xc">Color</label>
+          <input class="text" type="text" id="xc" placeholder="Enter color&hellip;">
+          <!-- Course lunch -->
+          <label for="xl">Lunch</label>
+          <input class="text" type="text" id="xl" placeholder="Enter lunch&hellip;">
+        </summary>
+      </details>
+      <details class="z">
+        <summary>
+          <!-- Z-Block checkbox -->
+          <label for="z">Z</label>
+          <input class="checkbox" type="checkbox" id="z" name="z">
+          <!-- Course text -->
+          <label for="zt">Text</label>
+          <input class="text" type="text" id="zt" placeholder="Enter text&hellip;">
+          <!-- Room number -->
+          <label for="zr">Room</label>
+          <input class="text" type="text" id="zr" placeholder="Enter room&hellip;">
+          <!-- Course color -->
+          <label for="zc">Color</label>
+          <input class="text" type="text" id="zc" placeholder="Enter color&hellip;">
+          <!-- Course lunch -->
+          <label for="zl">Lunch</label>
+          <input class="text" type="text" id="zl" placeholder="Enter lunch&hellip;">
+        </summary>
+        <ul>
+          <li>
+            <!-- Z1-Block checkbox -->
+            <label for="z1">Z1</label>
+            <input class="checkbox" type="checkbox" id="z1" name="z1">
+            <!-- Course text -->
+            <label for="z1t">Text</label>
+            <input class="text" type="text" id="z1t" placeholder="Enter text&hellip;">
+            <!-- Room number -->
+            <label for="z1r">Room</label>
+            <input class="text" type="text" id="z1r" placeholder="Enter room&hellip;">
+            <!-- Course color -->
+            <label for="z1c">Color</label>
+            <input class="text" type="text" id="z1c" placeholder="Enter color&hellip;">
+            <!-- Course lunch -->
+            <label for="z1l">Lunch</label>
+            <input class="text" type="text" id="z1l" placeholder="Enter lunch&hellip;">
+          </li>
+          <li>
+            <!-- Z2-Block checkbox -->
+            <label for="z2">Z2</label>
+            <input class="checkbox" type="checkbox" id="z2" name="z2">
+            <!-- Course text -->
+            <label for="z2t">Text</label>
+            <input class="text" type="text" id="z2t" placeholder="Enter text&hellip;">
+            <!-- Room number -->
+            <label for="z2r">Room</label>
+            <input class="text" type="text" id="z2r" placeholder="Enter room&hellip;">
+            <!-- Course color -->
+            <label for="z2c">Color</label>
+            <input class="text" type="text" id="z2c" placeholder="Enter color&hellip;">
+            <!-- Course lunch -->
+            <label for="z2l">Lunch</label>
+            <input class="text" type="text" id="z2l" placeholder="Enter lunch&hellip;">
+          </li>
+          <li>
+            <!-- Z3-Block checkbox -->
+            <label for="z3">Z3</label>
+            <input class="checkbox" type="checkbox" id="z3" name="z3">
+            <!-- Course text -->
+            <label for="z3t">Text</label>
+            <input class="text" type="text" id="z3t" placeholder="Enter text&hellip;">
+            <!-- Room number -->
+            <label for="z3r">Room</label>
+            <input class="text" type="text" id="z3r" placeholder="Enter room&hellip;">
+            <!-- Course color -->
+            <label for="z3c">Color</label>
+            <input class="text" type="text" id="z3c" placeholder="Enter color&hellip;">
+            <!-- Course lunch -->
+            <label for="z3l">Lunch</label>
+            <input class="text" type="text" id="z3l" placeholder="Enter lunch&hellip;">
+          </li>
+          <li>
+            <!-- Z4-Block checkbox -->
+            <label for="z4">Z4</label>
+            <input class="checkbox" type="checkbox" id="z4" name="z4">
+            <!-- Course text -->
+            <label for="z4t">Text</label>
+            <input class="text" type="text" id="z4t" placeholder="Enter text&hellip;">
+            <!-- Room number -->
+            <label for="z4r">Room</label>
+            <input class="text" type="text" id="z4r" placeholder="Enter room&hellip;">
+            <!-- Course color -->
+            <label for="z4c">Color</label>
+            <input class="text" type="text" id="z4c" placeholder="Enter color&hellip;">
+            <!-- Course lunch -->
+            <label for="z4l">Lunch</label>
+            <input class="text" type="text" id="z4l" placeholder="Enter lunch&hellip;">
+          </li>
+          <li>
+            <!-- Z5-Block checkbox -->
+            <label for="z5">Z5</label>
+            <input class="checkbox" type="checkbox" id="z5" name="z5">
+            <!-- Course text -->
+            <label for="z5t">Text</label>
+            <input class="text" type="text" id="z5t" placeholder="Enter text&hellip;">
+            <!-- Room number -->
+            <label for="z5r">Room</label>
+            <input class="text" type="text" id="z5r" placeholder="Enter room&hellip;">
+            <!-- Course color -->
+            <label for="z5c">Color</label>
+            <input class="text" type="text" id="z5c" placeholder="Enter color&hellip;">
+            <!-- Course lunch -->
+            <label for="z5l">Lunch</label>
+            <input class="text" type="text" id="z5l" placeholder="Enter lunch&hellip;">
           </li>
         </ul>
       </details>
@@ -118,33 +802,64 @@
           <li>
             <!-- cw - Canvas Width -->
             <label for="cw">CW</label>
-            <input class="text" type="input" id="cw" placeholder="Enter column width&hellip;">
+            <input class="text" type="text" id="cw" placeholder="Enter column width&hellip;">
           </li>
           <li>
             <!-- fs - Font Size -->
-            <label for="cw">FS</label>
-            <input class="text" type="input" id="fs" placeholder="Enter font size&hellip;">
+            <label for="fs">FS</label>
+            <input class="text" type="text" id="fs" placeholder="Enter font size&hellip;">
           </li>
           <li>
             <!-- ff - Font Face -->
-            <label for="cw">FF</label>
-            <input class="text" type="input" id="ff" placeholder="Enter font face&hellip;">
+            <label for="ff">FF</label>
+            <input class="text" type="text" id="ff" placeholder="Enter font face&hellip;">
           </li>
           <li>
             <!-- lg - Footer Legend -->
-            <label for="cw">CW</label>
-            <input class="text" type="input" id="lg" placeholder="Enter footer legend&hellip;">
+            <label for="lg">LG</label>
+            <input class="text" type="text" id="lg" placeholder="Enter footer legend&hellip;">
           </li>
           <li>
             <!-- pd - Pad Character -->
-            <label for="cw">CW</label>
-            <input class="text" type="input" id="pd" placeholder="Enter pad character&hellip;">
+            <label for="pd">PD</label>
+            <input class="text" type="text" id="pd" placeholder="Enter pad character&hellip;">
           </li>
         </ul>
       </div>
       <input type="submit" value="Update">
     </form>
-x  </main>
+    <h2>Some additional notes on use</h2>
+    <ul>
+      <li>URI reserved characters must be handled specially when using them in query parameter values. Every character can be entered as a <a href="https://en.wikipedia.org/wiki/Unicode_and_HTML#Numeric_character_references">numeric character reference</a> (like <code>&amp;#8212;</code> for &apos;&mdash;&apos;, the <a href="https://en.wikipedia.org/wiki/Unicode_and_HTML#Named_character_entities">named character entity</a> <code>&amp;mdash;</code>). Below are examples of how to encode these special characters &mdash; including one you <em>must</em> use, some that are automatically substituted, and other useful examples.
+<table>
+  <thead>
+    <tr><th>Character</th><th>Substitute Reference</th><th>Unicode name</th><th>Note</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><code>&amp;</code></td><td><code>&amp;#65286;</code></td><td>FULLWIDTH AMPERSAND</td><td><strong>you <em>must</em> use this numeric character reference for &apos;<code>&amp;</code>&apos;!</strong></td></tr>
+    <tr><td><code>+</code></td><td><code>&amp;#65291;</code></td><td>FULLWIDTH PLUS</td><td>&apos;+&apos; substituted automatically</td></tr>
+    <tr><td><code>=</code></td><td><code>&amp;#65309;</code></td><td>FULLWIDTH EQUALS</td><td>&apos;=&apos; substituted automatically</td></tr>
+    <tr class="divider"><td><code>&mdash;</code></td><td><code>&amp;mdash;</code></td><td>EM DASH</td><td>example special character &mdash; or use <code>&amp;#8212;</code></td></tr>
+    <tr><td><code>&hellip;</code></td><td><code>&amp;hellip;</code></td><td>HORIZONTAL ELLIPSIS</td><td>example special character &mdash; or use <code>&amp;#8230;</code></td></tr>
+    <tr><td><code>&iexcl;</code></td><td><code>&amp;iexcl;</code></td><td>INVERTED EXCLAMATION MARK</td><td>example special character &mdash; or use <code>&amp;#161;</code></td></tr>
+    <tr><td><code>&copy;</code></td><td><code>&amp;copy;</code></td><td>COPYRIGHT SIGN</td><td>example special character &mdash; or use <code>&amp;#169;</code></td></tr>
+    <tr><td><code>&ccedil;</code></td><td><code>&amp;ccedil;</code></td><td>LATIN SMALL LETTER C WITH CEDILLA</td><td>example special character &mdash; or use <code>&amp;#231;</code></td></tr>
+  </tbody>
+</table> See the full list of <a href="https://en.wikipedia.org/wiki/List_of_XML_and_HTML_character_entity_references#List_of_character_entity_references_in_HTML">character entity references</a> and <a href="https://unicode.org/charts/">Unicode character code charts</a> for more.
+      </li>
+    </ul>
+    <h2>TODO</h2>
+    <ul>
+      <li>I'm sure there are bugs. Please let me know!</li>
+    </ul>
+  </main>
+  <footer>
+    <a href="https://psb-david-petty.github.io/p5js/2023-2024-bhs-schedule/uri/">&#128279; permalink</a> and 
+    <a href="https://github.com/psb-david-petty/p5js/tree/main/2023-2024-bhs-schedule/uri">&#128297; repository</a> &mdash;
+    <a href="https://icons8.com/icon/86206/copy">
+    <img src="./icons8-copy-black-24.png" alt="copy icon blue" title="Icons8 copy icon"></a> by 
+    <a href="https://icons8.com">Icons8</a>
+  </footer>
 </body>
 
 </html>
