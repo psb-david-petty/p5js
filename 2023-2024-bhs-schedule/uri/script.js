@@ -125,11 +125,10 @@ function update() {
 }
 
 function schedule() {
-  let iframe = document.querySelector(`iframe`);
-  for (const [key, value] of (new URLSearchParams(uri())).entries()) {
-    console.log(`${key} ${value}`);
-    if (key === `cw`) iframe.width = `${value}`;
-  }
+  let 
+    iframe = document.querySelector(`iframe`),
+    cw = (new URL(uri())).searchParams.get(`cw`);
+  if (cw) iframe.width = `${cw}`;
   iframe.src = `${uri()}`;
   return false;
 }
