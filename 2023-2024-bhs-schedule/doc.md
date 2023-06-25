@@ -166,14 +166,14 @@ This HTML code sets the style and embeds an `iframe` for my 2022-2023 S1 schedul
 
 ```html
 <style>
-  iframe { width: 1150; height: 1002px; }
+  iframe { width: 1150; height: 1002; }
 </style>
 <div style="width: 100%; display: flex; justify-content: center; align-items: center;">
   <iframe src="https://psb-david-petty.github.io/p5js/2022-2023-bhs-schedule/?at=Autonomous+Robotics+II&bt=gt=APCS-P+(Mobile)&ct=APCS-A+(Java)&et=Autonomous+Robotics+I&xt=Brookline+Robotics+Team&ar=br=cr=er=gr=xr=Room+373&lg=Mr.+Petty+%E2%80%94+2022-2023+S1&ff=Inconsolata&cw=1130"></iframe>
 </div>
 ```
 
-The default `iFrame` height and width style is `iframe { width: 1080px; height: 996px; }`. If you change settings (as in my example schedule), the `iFrame` height and width for any *new* settings are echoed on the browser's [developer console](https://balsamiq.com/support/faqs/browserconsole/). Copy the echoed values between the `<style>` &amp; `</style>` tags in the above HTML code.
+The default `iFrame` height and width style is `iframe { width: 1080; height: 996; }`. If you change settings (as in my example schedule), the `iFrame` height and width for any *new* settings are echoed on the browser's [developer console](https://balsamiq.com/support/faqs/browserconsole/). Copy the echoed values between the `<style>` &amp; `</style>` tags in the above HTML code.
 
 ## TODO
 
