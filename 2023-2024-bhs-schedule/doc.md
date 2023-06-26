@@ -166,7 +166,7 @@ This HTML code sets the style and embeds an `iframe` for my 2022-2023 S1 schedul
 
 ```html
 <style>
-  iframe { width: 1150; height: 1002; }
+  iframe { width: 1150px; height: 1002px; }
 </style>
 <div style="width: 100%; display: flex; justify-content: center; align-items: center;">
   <iframe src="https://psb-david-petty.github.io/p5js/2022-2023-bhs-schedule/?at=Autonomous+Robotics+II&bt=gt=APCS-P+(Mobile)&ct=APCS-A+(Java)&et=Autonomous+Robotics+I&xt=Brookline+Robotics+Team&ar=br=cr=er=gr=xr=Room+373&lg=Mr.+Petty+%E2%80%94+2022-2023+S1&ff=Inconsolata&cw=1130"></iframe>
