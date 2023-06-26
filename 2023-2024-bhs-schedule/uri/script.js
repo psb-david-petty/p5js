@@ -106,6 +106,17 @@ function uri() {
   return result;
 }
 
+function copyToClipboard(text, message) {
+  navigator.clipboard.writeText(text).then(() => {
+    /* Resolved - text copied to clipboard successfully */
+    console.log(`Copied ${message} to clipboard.`);
+    window.alert(`Copied ${message} to clipboard.`);
+  },() => {
+    console.error('Failed to copy');
+    /* Rejected - text failed to copy to the clipboard */
+  });
+}
+
 function copyURI() {
   const text = uri(), message = `"${text}"`;
   copyToClipboard(text, message);
@@ -113,9 +124,10 @@ function copyURI() {
 }
 
 function copyCode() {
-  // TODO: figure a way to get the correct width & height
+  let iframe = document.querySelector(`iframe`);
+  //console.log(`Dimension: ${iframe.width}x${iframe.height}`)
   const text = `<style>
-  iframe { width: 1080; height: 1000; }
+  iframe { width: ${iframe.width}px; height: ${iframe.height}px; }
 </style>
 <div style="width: 100%; display: flex; justify-content: center; align-items: center;">
   <iframe src="${uri()}"></iframe>
@@ -172,17 +184,6 @@ function initialize() {
   return false;
 }
 
-function copyToClipboard(text, message) {
-  navigator.clipboard.writeText(text).then(() => {
-    /* Resolved - text copied to clipboard successfully */
-    console.log(`Copied ${message} to clipboard.`);
-    window.alert(`Copied ${message} to clipboard.`);
-  },() => {
-    console.error('Failed to copy');
-    /* Rejected - text failed to copy to the clipboard */
-  });
-}
-
 // http://onwebdevelopment.blogspot.com/2008/07/chaining-functions-in-javascript.html
 const chain = function(args) {
   return function() {
@@ -201,9 +202,8 @@ window.addLoad(initialize);
 // Sample copyCode output.
 `
 <style>
-  iframe { width: 1080; height: 1000; }
+  iframe { width: 1080px; height: 996px; }
 </style>
 <div style="width: 100%; display: flex; justify-content: center; align-items: center;">
   <iframe src="https://psb-david-petty.github.io/p5js/2023-2024-bhs-schedule/"></iframe>
-</div>
-`
+</div>`
