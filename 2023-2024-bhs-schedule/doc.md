@@ -80,11 +80,11 @@ Query property names ending in '`L`' can be either two or three characters &mdas
 
 #### Properties
 
-| Name | Value | Type | Example | Default |
+| Name | Value | Type | Default | Example |
 | --- | --- | --- | --- | --- |
-| `dl` | Lunch for D-Block classes D3 &amp; D4 | `text` | dl=L2 | `dl=L1` |
-| `el` | Lunch for E-Block classes E1 &amp; E2 | `text` | el=L2 | `el=L1` |
-| `gl` | Lunch for G-Block class G3 | `text` | gl=L2 | `gl=L1` |
+| `dl` | Lunch for D-Block classes D3 &amp; D4 | `text` | `dl=L2` | `dl=L1` |
+| `el` | Lunch for E-Block classes E1 &amp; E2 | `text` | `el=L2` | `el=L1` |
+| `gl` | Lunch for G-Block class G3 | `text` | `gl=L2` | `gl=L1` |
 
 The default values are `L2` (sorry humanities departments!).
 
@@ -106,7 +106,7 @@ The query property color values can be a hexadecimal number. The standard way to
 
 #### Properties
 
-| Name | Value | Type | Default | Example | Color |
+| Name | Value | Type | Default | Example | Example Alternate |
 | --- | --- | --- | --- | --- | --- |
 | `zc` | Z-Block color | `color` | `zc=FF6` | `zc=yellow` | `#FFFF00` |
 | `ac` | A-Block color | `color` | `ac=C33` | `ac=f00` | `red` |
@@ -146,7 +146,7 @@ const colors = {
 ### Other
 
 | Name | Value | Type | Default / Example | Description |
-| --- | --- | --- | --- | --- | --- |
+| --- | --- | --- | --- | --- |
 | `cw` | Canvas Width | `number` | `cw=1080` | in pixels |
 | `fs` | Font Size | `number` | `fs=16` | in points |
 | `ff` | Font Face | `string` | `ff=Arial` | one of the [web-safe](https://www.cssfontstack.com/) fonts |
