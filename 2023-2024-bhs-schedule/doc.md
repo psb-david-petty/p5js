@@ -34,18 +34,18 @@ Query property names ending in '`T`' can be either two or three characters &mdas
 
 #### Properties
 
-| Name | Value | Type | Example | Default |
+| Name | Value | Type | Default | Example |
 | --- | --- | --- | --- | --- |
-| `zt` | Text description of Z-Block class | `text` | `zt=APCS-A+(Java)` | `zt=` |
-| `at` | Text description of A-Block class | `text` | `at=APCS-A+(Java)` | `at=` |
-| `bt` | Text description of B-Block class | `text` | `bt=APCS-A+(Java)` | `bt=` |
-| `ct` | Text description of C-Block class | `text` | `ct=APCS-A+(Java)` | `ct=` |
-| `dt` | Text description of D-Block class | `text` | `dt=APCS-A+(Java)` | `dt=` |
-| `et` | Text description of E-Block class | `text` | `et=APCS-A%20(Java)` | `et=` |
-| `ft` | Text description of F-Block class | `text` | `ft=APCS-A%20%28Java%29` | `ft=` |
-| `gt` | Text description of G-Block class | `text` | `gt=%41%50%43%53%2D%41%20%28%4A%61%76%61%29` | `gt=` |
-| `tt` | Text description of T-Block class | `text` | `tt=Advisory` | `tt=` |
-| `xt` | Text description of X-Block class | `text` | `xt=Brookline+Robotics+Team` | `xt=` |
+| `zt` | Text description of Z-Block class | `text` | `zt=` | `zt=APCS-A+(Java)` |
+| `at` | Text description of A-Block class | `text` | `at=` | `at=APCS-A+(Java)` |
+| `bt` | Text description of B-Block class | `text` | `bt=` | `bt=APCS-A+(Java)` |
+| `ct` | Text description of C-Block class | `text` | `ct=` | `ct=APCS-A+(Java)` |
+| `dt` | Text description of D-Block class | `text` | `dt=` | `dt=APCS-A+(Java)` |
+| `et` | Text description of E-Block class | `text` | `et=` | `et=APCS-A%20(Java)` |
+| `ft` | Text description of F-Block class | `text` | `ft=` | `ft=APCS-A%20%28Java%29` |
+| `gt` | Text description of G-Block class | `text` | `gt=` | `gt=%41%50%43%53%2D%41%20%28%4A%61%76%61%29` |
+| `tt` | Text description of T-Block class | `text` | `tt=` | `tt=Advisory` |
+| `xt` | Text description of X-Block class | `text` | `xt=` | `xt=Brookline+Robotics+Team` |
 
 The default values are empty.
 
@@ -57,18 +57,18 @@ Query property names ending in '`R`' can be either two or three characters &mdas
 
 #### Properties
 
-| Name | Value | Type | Example | Default |
+| Name | Value | Type | Default | Example |
 | --- | --- | --- | --- | --- |
-| `zr` | Room for Z-Block class | `text` | `zr=UA-33` | `zr=` |
-| `ar` | Room for A-Block class | `text` | `ar=UA-33` | `ar=` |
-| `br` | Room for B-Block class | `text` | `br=UA-33` | `br=` |
-| `cr` | Room for C-Block class | `text` | `cr=UA-33` | `cr=` |
-| `dr` | Room for D-Block class | `text` | `dr=UA-33` | `dr=` |
-| `er` | Room for E-Block class | `text` | `er=UA-33` | `er=` |
-| `fr` | Room for F-Block class | `text` | `fr=UA-33` | `fr=` |
-| `gr` | Room for G-Block class | `text` | `gr=UA-33` | `gr=` |
-| `tr` | Room for T-Block class | `text` | `tr=UA-33` | `tr=` |
-| `xr` | Room for X-Block class | `text` | `xr=UA-33` | `xr=` |
+| `zr` | Room for Z-Block class | `text` | `zr=` | `zr=UA-33` |
+| `ar` | Room for A-Block class | `text` | `ar=` | `ar=UA-33` |
+| `br` | Room for B-Block class | `text` | `br=` | `br=UA-33` |
+| `cr` | Room for C-Block class | `text` | `cr=` | `cr=UA-33` |
+| `dr` | Room for D-Block class | `text` | `dr=` | `dr=UA-33` |
+| `er` | Room for E-Block class | `text` | `er=` | `er=UA-33` |
+| `fr` | Room for F-Block class | `text` | `fr=` | `fr=UA-33` |
+| `gr` | Room for G-Block class | `text` | `gr=` | `gr=UA-33` |
+| `tr` | Room for T-Block class | `text` | `tr=` | `tr=UA-33` |
+| `xr` | Room for X-Block class | `text` | `xr=` | `xr=UA-33` |
 
 The default values are empty.
 
@@ -82,9 +82,9 @@ Query property names ending in '`L`' can be either two or three characters &mdas
 
 | Name | Value | Type | Example | Default |
 | --- | --- | --- | --- | --- |
-| `dl` | Lunch for D-Block classes D3 &amp; D4 | `text` | `dl=L1` | dl=L2 |
-| `el` | Lunch for E-Block classes E1 &amp; E2 | `text` | `el=L1` | el=L2 |
-| `gl` | Lunch for G-Block class G3 | `text` | `gl=L1` | gl=L2 |
+| `dl` | Lunch for D-Block classes D3 &amp; D4 | `text` | dl=L2 | `dl=L1` |
+| `el` | Lunch for E-Block classes E1 &amp; E2 | `text` | el=L2 | `el=L1` |
+| `gl` | Lunch for G-Block class G3 | `text` | gl=L2 | `gl=L1` |
 
 The default values are `L2` (sorry humanities departments!).
 
@@ -106,20 +106,20 @@ The query property color values can be a hexadecimal number. The standard way to
 
 #### Properties
 
-| Name | Value | Type | Example | Color | Default |
+| Name | Value | Type | Default | Example | Color |
 | --- | --- | --- | --- | --- | --- |
-| `zc` | Z-Block color | `color` | `zc=yellow` | `#FFFF00` | `zc=FF6` |
-| `ac` | A-Block color | `color` | `ac=f00` | `red` | `ac=C33` |
-| `bc` | B-Block color | `color` | `bc=000080` | `navy` | `bc=009` |
-| `cc` | C-Block color | `color` | `cc=7fff00` | `chartreuse` | `cc=C69` |
-| `dc` | D-Block color | `color` | `dc=Sienna` | `#a0522d` | `dc=C93` |
-| `ec` | E-Block color | `color` | `ec=000` | `black` | `ec=696` |
-| `fc` | F-Block color | `color` | `fc=white` | `#FFF` | `fc=69C` |
-| `gc` | G-Block color | `color` | `gc=639` | `rebeccapurple` | `gc=96C` |
-| `lc` | Lunch Block color | `color` | `lc=PeachPuff` | `#FFDAB9` | `lc=CCC` |
-| `tc` | T-Block color | `color` | `tc=ccc` | a light shade of gray | `tc=CCC` |
-| `xc` | X-Block color | `color` | `xc=ccc` | a light shade of gray | `xc=CCC` |
-| `tcc` | Teacher Collaboration color | `color` | `tcc=fff` | `white` | `tcc=FFF` |
+| `zc` | Z-Block color | `color` | `zc=FF6` | `zc=yellow` | `#FFFF00` |
+| `ac` | A-Block color | `color` | `ac=C33` | `ac=f00` | `red` |
+| `bc` | B-Block color | `color` | `bc=009` | `bc=000080` | `navy` |
+| `cc` | C-Block color | `color` | `cc=C69` | `cc=7fff00` | `chartreuse` |
+| `dc` | D-Block color | `color` | `dc=C93` | `dc=Sienna` | `#a0522d` |
+| `ec` | E-Block color | `color` | `ec=696` | `ec=000` | `black` |
+| `fc` | F-Block color | `color` | `fc=69C` | `fc=white` | `#FFF` |
+| `gc` | G-Block color | `color` | `gc=96C` | `gc=639` | `rebeccapurple` |
+| `lc` | Lunch Block color | `color` | `lc=CCC` | `lc=PeachPuff` | `#FFDAB9` |
+| `tc` | T-Block color | `color` | `tc=CCC` | `tc=ccc` | a light shade of gray |
+| `xc` | X-Block color | `color` | `xc=CCC` | `xc=ccc` | a light shade of gray |
+| `tcc` | Teacher Collaboration color | `color` | `tcc=FFF` | `tcc=fff` | `white` |
 
 The code for the default values is:
 
@@ -145,16 +145,16 @@ const colors = {
 
 ### Other
 
-| Name | Value | Type | Example | Description | Default |
+| Name | Value | Type | Default / Example | Description |
 | --- | --- | --- | --- | --- | --- |
-| `cw` | Canvas Width | `number` | `cw=1080` | in pixels | `cw=1080` |
-| `fs` | Font Size | `number` | `fs=16` | in points | `fs=16` |
-| `ff` | Font Face | `string` | `ff=Arial` | one of the [web-safe](https://www.cssfontstack.com/) fonts | `ff=Arial` |
-| `lg` | Footer Legend | `string` | `lg=` | additional text added to footer | `lg=` |
-| `pd` | Pad Character | `string` | `pd=%E2%80%87` | Unicode [figure space](https://unicode-table.com/en/2007/) | `pd=%E2%80%87` |
-| `ln` | Lunch Number | `string` | `ln=L2` | class 1 / lunch 2 | `ln=L2` |
-| `ts` | Timer Shown | `string` | `ts=0` | anything other than `0` shows timer | `ts=0` |
-| `to` | Time Offset | `number` | `to=0` | offset in seconds from [now](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/now) (debugging) | `to=0` |
+| `cw` | Canvas Width | `number` | `cw=1080` | in pixels |
+| `fs` | Font Size | `number` | `fs=16` | in points |
+| `ff` | Font Face | `string` | `ff=Arial` | one of the [web-safe](https://www.cssfontstack.com/) fonts |
+| `lg` | Footer Legend | `string` | `lg=` | additional text added to footer |
+| `pd` | Pad Character | `string` | `pd=%E2%80%87` | Unicode [figure space](https://unicode-table.com/en/2007/) |
+| `ln` | Lunch Number | `string` | `ln=L2` | class 1 / lunch 2 |
+| `ts` | Timer Shown | `string` | `ts=0` | anything other than `0` shows timer |
+| `to` | Time Offset | `number` | `to=0` | offset in seconds from [now](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/now) (debugging) |
 
 The examples show the default values for these query properties.
 
