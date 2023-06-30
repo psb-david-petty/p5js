@@ -133,9 +133,9 @@ const flip = (data) => Object.fromEntries(
  *   text.id as value so every property w/ same value can be combined.
  * - Flip valkey to create keyval Object.
  * - Create query string by concatenating `&${key}${value}` in order
- *   w/ '=', '+', & ' ' substituted for in value.
- * - Use parseFromString followed by encodeURI to create uri w/ '?'
- *   substituted for first '&' and return it.
+ *   w/ '=', '+', & ' ' replaced in value.
+ * - Use parseFromString followed by encodeURI to create uri w/ first
+ *   '&' replaced by '?' and return it.
  * - NOTE: fix '&gt' before and after encoding so it won't be '>'.
  * @returns URI updated to include query string
  */
