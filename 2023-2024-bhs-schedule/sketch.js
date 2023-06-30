@@ -351,6 +351,7 @@ function findBlock() {
 }
 
 // TODO: add jsdoc comments
+// TODO: optionHM has a Chrome-only bug in the midnight hour
 optionHM = { hour: "numeric", minute: "2-digit" };
 formatHM = (t) =>
   new Date(`1947-04-07T${t.padStart(5, "0")}`)
