@@ -497,6 +497,19 @@ function drawFooter() {
     textWidth,
     textHeight
   );
+  // Enable hidden dimension text.
+  const delta = getFooterHeight(), footerMiddle = `${width}\u00d7${height + margin * 2}`;
+  const trans = abs(mouseX - width / 2) < delta && abs(mouseY - textY) < delta
+    ? 255 : 0;
+  fill(0, trans); // "black"
+  textAlign(CENTER);
+  text(
+    footerMiddle,
+    textX,
+    textY + (getFooterHeight() - smallFontSize) / 2,
+    textWidth,
+    textHeight
+  );
 }
 
 /** Return true if b is a shorter (lunch) block, false otherwise.
@@ -883,7 +896,8 @@ function setup() {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;`;
+  align-items: center;
+  border: thin solid chartreuse;`;
   let sketch = select("#sketch");
   sketch.style(`${center}`);
 }
