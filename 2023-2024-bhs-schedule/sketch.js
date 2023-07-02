@@ -896,8 +896,7 @@ function setup() {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  border: thin solid chartreuse;`;
+  align-items: center;`;
   let sketch = select("#sketch");
   sketch.style(`${center}`);
 }
