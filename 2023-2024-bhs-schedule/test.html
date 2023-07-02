@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Test&hellip;</title>
+<style>
+/* Styles for this page... */
+body {
+  margin: 1%; padding: 1%;
+  display: flex; flex-direction: column; justify-content: center; align-items: center;
+  border: thin solid blue;
+}
+main {
+  /* Like Google sites window. */
+  width: 1175px; height: 1175px;
+  display: flex; justify-content: center;  align-items: center;
+  border: thin solid green;
+}
+footer { text-align: center; font-size: x-small; }
+
+/* Styles for included code... */
+div {
+  overflow: hidden; display: flex; justify-content: center;
+}
+iframe {
+  border: 0; min-width: 1500px; min-height: 1150px;
+  border: thin solid red;
+}
+</style>
+</head>
+
+<body>
+  <main>
+    <!-- HOW TO VERTICAL-ALIGN CENTER THE IFRAME SRC IN THE IFRAME? -->
+    <div>
+      <!-- <iframe src="./whatever.html"></iframe> -->
+      <iframe src="https://psb-david-petty.github.io/p5js/2023-2024-bhs-schedule/?cw=1500"></iframe>
+    </div>
+  </main>
+  <footer>
+    <!-- Explanatory footer... -->
+    <p>
+      <code>&lt;body&gt;</code> <span style="color: blue;">blue</span> border &mdash; 
+      <code>&lt;main&gt;</code> 1175x1175 (like a <a href="https://sites.google.com/">Google sites</a> embed) <span style="color: green;">green</span> border &mdash; 
+      <code>&lt;iframe&gt;</code> 1100x1100 <span style="color: red;">red</span> border
+    </p>
+  </footer>
+</body>
+</html>
