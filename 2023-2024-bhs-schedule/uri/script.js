@@ -177,13 +177,12 @@ function updateURI() {
   document.querySelector(`#uri`).innerHTML = `${uri().replace(/&/g, `&amp;`)}`;
 }
 
-/** Updated src, width, and height properites of element w/ selector 
+/** Update src, width, and height properites of element w/ selector 
  * 'iframe' and return false so page does not reload. Update src to 
  * uri(). If searchParams of uri() contains 'cw' and it is an integer, 
  * calculate and update new width and height.
  * TODO: height is an approximate function of width such that there
- * are no scrollbars. The approximation fails in some cases when 'fs'
- * (*font size*) is also made larger.
+ * are no scrollbars. The approximation is based on observations.
  */
 function schedule() {
   let 
@@ -191,7 +190,7 @@ function schedule() {
     cw = (new URL(uri())).searchParams.get(`cw`);
   if (cw && !isNaN(+cw)) {
     width = parseInt(+cw);
-    height = parseInt(width / 20 + 950);  // TODO: this is an approximate hack
+    height = parseInt((width / 20 + 950) + 0.5);
     iframe.width = `${width}`;  
     iframe.height = `${height}`;
     console.log(`Dimension: ${width}x${height}`)
@@ -232,9 +231,11 @@ function copyCode() {
   let iframe = document.querySelector(`iframe`);
   //console.log(`Dimension: ${iframe.width}x${iframe.height}`)
   const text = `<style>
-  iframe { width: ${iframe.width}px; height: ${iframe.height}px; }
+  /* The maximum width of an embedded Google site is ~1150px. */
+  /* If scrollbars appear in the iframe, increase min-height value. */
+  iframe { border: 0; min-width: ${iframe.width}px; min-height: ${iframe.height}px; }
 </style>
-<div style="width: 100%; display: flex; justify-content: center; align-items: center;">
+<div style="overflow: hidden; display: flex; justify-content: center;">
   <iframe src="${uri()}"></iframe>
 </div>`, message = `code`;
   copyToClipboard(text, message);
