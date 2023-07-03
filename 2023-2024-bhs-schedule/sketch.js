@@ -502,6 +502,7 @@ function drawFooter() {
   if (isUndef(countDownStrings)) return;
   // remaining & timerLabel not used here.
   const [remaining, timerLabel, footerRight] = countDownStrings;
+  fill("black");
   textAlign(RIGHT);
   text(
     footerRight,
