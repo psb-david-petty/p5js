@@ -484,6 +484,19 @@ function drawFooter() {
     textWidth,
     textHeight
   );
+  // Repaint (hidden) center footer dimension text.
+  const delta = getFooterHeight(), footerMiddle = `${width}\u00d7${height + margin * 2}`;
+  const trans = abs(mouseX - width / 2) < delta && abs(mouseY - textY) < delta
+    ? 255 : 0;
+  fill(0, trans); // "black"
+  textAlign(CENTER);
+  text(
+    footerMiddle,
+    textX,
+    textY + (getFooterHeight() - smallFontSize) / 2,
+    textWidth,
+    textHeight
+  );
   // Repaint text for right footer, if any.
   const countDownStrings = countDownFormatted();
   if (isUndef(countDownStrings)) return;
@@ -492,19 +505,6 @@ function drawFooter() {
   textAlign(RIGHT);
   text(
     footerRight,
-    textX,
-    textY + (getFooterHeight() - smallFontSize) / 2,
-    textWidth,
-    textHeight
-  );
-  // Enable hidden dimension text.
-  const delta = getFooterHeight(), footerMiddle = `${width}\u00d7${height + margin * 2}`;
-  const trans = abs(mouseX - width / 2) < delta && abs(mouseY - textY) < delta
-    ? 255 : 0;
-  fill(0, trans); // "black"
-  textAlign(CENTER);
-  text(
-    footerMiddle,
     textX,
     textY + (getFooterHeight() - smallFontSize) / 2,
     textWidth,
