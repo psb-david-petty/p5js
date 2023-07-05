@@ -112,9 +112,9 @@ The query property color values can be a hexadecimal number. The standard way to
 | `ac` | A-Block color | `color` | `ac=C33` | `ac=f00` | `red` |
 | `bc` | B-Block color | `color` | `bc=009` | `bc=000080` | `navy` |
 | `cc` | C-Block color | `color` | `cc=C69` | `cc=7fff00` | `chartreuse` |
-| `dc` | D-Block color | `color` | `dc=C93` | `dc=Sienna` | `#a0522d` |
+| `dc` | D-Block color | `color` | `dc=F93` | `dc=Sienna` | `#a0522d` |
 | `ec` | E-Block color | `color` | `ec=696` | `ec=000` | `black` |
-| `fc` | F-Block color | `color` | `fc=69C` | `fc=white` | `#FFF` |
+| `fc` | F-Block color | `color` | `fc=69F` | `fc=white` | `#FFF` |
 | `gc` | G-Block color | `color` | `gc=96C` | `gc=639` | `rebeccapurple` |
 | `lc` | Lunch Block color | `color` | `lc=CCC` | `lc=PeachPuff` | `#FFDAB9` |
 | `tc` | T-Block color | `color` | `tc=CCC` | `tc=ccc` | a light shade of gray |
@@ -126,14 +126,14 @@ The code for the default values is:
 ```JavaScript
 // All colors keys end in "C".
 const colors = {
-  ZC: "#ff6", // Z: 255, 255,  84 -> #ff5 / #ff6
-  AC: "#c33", // A: 189,  75,  49 -> #b43 / #c33
-  BC: "#009", // B:   0,   0, 147 -> #009 / #009
-  CC: "#c69", // C: 185, 126, 158 -> #b79 / #c69
-  DC: "#f90", // D: 219, 149,  75 -> #d94 / #c93
-  EC: "#696", // E: 121, 166,  90 -> #7a5 / #696
-  FC: "#69c", // F: 121, 157, 229 -> #79d / #69c
-  GC: "#639", // G: 139, 125, 190 -> #87b / #96c
+  ZC: "#ff6", // Z: 255, 255,  84 -> #ffff54 -> #ff5 -> #ff6
+  AC: "#c33", // A: 204,  65,  37 -> #cc4125 -> #c42 -> #c33
+  BC: "#009", // B:   0,   0, 153 -> #000099 -> #009 -> #009
+  CC: "#c69", // C: 194, 123, 160 -> #c27ba0 -> #b79 -> #c69
+  DC: "#f93", // D: 230, 145,  56 -> #e69138 -> #e93 -> #f93
+  EC: "#696", // E: 106, 168,  79 -> #6aa84f -> #6a5 -> #696
+  FC: "#69f", // F: 109, 158, 235 -> #6d9eeb -> #69e -> #69f
+  GC: "#96c", // G: 142, 124, 195 -> #8e7cc3 -> #87b -> #96c
   LC: "#ccc",
   TC: "#ccc",
   XC: "#ccc",
