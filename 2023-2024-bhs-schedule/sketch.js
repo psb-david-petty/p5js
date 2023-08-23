@@ -16,7 +16,7 @@ var canvasWidth = 1080, // "CW" query key
   timerShown = 0,       // "TS" query key
   timeOffset = 0;       // "TO" query key
 /* Global constants used in formatting schedule. */
-const rev = "V.1A",
+const rev = "V.1B",
   defaultColor = "#eee",
   oX = 10,
   oY = 10,

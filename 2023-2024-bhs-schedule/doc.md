@@ -1,6 +1,6 @@
 # 2023-2024-bhs-schedule
 
-This is a [p5.js](https://p5js.org/) sketch for the 2023-2024 Brookline High School Schedule ([v1A]()). [p5.js](https://p5js.org/) '&hellip;is a JavaScript library for creative coding, with a focus on making coding accessible and inclusive for artists, designers, educators, beginners, and anyone else! p5.js is free and open-source because we believe software, and the tools to learn it, should be accessible to everyone.'
+This is a [p5.js](https://p5js.org/) sketch for the 2023-2024 Brookline High School Schedule ([v1B](https://bhs.brookline.k12.ma.us/uploads/8/0/1/5/801512/23_24bhsweeklysched_v1b.pdf)). [p5.js](https://p5js.org/) '&hellip;is a JavaScript library for creative coding, with a focus on making coding accessible and inclusive for artists, designers, educators, beginners, and anyone else! p5.js is free and open-source because we believe software, and the tools to learn it, should be accessible to everyone.'
 
 Use the link [https://psb-david-petty.github.io/p5js/2023-2024-bhs-schedule](https://psb-david-petty.github.io/p5js/2023-2024-bhs-schedule) with suitable query properties to display your custom schedule. The query properties are described below.
 
