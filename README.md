@@ -14,7 +14,7 @@ Also included are projects inspired by *The Coding Train* ([http://codingtra.in/
 
 | Sketch | Description |
 | --- | --- |
-| [./coding-train-cc-59/](https://psb-david-petty.github.io/p5js/coding-train-cc-59/) | This is based on [coding challenge 59](https://thecodingtrain.com/CodingChallenges/059-steering-text-paths.html). |
+| [./coding-train-cc-59/](https://psb-david-petty.github.io/p5js/coding-train-cc-59/) | This is based on [coding challenge 59](https://thecodingtrain.com/challenges/59-steering-behaviors). |
 
 Other useful sketches&hellip;
 
