@@ -8,7 +8,7 @@ const URI = `https://psb-david-petty.github.io/p5js/2023-2024-bhs-schedule/`
  * EventListeners
  */
 
-/** EventListener for change. sheckEnabled() every time checkbox is
+/** EventListener for change. checkEnabled() every time checkbox is
  * clicked.
  * @param {Event} event - change event
  */
@@ -209,8 +209,8 @@ function copyToClipboard(text, message) {
     console.log(`Copied ${message} to clipboard.`);
     window.alert(`Copied ${message} to clipboard.`);
   },() => {
-    console.error('Failed to copy');
     /* Rejected - text failed to copy to the clipboard */
+    console.error('Failed to copy');
   });
 }
 
